@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="RANDataSet" targetNamespace="http://tempuri.org/RANDataSet.xsd" xmlns:mstns="http://tempuri.org/RANDataSet.xsd" xmlns="http://tempuri.org/RANDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="RANDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="RANDataSet" msprop:Generator_UserDSName="RANDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RANDataTable" msprop:Generator_TableClassName="RANDataTableDataTable" msprop:Generator_TableVarName="tableRANDataTable" msprop:Generator_RowChangedName="RANDataTableRowChanged" msprop:Generator_TablePropName="RANDataTable" msprop:Generator_RowDeletingName="RANDataTableRowDeleting" msprop:Generator_RowChangingName="RANDataTableRowChanging" msprop:Generator_RowEvHandlerName="RANDataTableRowChangeEventHandler" msprop:Generator_RowDeletedName="RANDataTableRowDeleted" msprop:Generator_RowClassName="RANDataTableRow" msprop:Generator_UserTableName="RANDataTable" msprop:Generator_RowEvArgName="RANDataTableRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RAN" msprop:Generator_ColumnVarNameInTable="columnRAN" msprop:Generator_ColumnPropNameInRow="RAN" msprop:Generator_ColumnPropNameInTable="RANColumn" msprop:Generator_UserColumnName="RAN" type="xs:string" minOccurs="0" />
+              <xs:element name="Remision" msprop:Generator_ColumnVarNameInTable="columnRemision" msprop:Generator_ColumnPropNameInRow="Remision" msprop:Generator_ColumnPropNameInTable="RemisionColumn" msprop:Generator_UserColumnName="Remision" type="xs:string" minOccurs="0" />
+              <xs:element name="FechaCreacion" msprop:Generator_ColumnVarNameInTable="columnFechaCreacion" msprop:Generator_ColumnPropNameInRow="FechaCreacion" msprop:Generator_ColumnPropNameInTable="FechaCreacionColumn" msprop:Generator_UserColumnName="FechaCreacion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Cantidad" msprop:Generator_ColumnVarNameInTable="columnCantidad" msprop:Generator_ColumnPropNameInRow="Cantidad" msprop:Generator_ColumnPropNameInTable="CantidadColumn" msprop:Generator_UserColumnName="Cantidad" type="xs:int" minOccurs="0" />
+              <xs:element name="ClaveProducto" msprop:Generator_ColumnVarNameInTable="columnClaveProducto" msprop:Generator_ColumnPropNameInRow="ClaveProducto" msprop:Generator_ColumnPropNameInTable="ClaveProductoColumn" msprop:Generator_UserColumnName="ClaveProducto" type="xs:string" minOccurs="0" />
+              <xs:element name="FechaEnvio" msprop:Generator_ColumnVarNameInTable="columnFechaEnvio" msprop:Generator_ColumnPropNameInRow="FechaEnvio" msprop:Generator_ColumnPropNameInTable="FechaEnvioColumn" msprop:Generator_UserColumnName="FechaEnvio" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PesoBruto" msprop:Generator_ColumnVarNameInTable="columnPesoBruto" msprop:Generator_ColumnPropNameInRow="PesoBruto" msprop:Generator_ColumnPropNameInTable="PesoBrutoColumn" msprop:Generator_UserColumnName="PesoBruto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="NumeroDePartidas" msprop:Generator_ColumnVarNameInTable="columnNumeroDePartidas" msprop:Generator_ColumnPropNameInRow="NumeroDePartidas" msprop:Generator_ColumnPropNameInTable="NumeroDePartidasColumn" msprop:Generator_UserColumnName="NumeroDePartidas" type="xs:int" minOccurs="0" />
+              <xs:element name="CantidadTotalRemision" msprop:Generator_ColumnVarNameInTable="columnCantidadTotalRemision" msprop:Generator_ColumnPropNameInRow="CantidadTotalRemision" msprop:Generator_ColumnPropNameInTable="CantidadTotalRemisionColumn" msprop:Generator_UserColumnName="CantidadTotalRemision" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="RANDataTableKey1">
+      <xs:selector xpath=".//mstns:RANDataTable" />
+      <xs:field xpath="mstns:RAN" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

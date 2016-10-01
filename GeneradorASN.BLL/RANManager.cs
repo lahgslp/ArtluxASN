@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using GeneradorASN.Entities;
 using GeneradorASN.DAL;
+using System.Collections;
+
 
 namespace GeneradorASN.BLL
 {
@@ -12,16 +14,31 @@ namespace GeneradorASN.BLL
     {
         static public RANDataSet ObtenerRANs(DateTime fechaInicio, DateTime fechaFinal)
         {
+          
+
             RANDataSet ds = new RANDataSet();
+            Hashtable PesosArticulo = CargadorXMLPesosNissan.ObtenerPesos();  
 
-            List<RANDBData> ransFromDB = DBManager.ObtenerRANs(fechaInicio, fechaFinal);
-
-            foreach (RANDBData ran in ransFromDB)
+            List<List<RANDBData>> ransFromDB = DBManager.ObtenerRANs(fechaInicio, fechaFinal);
+            foreach (List<RANDBData> ListOfRans in ransFromDB)
             {
-                RANDataSet.RANDataTableRow row = ds.RANDataTable.NewRANDataTableRow();
-                row.RAN = ran.RAN;
-                ds.RANDataTable.Rows.Add(row);
+                foreach (RANDBData ran in ListOfRans)
+                {
+                    RANDataSet.RANDataTableRow row = ds.RANDataTable.NewRANDataTableRow();
+                    MedidasArticulo MedidaArticulo = (MedidasArticulo)PesosArticulo[ran.ClaveProducto]; 
+                    row.RAN = ran.RAN;
+                    row.Remision = ran.Remision;
+                    row.FechaCreacion = ran.FechaCreacion;
+                    row.Cantidad = ran.Cantidad;
+                    row.ClaveProducto = ran.ClaveProducto;
+                    row.FechaEnvio = ran.FechaEnvio;
+                    row.PesoBruto = (ran.Cantidad / MedidaArticulo.PiezasXcaja) * MedidaArticulo.Peso; //Es la cantidad individual por ran o por la cantidad total?
+                    row.NumeroDePartidas = ListOfRans.Count();
+                    row.CantidadTotalRemision = ran.CantidadTotal;
+                    ds.RANDataTable.Rows.Add(row);
+                }
             }
+                
 
             return ds;
         }

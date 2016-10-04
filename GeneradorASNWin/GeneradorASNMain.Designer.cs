@@ -37,13 +37,14 @@
             this.labelFechaFinal = new System.Windows.Forms.Label();
             this.groupBoxRANs = new System.Windows.Forms.GroupBox();
             this.dataGridViewRANs = new System.Windows.Forms.DataGridView();
+            this.remisionesDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelDestino = new System.Windows.Forms.Label();
             this.textBoxRutaDestino = new System.Windows.Forms.TextBox();
             this.buttonCargar = new System.Windows.Forms.Button();
             this.buttonCambiarRuta = new System.Windows.Forms.Button();
             this.linkCarpetaRegistro = new System.Windows.Forms.LinkLabel();
             this.remisionesDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.remisionesDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.folioRemisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partidasTotalesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,8 +54,8 @@
             this.listaRANsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxRANs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRANs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.remisionesDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.remisionesDataTableBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.remisionesDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // labelPeriodo
@@ -125,10 +126,10 @@
             // 
             this.dataGridViewRANs.AllowUserToAddRows = false;
             this.dataGridViewRANs.AllowUserToDeleteRows = false;
-            this.dataGridViewRANs.AllowUserToOrderColumns = true;
             this.dataGridViewRANs.AutoGenerateColumns = false;
             this.dataGridViewRANs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRANs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Selected,
             this.folioRemisionDataGridViewTextBoxColumn,
             this.cantidadTotalDataGridViewTextBoxColumn,
             this.partidasTotalesDataGridViewTextBoxColumn,
@@ -143,6 +144,11 @@
             this.dataGridViewRANs.ReadOnly = true;
             this.dataGridViewRANs.Size = new System.Drawing.Size(730, 205);
             this.dataGridViewRANs.TabIndex = 0;
+            // 
+            // remisionesDataTableBindingSource
+            // 
+            this.remisionesDataTableBindingSource.DataMember = "RemisionesDataTable";
+            this.remisionesDataTableBindingSource.DataSource = this.remisionesDataSetBindingSource;
             // 
             // labelDestino
             // 
@@ -202,10 +208,11 @@
             this.remisionesDataSetBindingSource.DataSource = typeof(GeneradorASN.Entities.RemisionesDataSet);
             this.remisionesDataSetBindingSource.Position = 0;
             // 
-            // remisionesDataTableBindingSource
+            // Selected
             // 
-            this.remisionesDataTableBindingSource.DataMember = "RemisionesDataTable";
-            this.remisionesDataTableBindingSource.DataSource = this.remisionesDataSetBindingSource;
+            this.Selected.HeaderText = "Incluir";
+            this.Selected.Name = "Selected";
+            this.Selected.ReadOnly = true;
             // 
             // folioRemisionDataGridViewTextBoxColumn
             // 
@@ -278,8 +285,8 @@
             this.Load += new System.EventHandler(this.GeneradorASN_Load);
             this.groupBoxRANs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRANs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.remisionesDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.remisionesDataTableBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.remisionesDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,6 +307,9 @@
         private System.Windows.Forms.Button buttonCargar;
         private System.Windows.Forms.Button buttonCambiarRuta;
         private System.Windows.Forms.LinkLabel linkCarpetaRegistro;
+        private System.Windows.Forms.BindingSource remisionesDataTableBindingSource;
+        private System.Windows.Forms.BindingSource remisionesDataSetBindingSource;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
         private System.Windows.Forms.DataGridViewTextBoxColumn folioRemisionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidadTotalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn partidasTotalesDataGridViewTextBoxColumn;
@@ -307,8 +317,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaDocumentoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaEntregaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn listaRANsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource remisionesDataTableBindingSource;
-        private System.Windows.Forms.BindingSource remisionesDataSetBindingSource;
     }
 }
 

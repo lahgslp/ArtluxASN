@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="CargadorXMLPesosNissan.cs" />
     <Compile Include="ExportadorASN.cs" />
-    <Compile Include="RANManager.cs" />
+    <Compile Include="RemisionesManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

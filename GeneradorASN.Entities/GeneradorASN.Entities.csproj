@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemisionesDataSet.cs">
+      <DependentUpon>RemisionesDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="RemisionesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

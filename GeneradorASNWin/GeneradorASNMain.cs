@@ -54,7 +54,7 @@ namespace GeneradorASNWin
 
         private void CargarDatos()
         {
-            //rANDataTableBindingSource.DataSource = RANManager.ObtenerRANs(dateTimePickerFechaInicio.Value, dateTimePickerFechaFinal.Value);
+            remisionesDataTableBindingSource.DataSource = RemisionesManager.ObtenerRemisiones(dateTimePickerFechaInicio.Value, dateTimePickerFechaFinal.Value);
         }
 
         private void buttonCargar_Click(object sender, EventArgs e)

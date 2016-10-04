@@ -469,7 +469,7 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public RemisionesDataTableRow AddRemisionesDataTableRow(string FolioRemision, decimal CantidadTotal, string PartidasTotales, decimal PesoTotal, System.DateTime FechaDocumento, System.DateTime FechaEntrega, string ListaRANs) {
+            public RemisionesDataTableRow AddRemisionesDataTableRow(string FolioRemision, double CantidadTotal, int PartidasTotales, double PesoTotal, System.DateTime FechaDocumento, System.DateTime FechaEntrega, string ListaRANs) {
                 RemisionesDataTableRow rowRemisionesDataTableRow = ((RemisionesDataTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         FolioRemision,
@@ -515,11 +515,11 @@ namespace GeneradorASN.Entities {
             private void InitClass() {
                 this.columnFolioRemision = new global::System.Data.DataColumn("FolioRemision", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFolioRemision);
-                this.columnCantidadTotal = new global::System.Data.DataColumn("CantidadTotal", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnCantidadTotal = new global::System.Data.DataColumn("CantidadTotal", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCantidadTotal);
-                this.columnPartidasTotales = new global::System.Data.DataColumn("PartidasTotales", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnPartidasTotales = new global::System.Data.DataColumn("PartidasTotales", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPartidasTotales);
-                this.columnPesoTotal = new global::System.Data.DataColumn("PesoTotal", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnPesoTotal = new global::System.Data.DataColumn("PesoTotal", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPesoTotal);
                 this.columnFechaDocumento = new global::System.Data.DataColumn("FechaDocumento", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFechaDocumento);
@@ -783,7 +783,7 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PartidasDataTableRow AddPartidasDataTableRow(RemisionesDataTableRow parentRemisionesDataTableRowByFK_RemisionesDataTable_PartidasDataTable, string ClaveProducto, decimal CantidadPartida, decimal PesoPartida, string RAN) {
+            public PartidasDataTableRow AddPartidasDataTableRow(RemisionesDataTableRow parentRemisionesDataTableRowByFK_RemisionesDataTable_PartidasDataTable, string ClaveProducto, double CantidadPartida, double PesoPartida, string RAN) {
                 PartidasDataTableRow rowPartidasDataTableRow = ((PartidasDataTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -830,9 +830,9 @@ namespace GeneradorASN.Entities {
                 base.Columns.Add(this.columnFolioRemision);
                 this.columnClaveProducto = new global::System.Data.DataColumn("ClaveProducto", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnClaveProducto);
-                this.columnCantidadPartida = new global::System.Data.DataColumn("CantidadPartida", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnCantidadPartida = new global::System.Data.DataColumn("CantidadPartida", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCantidadPartida);
-                this.columnPesoPartida = new global::System.Data.DataColumn("PesoPartida", typeof(decimal), null, global::System.Data.MappingType.Element);
+                this.columnPesoPartida = new global::System.Data.DataColumn("PesoPartida", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPesoPartida);
                 this.columnRAN = new global::System.Data.DataColumn("RAN", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRAN);
@@ -994,10 +994,10 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal CantidadTotal {
+            public double CantidadTotal {
                 get {
                     try {
-                        return ((decimal)(this[this.tableRemisionesDataTable.CantidadTotalColumn]));
+                        return ((double)(this[this.tableRemisionesDataTable.CantidadTotalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CantidadTotal\' in table \'RemisionesDataTable\' is DBNull.", e);
@@ -1010,10 +1010,10 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string PartidasTotales {
+            public int PartidasTotales {
                 get {
                     try {
-                        return ((string)(this[this.tableRemisionesDataTable.PartidasTotalesColumn]));
+                        return ((int)(this[this.tableRemisionesDataTable.PartidasTotalesColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PartidasTotales\' in table \'RemisionesDataTable\' is DBNull.", e);
@@ -1026,10 +1026,10 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal PesoTotal {
+            public double PesoTotal {
                 get {
                     try {
-                        return ((decimal)(this[this.tableRemisionesDataTable.PesoTotalColumn]));
+                        return ((double)(this[this.tableRemisionesDataTable.PesoTotalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PesoTotal\' in table \'RemisionesDataTable\' is DBNull.", e);
@@ -1232,10 +1232,10 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal CantidadPartida {
+            public double CantidadPartida {
                 get {
                     try {
-                        return ((decimal)(this[this.tablePartidasDataTable.CantidadPartidaColumn]));
+                        return ((double)(this[this.tablePartidasDataTable.CantidadPartidaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'CantidadPartida\' in table \'PartidasDataTable\' is DBNull.", e);
@@ -1248,10 +1248,10 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal PesoPartida {
+            public double PesoPartida {
                 get {
                     try {
-                        return ((decimal)(this[this.tablePartidasDataTable.PesoPartidaColumn]));
+                        return ((double)(this[this.tablePartidasDataTable.PesoPartidaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'PesoPartida\' in table \'PartidasDataTable\' is DBNull.", e);

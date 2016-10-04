@@ -10,11 +10,21 @@ using System.Collections;
 
 namespace GeneradorASN.BLL
 {
-    public class RANManager
+    public class RemisionesManager
     {
         //Comentando temporalmente para que no truene durante los cambios al RANDataset
-        static public RemisionesDataSet ObtenerRANs(DateTime fechaInicio, DateTime fechaFinal)
+        static public RemisionesDataSet ObtenerRemisiones(DateTime fechaInicio, DateTime fechaFinal)
         {
+            RemisionesDataSet ds = new RemisionesDataSet();
+            RemisionesDataSet.RemisionesDataTableRow row = ds.RemisionesDataTable.NewRemisionesDataTableRow();
+            row.FolioRemision = "0001";
+            row.CantidadTotal = 100.2;
+            row.PartidasTotales = 56;
+            row.PesoTotal = 4565.56;
+            row.FechaDocumento = DateTime.Now;
+            row.FechaEntrega = DateTime.Now.AddDays(2);
+            row.ListaRANs = "P4565D,P4566D,P4567D";
+            ds.RemisionesDataTable.Rows.Add(row);
             /*          
 
                         RANDataSet ds = new RANDataSet();
@@ -39,10 +49,8 @@ namespace GeneradorASN.BLL
                                 ds.RANDataTable.Rows.Add(row);
                             }
                         }
-
-
-                        return ds;*/
-            return null;
+*/
+            return ds;
         }
     }
 }

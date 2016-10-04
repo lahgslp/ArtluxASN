@@ -66,7 +66,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Properties\DataSources\GeneradorASN.Entities.RANDataSet.datasource" />
+    <None Include="Properties\DataSources\GeneradorASN.Entities.RemisionesDataSet+PartidasDataTableDataTable.datasource" />
+    <None Include="Properties\DataSources\GeneradorASN.Entities.RemisionesDataSet+PartidasDataTableRow.datasource" />
+    <None Include="Properties\DataSources\GeneradorASN.Entities.RemisionesDataSet+PartidasDataTableRowChangeEvent.datasource" />
+    <None Include="Properties\DataSources\GeneradorASN.Entities.RemisionesDataSet+PartidasDataTableRowChangeEventHandler.datasource" />
+    <None Include="Properties\DataSources\GeneradorASN.Entities.RemisionesDataSet+RemisionesDataTableDataTable.datasource" />
+    <None Include="Properties\DataSources\GeneradorASN.Entities.RemisionesDataSet+RemisionesDataTableRow.datasource" />
+    <None Include="Properties\DataSources\GeneradorASN.Entities.RemisionesDataSet+RemisionesDataTableRowChangeEvent.datasource" />
+    <None Include="Properties\DataSources\GeneradorASN.Entities.RemisionesDataSet+RemisionesDataTableRowChangeEventHandler.datasource" />
+    <None Include="Properties\DataSources\GeneradorASN.Entities.RemisionesDataSet.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,6 +105,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -42,19 +42,19 @@
             this.buttonCargar = new System.Windows.Forms.Button();
             this.buttonCambiarRuta = new System.Windows.Forms.Button();
             this.linkCarpetaRegistro = new System.Windows.Forms.LinkLabel();
-            this.rANDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.rANDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaCreacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.claveProductoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaEnvioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pesoBrutoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numeroDePartidasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidadTotalRemisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.remisionesDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.remisionesDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.folioRemisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partidasTotalesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pesoTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaDocumentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaEntregaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.listaRANsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxRANs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRANs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rANDataTableBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.remisionesDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.remisionesDataTableBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // labelPeriodo
@@ -129,19 +129,18 @@
             this.dataGridViewRANs.AutoGenerateColumns = false;
             this.dataGridViewRANs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRANs.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.rANDataGridViewTextBoxColumn,
-            this.remisionDataGridViewTextBoxColumn,
-            this.fechaCreacionDataGridViewTextBoxColumn,
-            this.cantidadDataGridViewTextBoxColumn,
-            this.claveProductoDataGridViewTextBoxColumn,
-            this.fechaEnvioDataGridViewTextBoxColumn,
-            this.pesoBrutoDataGridViewTextBoxColumn,
-            this.numeroDePartidasDataGridViewTextBoxColumn,
-            this.cantidadTotalRemisionDataGridViewTextBoxColumn});
-            this.dataGridViewRANs.DataSource = this.rANDataTableBindingSource;
+            this.folioRemisionDataGridViewTextBoxColumn,
+            this.cantidadTotalDataGridViewTextBoxColumn,
+            this.partidasTotalesDataGridViewTextBoxColumn,
+            this.pesoTotalDataGridViewTextBoxColumn,
+            this.fechaDocumentoDataGridViewTextBoxColumn,
+            this.fechaEntregaDataGridViewTextBoxColumn,
+            this.listaRANsDataGridViewTextBoxColumn});
+            this.dataGridViewRANs.DataSource = this.remisionesDataTableBindingSource;
             this.dataGridViewRANs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewRANs.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewRANs.Name = "dataGridViewRANs";
+            this.dataGridViewRANs.ReadOnly = true;
             this.dataGridViewRANs.Size = new System.Drawing.Size(730, 205);
             this.dataGridViewRANs.TabIndex = 0;
             // 
@@ -198,64 +197,64 @@
             this.linkCarpetaRegistro.Text = "Ver carpeta de registro de eventos";
             this.linkCarpetaRegistro.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCarpetaRegistro_LinkClicked);
             // 
-            // rANDataTableBindingSource
+            // remisionesDataSetBindingSource
             // 
-            this.rANDataTableBindingSource.DataMember = "RANDataTable";
-            this.rANDataTableBindingSource.DataSource = typeof(GeneradorASN.Entities.RANDataSet);
+            this.remisionesDataSetBindingSource.DataSource = typeof(GeneradorASN.Entities.RemisionesDataSet);
+            this.remisionesDataSetBindingSource.Position = 0;
             // 
-            // rANDataGridViewTextBoxColumn
+            // remisionesDataTableBindingSource
             // 
-            this.rANDataGridViewTextBoxColumn.DataPropertyName = "RAN";
-            this.rANDataGridViewTextBoxColumn.HeaderText = "RAN";
-            this.rANDataGridViewTextBoxColumn.Name = "rANDataGridViewTextBoxColumn";
+            this.remisionesDataTableBindingSource.DataMember = "RemisionesDataTable";
+            this.remisionesDataTableBindingSource.DataSource = this.remisionesDataSetBindingSource;
             // 
-            // remisionDataGridViewTextBoxColumn
+            // folioRemisionDataGridViewTextBoxColumn
             // 
-            this.remisionDataGridViewTextBoxColumn.DataPropertyName = "Remision";
-            this.remisionDataGridViewTextBoxColumn.HeaderText = "Remision";
-            this.remisionDataGridViewTextBoxColumn.Name = "remisionDataGridViewTextBoxColumn";
+            this.folioRemisionDataGridViewTextBoxColumn.DataPropertyName = "FolioRemision";
+            this.folioRemisionDataGridViewTextBoxColumn.HeaderText = "FolioRemision";
+            this.folioRemisionDataGridViewTextBoxColumn.Name = "folioRemisionDataGridViewTextBoxColumn";
+            this.folioRemisionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // fechaCreacionDataGridViewTextBoxColumn
+            // cantidadTotalDataGridViewTextBoxColumn
             // 
-            this.fechaCreacionDataGridViewTextBoxColumn.DataPropertyName = "FechaCreacion";
-            this.fechaCreacionDataGridViewTextBoxColumn.HeaderText = "FechaCreacion";
-            this.fechaCreacionDataGridViewTextBoxColumn.Name = "fechaCreacionDataGridViewTextBoxColumn";
+            this.cantidadTotalDataGridViewTextBoxColumn.DataPropertyName = "CantidadTotal";
+            this.cantidadTotalDataGridViewTextBoxColumn.HeaderText = "CantidadTotal";
+            this.cantidadTotalDataGridViewTextBoxColumn.Name = "cantidadTotalDataGridViewTextBoxColumn";
+            this.cantidadTotalDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // cantidadDataGridViewTextBoxColumn
+            // partidasTotalesDataGridViewTextBoxColumn
             // 
-            this.cantidadDataGridViewTextBoxColumn.DataPropertyName = "Cantidad";
-            this.cantidadDataGridViewTextBoxColumn.HeaderText = "Cantidad";
-            this.cantidadDataGridViewTextBoxColumn.Name = "cantidadDataGridViewTextBoxColumn";
+            this.partidasTotalesDataGridViewTextBoxColumn.DataPropertyName = "PartidasTotales";
+            this.partidasTotalesDataGridViewTextBoxColumn.HeaderText = "PartidasTotales";
+            this.partidasTotalesDataGridViewTextBoxColumn.Name = "partidasTotalesDataGridViewTextBoxColumn";
+            this.partidasTotalesDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // claveProductoDataGridViewTextBoxColumn
+            // pesoTotalDataGridViewTextBoxColumn
             // 
-            this.claveProductoDataGridViewTextBoxColumn.DataPropertyName = "ClaveProducto";
-            this.claveProductoDataGridViewTextBoxColumn.HeaderText = "ClaveProducto";
-            this.claveProductoDataGridViewTextBoxColumn.Name = "claveProductoDataGridViewTextBoxColumn";
+            this.pesoTotalDataGridViewTextBoxColumn.DataPropertyName = "PesoTotal";
+            this.pesoTotalDataGridViewTextBoxColumn.HeaderText = "PesoTotal";
+            this.pesoTotalDataGridViewTextBoxColumn.Name = "pesoTotalDataGridViewTextBoxColumn";
+            this.pesoTotalDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // fechaEnvioDataGridViewTextBoxColumn
+            // fechaDocumentoDataGridViewTextBoxColumn
             // 
-            this.fechaEnvioDataGridViewTextBoxColumn.DataPropertyName = "FechaEnvio";
-            this.fechaEnvioDataGridViewTextBoxColumn.HeaderText = "FechaEnvio";
-            this.fechaEnvioDataGridViewTextBoxColumn.Name = "fechaEnvioDataGridViewTextBoxColumn";
+            this.fechaDocumentoDataGridViewTextBoxColumn.DataPropertyName = "FechaDocumento";
+            this.fechaDocumentoDataGridViewTextBoxColumn.HeaderText = "FechaDocumento";
+            this.fechaDocumentoDataGridViewTextBoxColumn.Name = "fechaDocumentoDataGridViewTextBoxColumn";
+            this.fechaDocumentoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // pesoBrutoDataGridViewTextBoxColumn
+            // fechaEntregaDataGridViewTextBoxColumn
             // 
-            this.pesoBrutoDataGridViewTextBoxColumn.DataPropertyName = "PesoBruto";
-            this.pesoBrutoDataGridViewTextBoxColumn.HeaderText = "PesoBruto";
-            this.pesoBrutoDataGridViewTextBoxColumn.Name = "pesoBrutoDataGridViewTextBoxColumn";
+            this.fechaEntregaDataGridViewTextBoxColumn.DataPropertyName = "FechaEntrega";
+            this.fechaEntregaDataGridViewTextBoxColumn.HeaderText = "FechaEntrega";
+            this.fechaEntregaDataGridViewTextBoxColumn.Name = "fechaEntregaDataGridViewTextBoxColumn";
+            this.fechaEntregaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // numeroDePartidasDataGridViewTextBoxColumn
+            // listaRANsDataGridViewTextBoxColumn
             // 
-            this.numeroDePartidasDataGridViewTextBoxColumn.DataPropertyName = "NumeroDePartidas";
-            this.numeroDePartidasDataGridViewTextBoxColumn.HeaderText = "NumeroDePartidas";
-            this.numeroDePartidasDataGridViewTextBoxColumn.Name = "numeroDePartidasDataGridViewTextBoxColumn";
-            // 
-            // cantidadTotalRemisionDataGridViewTextBoxColumn
-            // 
-            this.cantidadTotalRemisionDataGridViewTextBoxColumn.DataPropertyName = "CantidadTotalRemision";
-            this.cantidadTotalRemisionDataGridViewTextBoxColumn.HeaderText = "CantidadTotalRemision";
-            this.cantidadTotalRemisionDataGridViewTextBoxColumn.Name = "cantidadTotalRemisionDataGridViewTextBoxColumn";
+            this.listaRANsDataGridViewTextBoxColumn.DataPropertyName = "ListaRANs";
+            this.listaRANsDataGridViewTextBoxColumn.HeaderText = "ListaRANs";
+            this.listaRANsDataGridViewTextBoxColumn.Name = "listaRANsDataGridViewTextBoxColumn";
+            this.listaRANsDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // GeneradorASNMain
             // 
@@ -279,7 +278,8 @@
             this.Load += new System.EventHandler(this.GeneradorASN_Load);
             this.groupBoxRANs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRANs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rANDataTableBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.remisionesDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.remisionesDataTableBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,16 +300,15 @@
         private System.Windows.Forms.Button buttonCargar;
         private System.Windows.Forms.Button buttonCambiarRuta;
         private System.Windows.Forms.LinkLabel linkCarpetaRegistro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rANDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn remisionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaCreacionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn claveProductoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaEnvioDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pesoBrutoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numeroDePartidasDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadTotalRemisionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource rANDataTableBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn folioRemisionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadTotalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partidasTotalesDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pesoTotalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDocumentoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaEntregaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn listaRANsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource remisionesDataTableBindingSource;
+        private System.Windows.Forms.BindingSource remisionesDataSetBindingSource;
     }
 }
 

@@ -2,10 +2,10 @@
 <Pesos>
   <Articulo>
     <ClaveAlterna>NIS-PFAR-120M</ClaveAlterna>
-    <Peso></Peso>
-    <Largo></Largo>
-    <Ancho></Ancho>
-    <Altura></Altura>
+    <Peso>0</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
     <PiezasCaja>24</PiezasCaja>
   </Articulo>
   <Articulo>
@@ -82,10 +82,10 @@
   </Articulo>
   <Articulo>
     <ClaveAlterna>NIS-EASM-1P</ClaveAlterna>
-    <Peso></Peso>
-    <Largo></Largo>
-    <Ancho></Ancho>
-    <Altura></Altura>
+    <Peso>0</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
     <PiezasCaja>12</PiezasCaja>
   </Articulo>
   <Articulo>

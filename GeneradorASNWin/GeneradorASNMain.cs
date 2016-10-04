@@ -21,6 +21,9 @@ namespace GeneradorASNWin
         private void GeneradorASN_Load(object sender, EventArgs e)
         {
             Text += " - V. " + typeof(GeneradorASNMain).Assembly.GetName().Version;   //Para mostrar la version
+            this.comboPeriodo.DataSource = GeneradorPeriodosdeFechas.Generar();
+            this.comboPeriodo.ValueMember = "PeriodoID";
+            this.comboPeriodo.DisplayMember = "PeriodoDesc";
             CargarDatos();
         }
 
@@ -51,7 +54,7 @@ namespace GeneradorASNWin
 
         private void CargarDatos()
         {
-            rANDataTableBindingSource.DataSource = GeneradorASN.BLL.RANManager.ObtenerRANs(dateTimePickerFechaInicio.Value, dateTimePickerFechaFinal.Value);
+            rANDataTableBindingSource.DataSource = RANManager.ObtenerRANs(dateTimePickerFechaInicio.Value, dateTimePickerFechaFinal.Value);
         }
 
         private void buttonCargar_Click(object sender, EventArgs e)

@@ -213,6 +213,7 @@
             this.Selected.HeaderText = "Incluir";
             this.Selected.Name = "Selected";
             this.Selected.ReadOnly = true;
+            this.Selected.Width = 40;
             // 
             // folioRemisionDataGridViewTextBoxColumn
             // 

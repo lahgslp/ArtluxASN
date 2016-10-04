@@ -7,20 +7,20 @@ using System.Data;
 
 namespace GeneradorASNWin
 {
+    enum Periodos
+    {
+        Hoy,
+        Ayer,
+        SemanaActual,
+        SemanaPasada,
+        DosSemanas,
+        MesActual,
+        UltimoMes,
+        Manual
+    }
+
     class GeneradorPeriodosdeFechas
     {
-        enum Periodos
-        {
-            Hoy,
-            Ayer,
-            SemanaActual,
-            SemanaPasada,
-            DosSemanas,
-            MesActual,
-            UltimoMes,
-            Manual
-        }
-
         public static DataTable Generar()
         {
             DataTable periodos = new DataTable("PeriodosFechas");

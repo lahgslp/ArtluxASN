@@ -18,21 +18,28 @@ namespace GeneradorASNWin
             InitializeComponent();
         }
 
-        private void GeneradorASN_Load(object sender, EventArgs e)
+        private void InicializarControles()
         {
-            Text += " - V. " + typeof(GeneradorASNMain).Assembly.GetName().Version;   //Para mostrar la version
             this.comboPeriodo.DataSource = GeneradorPeriodosdeFechas.Generar();
             this.comboPeriodo.ValueMember = "PeriodoID";
             this.comboPeriodo.DisplayMember = "PeriodoDesc";
+
+            this.comboPeriodo.SelectedValue = Periodos.Hoy;
+        }
+
+        private void comboPeriodo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GeneradorASN_Load(object sender, EventArgs e)
+        {
+            Text += " - V. " + typeof(GeneradorASNMain).Assembly.GetName().Version;   //Para mostrar la version
+            InicializarControles();
             CargarDatos();
         }
 
         private void buttonCambiarRuta_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboPeriodo_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

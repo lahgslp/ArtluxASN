@@ -37,13 +37,6 @@
             this.labelFechaFinal = new System.Windows.Forms.Label();
             this.groupBoxRANs = new System.Windows.Forms.GroupBox();
             this.dataGridViewRANs = new System.Windows.Forms.DataGridView();
-            this.remisionesDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.labelDestino = new System.Windows.Forms.Label();
-            this.textBoxRutaDestino = new System.Windows.Forms.TextBox();
-            this.buttonCargar = new System.Windows.Forms.Button();
-            this.buttonCambiarRuta = new System.Windows.Forms.Button();
-            this.linkCarpetaRegistro = new System.Windows.Forms.LinkLabel();
-            this.remisionesDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.folioRemisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +45,13 @@
             this.fechaDocumentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaEntregaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.listaRANsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.remisionesDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.remisionesDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.labelDestino = new System.Windows.Forms.Label();
+            this.textBoxRutaDestino = new System.Windows.Forms.TextBox();
+            this.buttonCargar = new System.Windows.Forms.Button();
+            this.buttonCambiarRuta = new System.Windows.Forms.Button();
+            this.linkCarpetaRegistro = new System.Windows.Forms.LinkLabel();
             this.groupBoxRANs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRANs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.remisionesDataTableBindingSource)).BeginInit();
@@ -69,6 +69,7 @@
             // 
             // comboPeriodo
             // 
+            this.comboPeriodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboPeriodo.Location = new System.Drawing.Point(64, 12);
             this.comboPeriodo.Name = "comboPeriodo";
             this.comboPeriodo.Size = new System.Drawing.Size(121, 21);
@@ -145,69 +146,6 @@
             this.dataGridViewRANs.Size = new System.Drawing.Size(730, 205);
             this.dataGridViewRANs.TabIndex = 0;
             // 
-            // remisionesDataTableBindingSource
-            // 
-            this.remisionesDataTableBindingSource.DataMember = "RemisionesDataTable";
-            this.remisionesDataTableBindingSource.DataSource = this.remisionesDataSetBindingSource;
-            // 
-            // labelDestino
-            // 
-            this.labelDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelDestino.AutoSize = true;
-            this.labelDestino.Location = new System.Drawing.Point(12, 274);
-            this.labelDestino.Name = "labelDestino";
-            this.labelDestino.Size = new System.Drawing.Size(46, 13);
-            this.labelDestino.TabIndex = 8;
-            this.labelDestino.Text = "Destino:";
-            // 
-            // textBoxRutaDestino
-            // 
-            this.textBoxRutaDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxRutaDestino.Location = new System.Drawing.Point(64, 271);
-            this.textBoxRutaDestino.Name = "textBoxRutaDestino";
-            this.textBoxRutaDestino.ReadOnly = true;
-            this.textBoxRutaDestino.Size = new System.Drawing.Size(369, 20);
-            this.textBoxRutaDestino.TabIndex = 9;
-            // 
-            // buttonCargar
-            // 
-            this.buttonCargar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCargar.Location = new System.Drawing.Point(670, 271);
-            this.buttonCargar.Name = "buttonCargar";
-            this.buttonCargar.Size = new System.Drawing.Size(75, 23);
-            this.buttonCargar.TabIndex = 10;
-            this.buttonCargar.Text = "&Cargar";
-            this.buttonCargar.UseVisualStyleBackColor = true;
-            this.buttonCargar.Click += new System.EventHandler(this.buttonCargar_Click);
-            // 
-            // buttonCambiarRuta
-            // 
-            this.buttonCambiarRuta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonCambiarRuta.Location = new System.Drawing.Point(439, 271);
-            this.buttonCambiarRuta.Name = "buttonCambiarRuta";
-            this.buttonCambiarRuta.Size = new System.Drawing.Size(75, 23);
-            this.buttonCambiarRuta.TabIndex = 11;
-            this.buttonCambiarRuta.Text = "Ca&mbiar";
-            this.buttonCambiarRuta.UseVisualStyleBackColor = true;
-            this.buttonCambiarRuta.Click += new System.EventHandler(this.buttonCambiarRuta_Click);
-            // 
-            // linkCarpetaRegistro
-            // 
-            this.linkCarpetaRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.linkCarpetaRegistro.AutoSize = true;
-            this.linkCarpetaRegistro.Location = new System.Drawing.Point(15, 294);
-            this.linkCarpetaRegistro.Name = "linkCarpetaRegistro";
-            this.linkCarpetaRegistro.Size = new System.Drawing.Size(170, 13);
-            this.linkCarpetaRegistro.TabIndex = 12;
-            this.linkCarpetaRegistro.TabStop = true;
-            this.linkCarpetaRegistro.Text = "Ver carpeta de registro de eventos";
-            this.linkCarpetaRegistro.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCarpetaRegistro_LinkClicked);
-            // 
-            // remisionesDataSetBindingSource
-            // 
-            this.remisionesDataSetBindingSource.DataSource = typeof(GeneradorASN.Entities.RemisionesDataSet);
-            this.remisionesDataSetBindingSource.Position = 0;
-            // 
             // Selected
             // 
             this.Selected.HeaderText = "Incluir";
@@ -263,6 +201,69 @@
             this.listaRANsDataGridViewTextBoxColumn.HeaderText = "ListaRANs";
             this.listaRANsDataGridViewTextBoxColumn.Name = "listaRANsDataGridViewTextBoxColumn";
             this.listaRANsDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // remisionesDataTableBindingSource
+            // 
+            this.remisionesDataTableBindingSource.DataMember = "RemisionesDataTable";
+            this.remisionesDataTableBindingSource.DataSource = this.remisionesDataSetBindingSource;
+            // 
+            // remisionesDataSetBindingSource
+            // 
+            this.remisionesDataSetBindingSource.DataSource = typeof(GeneradorASN.Entities.RemisionesDataSet);
+            this.remisionesDataSetBindingSource.Position = 0;
+            // 
+            // labelDestino
+            // 
+            this.labelDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelDestino.AutoSize = true;
+            this.labelDestino.Location = new System.Drawing.Point(12, 274);
+            this.labelDestino.Name = "labelDestino";
+            this.labelDestino.Size = new System.Drawing.Size(46, 13);
+            this.labelDestino.TabIndex = 8;
+            this.labelDestino.Text = "Destino:";
+            // 
+            // textBoxRutaDestino
+            // 
+            this.textBoxRutaDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxRutaDestino.Location = new System.Drawing.Point(64, 271);
+            this.textBoxRutaDestino.Name = "textBoxRutaDestino";
+            this.textBoxRutaDestino.ReadOnly = true;
+            this.textBoxRutaDestino.Size = new System.Drawing.Size(369, 20);
+            this.textBoxRutaDestino.TabIndex = 9;
+            // 
+            // buttonCargar
+            // 
+            this.buttonCargar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCargar.Location = new System.Drawing.Point(670, 271);
+            this.buttonCargar.Name = "buttonCargar";
+            this.buttonCargar.Size = new System.Drawing.Size(75, 23);
+            this.buttonCargar.TabIndex = 10;
+            this.buttonCargar.Text = "&Cargar";
+            this.buttonCargar.UseVisualStyleBackColor = true;
+            this.buttonCargar.Click += new System.EventHandler(this.buttonCargar_Click);
+            // 
+            // buttonCambiarRuta
+            // 
+            this.buttonCambiarRuta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonCambiarRuta.Location = new System.Drawing.Point(439, 271);
+            this.buttonCambiarRuta.Name = "buttonCambiarRuta";
+            this.buttonCambiarRuta.Size = new System.Drawing.Size(75, 23);
+            this.buttonCambiarRuta.TabIndex = 11;
+            this.buttonCambiarRuta.Text = "Ca&mbiar";
+            this.buttonCambiarRuta.UseVisualStyleBackColor = true;
+            this.buttonCambiarRuta.Click += new System.EventHandler(this.buttonCambiarRuta_Click);
+            // 
+            // linkCarpetaRegistro
+            // 
+            this.linkCarpetaRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.linkCarpetaRegistro.AutoSize = true;
+            this.linkCarpetaRegistro.Location = new System.Drawing.Point(15, 294);
+            this.linkCarpetaRegistro.Name = "linkCarpetaRegistro";
+            this.linkCarpetaRegistro.Size = new System.Drawing.Size(170, 13);
+            this.linkCarpetaRegistro.TabIndex = 12;
+            this.linkCarpetaRegistro.TabStop = true;
+            this.linkCarpetaRegistro.Text = "Ver carpeta de registro de eventos";
+            this.linkCarpetaRegistro.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCarpetaRegistro_LinkClicked);
             // 
             // GeneradorASNMain
             // 

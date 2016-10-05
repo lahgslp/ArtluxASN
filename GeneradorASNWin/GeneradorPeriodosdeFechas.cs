@@ -69,6 +69,7 @@ namespace GeneradorASNWin
 
         public static void CalcularFechas(Periodos Periodo, DateTime FechaActual, out DateTime FechaInicial, out DateTime FechaFinal)
         {
+            DateTime inicioSemana, finSemana, nuevaFecha;
             //default a Hoy
             FechaInicial = FechaActual.Date;
             FechaFinal = FechaActual.Date;
@@ -91,24 +92,55 @@ namespace GeneradorASNWin
                     }
                     break;
                 case Periodos.SemanaActual:
-                    FechaInicial = FechaActual.Date;
-                    FechaFinal = FechaActual.Date;
+                    inicioSemana = FechaActual.Date;
+                    while (inicioSemana.DayOfWeek != DayOfWeek.Sunday)
+                    {
+                        inicioSemana = inicioSemana.AddDays(-1);
+                    }
+                    finSemana = FechaActual.Date;
+                    while (finSemana.DayOfWeek != DayOfWeek.Saturday)
+                    {
+                        finSemana = finSemana.AddDays(1);
+                    }
+                    FechaInicial = inicioSemana;
+                    FechaFinal = finSemana;
                     break;
                 case Periodos.SemanaPasada:
-                    FechaInicial = FechaActual.Date;
-                    FechaFinal = FechaActual.Date;
+                    inicioSemana = FechaActual.Date.AddDays(-7);
+                    while (inicioSemana.DayOfWeek != DayOfWeek.Sunday)
+                    {
+                        inicioSemana = inicioSemana.AddDays(-1);
+                    }
+                    finSemana = FechaActual.Date.AddDays(-7);
+                    while (finSemana.DayOfWeek != DayOfWeek.Saturday)
+                    {
+                        finSemana = finSemana.AddDays(1);
+                    }
+                    FechaInicial = inicioSemana;
+                    FechaFinal = finSemana;
                     break;
                 case Periodos.DosSemanas:
-                    FechaInicial = FechaActual.Date;
-                    FechaFinal = FechaActual.Date;
+                    inicioSemana = FechaActual.Date.AddDays(-7);
+                    while (inicioSemana.DayOfWeek != DayOfWeek.Sunday)
+                    {
+                        inicioSemana = inicioSemana.AddDays(-1);
+                    }
+                    finSemana = FechaActual.Date;
+                    while (finSemana.DayOfWeek != DayOfWeek.Saturday)
+                    {
+                        finSemana = finSemana.AddDays(1);
+                    }
+                    FechaInicial = inicioSemana;
+                    FechaFinal = finSemana;
                     break;
                 case Periodos.MesActual:
-                    FechaInicial = FechaActual.Date;
-                    FechaFinal = FechaActual.Date;
+                    FechaInicial = new DateTime(FechaActual.Year, FechaActual.Month, 1);
+                    FechaFinal = new DateTime(FechaActual.Year, FechaActual.Month, DateTime.DaysInMonth(FechaActual.Year, FechaActual.Month));
                     break;
                 case Periodos.MesPasado:
-                    FechaInicial = FechaActual.Date;
-                    FechaFinal = FechaActual.Date;
+                    nuevaFecha = FechaActual.AddMonths(-1);
+                    FechaInicial = new DateTime(nuevaFecha.Year, nuevaFecha.Month, 1);
+                    FechaFinal = new DateTime(nuevaFecha.Year, nuevaFecha.Month, DateTime.DaysInMonth(nuevaFecha.Year, nuevaFecha.Month));
                     break;
                 case Periodos.Manual:
                     //default a Hoy

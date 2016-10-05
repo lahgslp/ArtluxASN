@@ -15,6 +15,7 @@ namespace GeneradorASNWin
     {
         bool flagComboPeriodos = false; //Para evitar primera ejecucion de calculo mientras se asigna el DataSource
         bool controlesFechaActivos = true;//Por default en true para que se deshabiliten al iniciar
+        bool controlesFoliosActivos = true;//Por default en true para que se deshabiliten al iniciar
 
         public GeneradorASNMain()
         {
@@ -29,6 +30,30 @@ namespace GeneradorASNWin
             this.comboPeriodo.DisplayMember = "PeriodoDesc";
             flagComboPeriodos = true;
             this.comboPeriodo.SelectedValue = (int) Periodos.Hoy;
+        }
+
+        private void ActivaControlesFolios()
+        {
+            if (controlesFoliosActivos == false)
+            {
+                labelFolios.Visible = true;
+                textBoxFolios.Visible = true;
+                textBoxFolios.Text = "";
+                buttonRefrescar.Visible = true;
+                controlesFoliosActivos = true;
+            }
+        }
+
+        private void DesactivaControlesFolios()
+        {
+            if (controlesFoliosActivos == true)
+            {
+                labelFolios.Visible = false;
+                textBoxFolios.Visible = false;
+                textBoxFolios.Text = "";
+                buttonRefrescar.Visible = false;
+                controlesFoliosActivos = false;
+            }
         }
 
         private void ActivaControlesFecha()
@@ -59,6 +84,7 @@ namespace GeneradorASNWin
         {
             InicializarComboPeriodos();
             DesactivaControlesFecha();
+            DesactivaControlesFolios();
         }
 
         private void GeneradorASN_Load(object sender, EventArgs e)
@@ -80,7 +106,8 @@ namespace GeneradorASNWin
             {
                 if (dateTimePickerFechaInicio.Value > dateTimePickerFechaFinal.Value)
                 {
-                    MessageBox.Show("Fechas incorrectas", "La fecha de inicio no puede ser mayor que la fecha final",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("La fecha de inicio no puede ser mayor que la fecha final", "Fechas incorrectas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dateTimePickerFechaInicio.Value = dateTimePickerFechaFinal.Value;
                 }
                 else
                 {
@@ -96,7 +123,8 @@ namespace GeneradorASNWin
             {
                 if (dateTimePickerFechaInicio.Value > dateTimePickerFechaFinal.Value)
                 {
-                    MessageBox.Show("Fechas incorrectas", "La fecha de inicio no puede ser mayor que la fecha final", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("La fecha de inicio no puede ser mayor que la fecha final", "Fechas incorrectas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    dateTimePickerFechaFinal.Value = dateTimePickerFechaInicio.Value;
                 }
                 else
                 {
@@ -118,7 +146,7 @@ namespace GeneradorASNWin
             if (periodo == Periodos.Folios)
             {
                 filtros.Filtro = TipoFiltro.Folios;
-                //TBD
+                filtros.Folios = textBoxFolios.Text;
             }
             else
             {
@@ -126,8 +154,9 @@ namespace GeneradorASNWin
                 filtros.FechaInicio = dateTimePickerFechaInicio.Value;
                 filtros.FechaFinal = dateTimePickerFechaFinal.Value;
             }
-
+            Cursor.Current = Cursors.WaitCursor;
             remisionesDataTableBindingSource.DataSource = RemisionesManager.ObtenerRemisiones(filtros);
+            Cursor.Current = Cursors.Default;
         }
 
         private void buttonCargar_Click(object sender, EventArgs e)
@@ -144,20 +173,46 @@ namespace GeneradorASNWin
                 if (periodo == Periodos.Folios)
                 {
                     DesactivaControlesFecha();
-                    //TBD
+                    ActivaControlesFolios();
                 }
                 else if (periodo == Periodos.Manual)
                 {
                     ActivaControlesFecha();
+                    DesactivaControlesFolios();
                 }
                 else
                 {
                     DateTime inicio, final;
                     DesactivaControlesFecha();
+                    DesactivaControlesFolios();
                     GeneradorPeriodosdeFechas.CalcularFechas(periodo, DateTime.Now, out inicio, out final);
                     dateTimePickerFechaInicio.Value = inicio;
                     dateTimePickerFechaFinal.Value = final;
+                    //MessageBox.Show("Desde " + dateTimePickerFechaInicio.Value.ToShortDateString() + " hasta " + dateTimePickerFechaFinal.Value.ToShortDateString());
+                    CargarDatos();
                 }
+            }
+        }
+
+        private bool FoliosValidos(string folios)
+        {
+            bool resultado = true;
+            //TBD, como validar los folios
+            return resultado;
+        }
+
+        private void buttonRefrescar_Click(object sender, EventArgs e)
+        {
+            if (textBoxFolios.Text != String.Empty && textBoxFolios.Text.Replace(" ", "") != string.Empty)
+            {
+                if (FoliosValidos(textBoxFolios.Text))
+                {
+                    CargarDatos();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor introduzca folios separados por comas", "Folios vacios", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

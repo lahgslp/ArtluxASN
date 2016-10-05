@@ -13,7 +13,7 @@ namespace GeneradorASN.BLL
     public class RemisionesManager
     {
         //Comentando temporalmente para que no truene durante los cambios al RANDataset
-        static public RemisionesDataSet ObtenerRemisiones(DateTime fechaInicio, DateTime fechaFinal)
+        static public RemisionesDataSet ObtenerRemisiones(DatosFiltro filtros)
         {
             RemisionesDataSet ds = new RemisionesDataSet();
             RemisionesDataSet.RemisionesDataTableRow row = ds.RemisionesDataTable.NewRemisionesDataTableRow();

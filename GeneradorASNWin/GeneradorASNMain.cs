@@ -20,6 +20,7 @@ namespace GeneradorASNWin
 
         private void InicializarControles()
         {
+            //Inicializacion periodo
             this.comboPeriodo.DataSource = GeneradorPeriodosdeFechas.Generar();
             this.comboPeriodo.ValueMember = "PeriodoID";
             this.comboPeriodo.DisplayMember = "PeriodoDesc";
@@ -61,7 +62,8 @@ namespace GeneradorASNWin
 
         private void CargarDatos()
         {
-            remisionesDataTableBindingSource.DataSource = RemisionesManager.ObtenerRemisiones(dateTimePickerFechaInicio.Value, dateTimePickerFechaFinal.Value);
+            DatosFiltro filtros = new DatosFiltro();
+            remisionesDataTableBindingSource.DataSource = RemisionesManager.ObtenerRemisiones(filtros);
         }
 
         private void buttonCargar_Click(object sender, EventArgs e)

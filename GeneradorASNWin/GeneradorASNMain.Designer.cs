@@ -38,6 +38,12 @@
             this.groupBoxRANs = new System.Windows.Forms.GroupBox();
             this.dataGridViewRANs = new System.Windows.Forms.DataGridView();
             this.Selected = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.remisionesDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.labelDestino = new System.Windows.Forms.Label();
+            this.textBoxRutaDestino = new System.Windows.Forms.TextBox();
+            this.buttonCargar = new System.Windows.Forms.Button();
+            this.buttonCambiarRuta = new System.Windows.Forms.Button();
+            this.linkCarpetaRegistro = new System.Windows.Forms.LinkLabel();
             this.folioRemisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partidasTotalesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,13 +51,7 @@
             this.fechaDocumentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaEntregaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.listaRANsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remisionesDataTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.remisionesDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.labelDestino = new System.Windows.Forms.Label();
-            this.textBoxRutaDestino = new System.Windows.Forms.TextBox();
-            this.buttonCargar = new System.Windows.Forms.Button();
-            this.buttonCambiarRuta = new System.Windows.Forms.Button();
-            this.linkCarpetaRegistro = new System.Windows.Forms.LinkLabel();
             this.groupBoxRANs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRANs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.remisionesDataTableBindingSource)).BeginInit();
@@ -74,7 +74,7 @@
             this.comboPeriodo.Name = "comboPeriodo";
             this.comboPeriodo.Size = new System.Drawing.Size(121, 21);
             this.comboPeriodo.TabIndex = 1;
-            this.comboPeriodo.SelectedIndexChanged += new System.EventHandler(this.comboPeriodo_SelectedIndexChanged);
+            this.comboPeriodo.SelectedValueChanged += new System.EventHandler(this.comboPeriodo_SelectedValueChanged);
             // 
             // dateTimePickerFechaInicio
             // 
@@ -153,64 +153,10 @@
             this.Selected.ReadOnly = true;
             this.Selected.Width = 40;
             // 
-            // folioRemisionDataGridViewTextBoxColumn
-            // 
-            this.folioRemisionDataGridViewTextBoxColumn.DataPropertyName = "FolioRemision";
-            this.folioRemisionDataGridViewTextBoxColumn.HeaderText = "FolioRemision";
-            this.folioRemisionDataGridViewTextBoxColumn.Name = "folioRemisionDataGridViewTextBoxColumn";
-            this.folioRemisionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cantidadTotalDataGridViewTextBoxColumn
-            // 
-            this.cantidadTotalDataGridViewTextBoxColumn.DataPropertyName = "CantidadTotal";
-            this.cantidadTotalDataGridViewTextBoxColumn.HeaderText = "CantidadTotal";
-            this.cantidadTotalDataGridViewTextBoxColumn.Name = "cantidadTotalDataGridViewTextBoxColumn";
-            this.cantidadTotalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // partidasTotalesDataGridViewTextBoxColumn
-            // 
-            this.partidasTotalesDataGridViewTextBoxColumn.DataPropertyName = "PartidasTotales";
-            this.partidasTotalesDataGridViewTextBoxColumn.HeaderText = "PartidasTotales";
-            this.partidasTotalesDataGridViewTextBoxColumn.Name = "partidasTotalesDataGridViewTextBoxColumn";
-            this.partidasTotalesDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // pesoTotalDataGridViewTextBoxColumn
-            // 
-            this.pesoTotalDataGridViewTextBoxColumn.DataPropertyName = "PesoTotal";
-            this.pesoTotalDataGridViewTextBoxColumn.HeaderText = "PesoTotal";
-            this.pesoTotalDataGridViewTextBoxColumn.Name = "pesoTotalDataGridViewTextBoxColumn";
-            this.pesoTotalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fechaDocumentoDataGridViewTextBoxColumn
-            // 
-            this.fechaDocumentoDataGridViewTextBoxColumn.DataPropertyName = "FechaDocumento";
-            this.fechaDocumentoDataGridViewTextBoxColumn.HeaderText = "FechaDocumento";
-            this.fechaDocumentoDataGridViewTextBoxColumn.Name = "fechaDocumentoDataGridViewTextBoxColumn";
-            this.fechaDocumentoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fechaEntregaDataGridViewTextBoxColumn
-            // 
-            this.fechaEntregaDataGridViewTextBoxColumn.DataPropertyName = "FechaEntrega";
-            this.fechaEntregaDataGridViewTextBoxColumn.HeaderText = "FechaEntrega";
-            this.fechaEntregaDataGridViewTextBoxColumn.Name = "fechaEntregaDataGridViewTextBoxColumn";
-            this.fechaEntregaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // listaRANsDataGridViewTextBoxColumn
-            // 
-            this.listaRANsDataGridViewTextBoxColumn.DataPropertyName = "ListaRANs";
-            this.listaRANsDataGridViewTextBoxColumn.HeaderText = "ListaRANs";
-            this.listaRANsDataGridViewTextBoxColumn.Name = "listaRANsDataGridViewTextBoxColumn";
-            this.listaRANsDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // remisionesDataTableBindingSource
             // 
             this.remisionesDataTableBindingSource.DataMember = "RemisionesDataTable";
             this.remisionesDataTableBindingSource.DataSource = this.remisionesDataSetBindingSource;
-            // 
-            // remisionesDataSetBindingSource
-            // 
-            this.remisionesDataSetBindingSource.DataSource = typeof(GeneradorASN.Entities.RemisionesDataSet);
-            this.remisionesDataSetBindingSource.Position = 0;
             // 
             // labelDestino
             // 
@@ -264,6 +210,60 @@
             this.linkCarpetaRegistro.TabStop = true;
             this.linkCarpetaRegistro.Text = "Ver carpeta de registro de eventos";
             this.linkCarpetaRegistro.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCarpetaRegistro_LinkClicked);
+            // 
+            // folioRemisionDataGridViewTextBoxColumn
+            // 
+            this.folioRemisionDataGridViewTextBoxColumn.DataPropertyName = "FolioRemision";
+            this.folioRemisionDataGridViewTextBoxColumn.HeaderText = "FolioRemision";
+            this.folioRemisionDataGridViewTextBoxColumn.Name = "folioRemisionDataGridViewTextBoxColumn";
+            this.folioRemisionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // cantidadTotalDataGridViewTextBoxColumn
+            // 
+            this.cantidadTotalDataGridViewTextBoxColumn.DataPropertyName = "CantidadTotal";
+            this.cantidadTotalDataGridViewTextBoxColumn.HeaderText = "CantidadTotal";
+            this.cantidadTotalDataGridViewTextBoxColumn.Name = "cantidadTotalDataGridViewTextBoxColumn";
+            this.cantidadTotalDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // partidasTotalesDataGridViewTextBoxColumn
+            // 
+            this.partidasTotalesDataGridViewTextBoxColumn.DataPropertyName = "PartidasTotales";
+            this.partidasTotalesDataGridViewTextBoxColumn.HeaderText = "PartidasTotales";
+            this.partidasTotalesDataGridViewTextBoxColumn.Name = "partidasTotalesDataGridViewTextBoxColumn";
+            this.partidasTotalesDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // pesoTotalDataGridViewTextBoxColumn
+            // 
+            this.pesoTotalDataGridViewTextBoxColumn.DataPropertyName = "PesoTotal";
+            this.pesoTotalDataGridViewTextBoxColumn.HeaderText = "PesoTotal";
+            this.pesoTotalDataGridViewTextBoxColumn.Name = "pesoTotalDataGridViewTextBoxColumn";
+            this.pesoTotalDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fechaDocumentoDataGridViewTextBoxColumn
+            // 
+            this.fechaDocumentoDataGridViewTextBoxColumn.DataPropertyName = "FechaDocumento";
+            this.fechaDocumentoDataGridViewTextBoxColumn.HeaderText = "FechaDocumento";
+            this.fechaDocumentoDataGridViewTextBoxColumn.Name = "fechaDocumentoDataGridViewTextBoxColumn";
+            this.fechaDocumentoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fechaEntregaDataGridViewTextBoxColumn
+            // 
+            this.fechaEntregaDataGridViewTextBoxColumn.DataPropertyName = "FechaEntrega";
+            this.fechaEntregaDataGridViewTextBoxColumn.HeaderText = "FechaEntrega";
+            this.fechaEntregaDataGridViewTextBoxColumn.Name = "fechaEntregaDataGridViewTextBoxColumn";
+            this.fechaEntregaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // listaRANsDataGridViewTextBoxColumn
+            // 
+            this.listaRANsDataGridViewTextBoxColumn.DataPropertyName = "ListaRANs";
+            this.listaRANsDataGridViewTextBoxColumn.HeaderText = "ListaRANs";
+            this.listaRANsDataGridViewTextBoxColumn.Name = "listaRANsDataGridViewTextBoxColumn";
+            this.listaRANsDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // remisionesDataSetBindingSource
+            // 
+            this.remisionesDataSetBindingSource.DataSource = typeof(GeneradorASN.Entities.RemisionesDataSet);
+            this.remisionesDataSetBindingSource.Position = 0;
             // 
             // GeneradorASNMain
             // 

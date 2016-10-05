@@ -7,15 +7,44 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Configuration;
 using FirebirdSql.Data.FirebirdClient;
-
+using System.Text.RegularExpressions;
 
 namespace GeneradorASN.DAL
 {
     public class DBManager
     {
-       
+        static public List<List<RANDBData>> ObtenerRemisiones(DateTime fechaInicio, DateTime fechaFinal) {
+            return DBManager.ObtenerRemisiones(true, fechaInicio, fechaFinal, ""); 
+        }
 
-        static public List< List<RANDBData> > ObtenerRANs(DateTime fechaInicio, DateTime fechaFinal)
+        static public List<List<RANDBData>> ObtenerRemisiones(string Claves)
+        {
+            
+            string []arrayClaves = Claves.Split(',');
+            string ClavesNormalizadas = ""; 
+
+            foreach (string clave in arrayClaves) {
+                string tmpclave = clave.Trim();
+                if (!string.IsNullOrEmpty(tmpclave)) {
+                    Regex EsAlfanumerico = new Regex("[^a-zA-Z0-9]");
+                    if (!EsAlfanumerico.IsMatch(tmpclave)) {
+                        ClavesNormalizadas += ",'" + tmpclave+"'";
+                    }
+                }
+            }
+
+            if (ClavesNormalizadas.Length > 0)
+            {
+                ClavesNormalizadas = ClavesNormalizadas.Substring(1);  
+                return DBManager.ObtenerRemisiones(false, DateTime.Now, DateTime.Now, ClavesNormalizadas);
+            }
+            else {
+                throw new Exception("No existen folios de remision validos");
+            }
+           
+        }
+
+        static private List< List<RANDBData> > ObtenerRemisiones(bool PorFechas, DateTime fechaInicio, DateTime fechaFinal,string Claves)
         {
             string CadenaConexion = ConfigurationManager.ConnectionStrings["ArtluxSAE"].ToString();
             string Num_Empresa = ConfigurationManager.AppSettings["NumEmpresaSAE"];
@@ -26,22 +55,31 @@ namespace GeneradorASN.DAL
             FbDataAdapter fbDataAdaptador = new FbDataAdapter();
             DataTable dtRANS = new DataTable();
             string Texto_sql = "";
-
-            Texto_sql += " SELECT  Ped.TIP_DOC, Ped.CVE_DOC,Ped.CVE_CLPV, Ped.STATUS, Ped.FECHA_DOC,Par.CVE_OBS RAN, Rans.STR_OBS strRAN";
-            Texto_sql += "     ,Ped.FECHA_VEN,Ped.FECHA_ENT,Par.CVE_ART,Par.CANT";
-            Texto_sql += " FROM FACTP" + Num_Empresa + " Ped";
-            Texto_sql += "     inner join PAR_FACTP" + Num_Empresa + " Par on Ped.CVE_DOC = Par.CVE_DOC";
-            Texto_sql += "     left join OBS_DOCF" + Num_Empresa + " Rans on Par.cve_obs = Rans.CVE_OBS";
-            Texto_sql += " WHERE status = 'E' and Ped.CVE_CLPV in ('"+Clientes +"')";
-            //Texto_sql += "     and fecha_ven between CAST('"+fechaInicio.ToString("dd.MM.yyyy")  +"' AS DATE) and CAST('"+fechaFinal.ToString("dd.MM.yyyy")  +"' AS DATE)";
-            Texto_sql += "     and fecha_doc between @FechaIni and @FechaFin ";
-            Texto_sql += "     and coalesce(dat_envio,0) <> 0";
-            Texto_sql += " order by fecha_doc";
             
-            fbComando.CommandText = Texto_sql;
-            fbComando.Parameters.AddWithValue("@FechaIni", fechaInicio);
-            fbComando.Parameters.AddWithValue("@FechaFin", fechaFinal);
-           
+            Texto_sql += " SELECT rem.TIP_DOC,rem.CVE_DOC,rem.CVE_CLPV, rem.STATUS, rem.FECHA_DOC,Par.CVE_OBS RAN, Rans.STR_OBS STR_RAN";
+            Texto_sql += "     ,rem.FECHA_VEN,rem.FECHA_ENT,Par.CVE_ART,Par.CANT,rem.DAT_ENVIO";
+            Texto_sql += " FROM FACTR" + Num_Empresa + " Rem";
+            Texto_sql += "     inner join Par_Factr" + Num_Empresa + " Par on rem.CVE_DOC = Par.CVE_DOC";
+            Texto_sql += "     left join OBS_DOCF" + Num_Empresa + " Rans on Par.cve_obs = Rans.CVE_OBS";
+            Texto_sql += "     inner join INFENVIO" + Num_Empresa + " envio on rem.DAT_ENVIO = envio.CVE_INFO";
+            //Texto_sql += " WHERE status = 'E' and rem.CVE_CLPV in ('" + Clientes + "')";
+            Texto_sql += " WHERE rem.CVE_CLPV in ('" + Clientes + "')";
+
+            if (PorFechas)
+            {
+                Texto_sql += "     and fecha_doc between @FechaIni and @FechaFin ";
+                fbComando.Parameters.AddWithValue("@FechaIni", fechaInicio);
+                fbComando.Parameters.AddWithValue("@FechaFin", fechaFinal);
+            }
+            else {
+                Texto_sql += "     and trim(rem.CVE_DOC) in (" + Claves + ")";
+            }
+            
+            Texto_sql += "     and coalesce(dat_envio,0) <> 0";
+            Texto_sql += "     and char_length(trim(coalesce(envio.CALLE,''))) <> 0";
+            Texto_sql += " order by fecha_doc";
+
+            fbComando.CommandText = Texto_sql;                      
             fbDataAdaptador.SelectCommand = fbComando;
             fbDataAdaptador.Fill(dtRANS);
 
@@ -63,7 +101,7 @@ namespace GeneradorASN.DAL
                         Datos.FechaCreacion = (DateTime)drRAN["FECHA_VEN"];
                         Datos.FechaEnvio = (DateTime)drRAN["FECHA_ENT"];
                         Datos.ClaveProducto = drRAN["CVE_ART"].ToString();
-                        Datos.Cantidad = (int)drRAN["CANT"];
+                        Datos.Cantidad = Convert.ToInt32(drRAN["CANT"]);
 
                         CantidadTotal += Datos.Cantidad;
                           

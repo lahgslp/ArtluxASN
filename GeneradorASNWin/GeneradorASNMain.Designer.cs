@@ -52,6 +52,9 @@
             this.buttonCargar = new System.Windows.Forms.Button();
             this.buttonCambiarRuta = new System.Windows.Forms.Button();
             this.linkCarpetaRegistro = new System.Windows.Forms.LinkLabel();
+            this.labelFolios = new System.Windows.Forms.Label();
+            this.textBoxFolios = new System.Windows.Forms.TextBox();
+            this.buttonRefrescar = new System.Windows.Forms.Button();
             this.groupBoxRANs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRANs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.remisionesDataTableBindingSource)).BeginInit();
@@ -74,10 +77,11 @@
             this.comboPeriodo.Name = "comboPeriodo";
             this.comboPeriodo.Size = new System.Drawing.Size(121, 21);
             this.comboPeriodo.TabIndex = 1;
-            this.comboPeriodo.SelectedIndexChanged += new System.EventHandler(this.comboPeriodo_SelectedIndexChanged);
+            this.comboPeriodo.SelectedValueChanged += new System.EventHandler(this.comboPeriodo_SelectedValueChanged);
             // 
             // dateTimePickerFechaInicio
             // 
+            this.dateTimePickerFechaInicio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePickerFechaInicio.Location = new System.Drawing.Point(265, 15);
             this.dateTimePickerFechaInicio.Name = "dateTimePickerFechaInicio";
             this.dateTimePickerFechaInicio.Size = new System.Drawing.Size(200, 20);
@@ -86,6 +90,7 @@
             // 
             // dateTimePickerFechaFinal
             // 
+            this.dateTimePickerFechaFinal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePickerFechaFinal.Location = new System.Drawing.Point(548, 15);
             this.dateTimePickerFechaFinal.Name = "dateTimePickerFechaFinal";
             this.dateTimePickerFechaFinal.Size = new System.Drawing.Size(200, 20);
@@ -94,6 +99,7 @@
             // 
             // labelFechaInicio
             // 
+            this.labelFechaInicio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFechaInicio.AutoSize = true;
             this.labelFechaInicio.Location = new System.Drawing.Point(191, 15);
             this.labelFechaInicio.Name = "labelFechaInicio";
@@ -103,6 +109,7 @@
             // 
             // labelFechaFinal
             // 
+            this.labelFechaFinal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFechaFinal.AutoSize = true;
             this.labelFechaFinal.Location = new System.Drawing.Point(477, 15);
             this.labelFechaFinal.Name = "labelFechaFinal";
@@ -265,11 +272,44 @@
             this.linkCarpetaRegistro.Text = "Ver carpeta de registro de eventos";
             this.linkCarpetaRegistro.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkCarpetaRegistro_LinkClicked);
             // 
+            // labelFolios
+            // 
+            this.labelFolios.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelFolios.AutoSize = true;
+            this.labelFolios.Location = new System.Drawing.Point(191, 15);
+            this.labelFolios.Name = "labelFolios";
+            this.labelFolios.Size = new System.Drawing.Size(37, 13);
+            this.labelFolios.TabIndex = 13;
+            this.labelFolios.Text = "Folios:";
+            // 
+            // textBoxFolios
+            // 
+            this.textBoxFolios.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxFolios.Location = new System.Drawing.Point(234, 13);
+            this.textBoxFolios.Name = "textBoxFolios";
+            this.textBoxFolios.Size = new System.Drawing.Size(433, 20);
+            this.textBoxFolios.TabIndex = 14;
+            // 
+            // buttonRefrescar
+            // 
+            this.buttonRefrescar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRefrescar.Location = new System.Drawing.Point(673, 12);
+            this.buttonRefrescar.Name = "buttonRefrescar";
+            this.buttonRefrescar.Size = new System.Drawing.Size(75, 23);
+            this.buttonRefrescar.TabIndex = 15;
+            this.buttonRefrescar.Text = "&Refrescar";
+            this.buttonRefrescar.UseVisualStyleBackColor = true;
+            this.buttonRefrescar.Click += new System.EventHandler(this.buttonRefrescar_Click);
+            // 
             // GeneradorASNMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(760, 325);
+            this.Controls.Add(this.buttonRefrescar);
+            this.Controls.Add(this.textBoxFolios);
+            this.Controls.Add(this.labelFolios);
             this.Controls.Add(this.linkCarpetaRegistro);
             this.Controls.Add(this.buttonCambiarRuta);
             this.Controls.Add(this.buttonCargar);
@@ -319,6 +359,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaDocumentoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaEntregaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn listaRANsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label labelFolios;
+        private System.Windows.Forms.TextBox textBoxFolios;
+        private System.Windows.Forms.Button buttonRefrescar;
     }
 }
 

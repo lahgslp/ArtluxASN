@@ -138,27 +138,6 @@ namespace GeneradorASNWin
 
         }
 
-        private void CargarDatos()
-        {
-            DatosFiltro filtros = new DatosFiltro();
-            Periodos periodo = (Periodos)Convert.ToInt32(comboPeriodo.SelectedValue);
-
-            if (periodo == Periodos.Folios)
-            {
-                filtros.Filtro = TipoFiltro.Folios;
-                filtros.Folios = textBoxFolios.Text;
-            }
-            else
-            {
-                filtros.Filtro = TipoFiltro.Fecha;
-                filtros.FechaInicio = dateTimePickerFechaInicio.Value;
-                filtros.FechaFinal = dateTimePickerFechaFinal.Value;
-            }
-            Cursor.Current = Cursors.WaitCursor;
-            remisionesDataTableBindingSource.DataSource = RemisionesManager.ObtenerRemisiones(filtros);
-            Cursor.Current = Cursors.Default;
-        }
-
         private void buttonCargar_Click(object sender, EventArgs e)
         {
 
@@ -214,6 +193,29 @@ namespace GeneradorASNWin
             {
                 MessageBox.Show("Por favor introduzca folios separados por comas", "Folios vacios", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void CargarDatos()
+        {
+            DatosFiltro filtros = new DatosFiltro();
+            Periodos periodo = (Periodos)Convert.ToInt32(comboPeriodo.SelectedValue);
+
+            if (periodo == Periodos.Folios)
+            {
+                filtros.Filtro = TipoFiltro.Folios;
+                filtros.Folios = textBoxFolios.Text;
+            }
+            else
+            {
+                filtros.Filtro = TipoFiltro.Fecha;
+                filtros.FechaInicio = dateTimePickerFechaInicio.Value;
+                filtros.FechaFinal = dateTimePickerFechaFinal.Value;
+            }
+
+            Registrador.IRegistroEjecucion registrador = new Registrador.RegistroEjecucionArchivo("");
+
+            Cursor.Current = Cursors.WaitCursor;
+            remisionesDataTableBindingSource.DataSource = RemisionesManager.ObtenerRemisiones(filtros, registrador);
+            Cursor.Current = Cursors.Default;
         }
     }
 }

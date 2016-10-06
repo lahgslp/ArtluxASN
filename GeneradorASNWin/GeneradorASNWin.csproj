@@ -99,6 +99,10 @@
       <Project>{f8330747-5a1f-4dff-9771-051c20870d08}</Project>
       <Name>GeneradorASN.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Registrador\Registrador.csproj">
+      <Project>{4e67fd29-7914-4c99-81ad-d89c666ff102}</Project>
+      <Name>Registrador</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="PesosNissan.xml">

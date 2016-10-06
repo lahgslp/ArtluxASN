@@ -13,7 +13,7 @@ namespace GeneradorASN.BLL
     public class RemisionesManager
     {
         //Comentando temporalmente para que no truene durante los cambios al RANDataset
-        static public RemisionesDataSet ObtenerRemisiones(DatosFiltro filtros)
+        static public RemisionesDataSet ObtenerRemisiones(DatosFiltro filtros, Registrador.IRegistroEjecucion registrador)
         {
             RemisionesDataSet ds = new RemisionesDataSet();
             try

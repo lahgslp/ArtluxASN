@@ -16,6 +16,8 @@ namespace GeneradorASN.BLL
         static public RemisionesDataSet ObtenerRemisiones(DatosFiltro filtros, Registrador.IRegistroEjecucion registrador)
         {
             RemisionesDataSet ds = new RemisionesDataSet();
+            string CveDoc = "";
+            string RAN = "";
             try
             {
                 bool PorFechas = filtros.Filtro == TipoFiltro.Fecha; //Determina si es por fechas el filtro  
@@ -30,7 +32,7 @@ namespace GeneradorASN.BLL
                 else
                 {
                     ListaRemisiones = DBManager.ObtenerRemisiones(filtros.Folios);
-                    //ListaRemisiones = DBManager.ObtenerRemisiones("2888,123abc,2942,#^--12,3003,ab123");
+                    //ListaRemisiones = DBManager.ObtenerRemisiones("2888,123abc,2942,2b#^--12,3003,ab123");
                 }
                                
                 foreach (List<RANDBData> ListaDeRANs in ListaRemisiones)
@@ -38,6 +40,8 @@ namespace GeneradorASN.BLL
                     RemisionesDataSet.RemisionesDataTableRow rowRemision = ds.RemisionesDataTable.NewRemisionesDataTableRow();
                     string strListaRANs = "";
                     double PesoTotal = 0;
+
+                    CveDoc = ListaDeRANs[0].Remision;
                     rowRemision.FolioRemision = ListaDeRANs[0].Remision;
                     rowRemision.CantidadTotal = ListaDeRANs[0].CantidadTotal;
                     rowRemision.PartidasTotales = ListaDeRANs.Count;
@@ -47,21 +51,32 @@ namespace GeneradorASN.BLL
 
                     foreach (RANDBData ran in ListaDeRANs)
                     {
+                        double PesoPartida = 0;
                         RemisionesDataSet.PartidasDataTableRow rowPartida = ds.PartidasDataTable.NewPartidasDataTableRow();
                         MedidasArticulo MedidaArticulo = (MedidasArticulo)PesosArticulo[ran.ClaveProducto];
+
+                        RAN = ran.RAN;
+                        if (MedidaArticulo == null)
+                        {
+                            registrador.RegistrarAdvertencia("No se encontro el articulo '"+ ran.ClaveProducto + "' dentro del archivo de pesos.");
+                        }
+                        else {
+                            PesoPartida = (double)((ran.Cantidad / MedidaArticulo.PiezasXcaja) * MedidaArticulo.Peso);
+                        }
+                        
                         rowPartida.FolioRemision = ran.Remision;
                         rowPartida.ClaveProducto = ran.ClaveProducto;
                         rowPartida.CantidadPartida = ran.Cantidad;
-                        rowPartida.PesoPartida = (Double)((ran.Cantidad / MedidaArticulo.PiezasXcaja) * MedidaArticulo.Peso);
+                        rowPartida.PesoPartida = PesoPartida;
                         rowPartida.RAN = ran.RAN;
 
-                        PesoTotal += rowPartida.PesoPartida;
+                        PesoTotal += PesoPartida;
                         ds.PartidasDataTable.Rows.Add(rowPartida);
 
                         strListaRANs += "," + ran.RAN;
 
                         if (string.IsNullOrEmpty(ran.RAN.Trim())) {
-                            //send a warning
+                            registrador.RegistrarAdvertencia("No se encontro RAN para la clave de remisión '" + ran.Remision + "' con cleve de articulo '"+ ran.ClaveProducto + "'.");
                         }
                     }
                     rowRemision.ListaRANs = strListaRANs.Trim().Length > 1 ? strListaRANs.Substring(1) : "";
@@ -71,7 +86,7 @@ namespace GeneradorASN.BLL
                 return ds;
             }
             catch (Exception ex) {
-                //send a error
+                registrador.RegistrarError("Ocurrio un error desconocido al procesar la remisión '"+CveDoc+"' con RAN '"+RAN+"'. Detalles '"+ex.Message +"'");
             }
 
             return ds;

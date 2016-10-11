@@ -19,23 +19,9 @@ namespace GeneradorASN.DAL
 
         static public List<List<RANDBData>> ObtenerRemisiones(string Claves)
         {
-            
-            string []arrayClaves = Claves.Split(',');
-            string ClavesNormalizadas = ""; 
-
-            foreach (string clave in arrayClaves) {
-                string tmpclave = clave.Trim();
-                if (!string.IsNullOrEmpty(tmpclave)) {
-                    Regex EsAlfanumerico = new Regex("[^a-zA-Z0-9]");
-                    if (!EsAlfanumerico.IsMatch(tmpclave)) {
-                        ClavesNormalizadas += ",'" + tmpclave+"'";
-                    }
-                }
-            }
-
+            string ClavesNormalizadas = DBManager.ProcesaClavesAlfaNumericas(Claves); 
             if (ClavesNormalizadas.Length > 0)
             {
-                ClavesNormalizadas = ClavesNormalizadas.Substring(1);  
                 return DBManager.ObtenerRemisiones(false, DateTime.Now, DateTime.Now, ClavesNormalizadas);
             }
             else {
@@ -44,26 +30,58 @@ namespace GeneradorASN.DAL
            
         }
 
+       static private string ProcesaClavesAlfaNumericas(string Claves) {
+            string[] arrayClaves = Claves.Split(',');
+            string ClavesNormalizadas = "";
+
+            foreach (string clave in arrayClaves)
+            {
+                string tmpclave = clave.Trim();
+                if (!string.IsNullOrEmpty(tmpclave))
+                {
+                    Regex EsAlfanumerico = new Regex("[^a-zA-Z0-9]");
+                    if (!EsAlfanumerico.IsMatch(tmpclave))
+                    {
+                        ClavesNormalizadas += ",'" + tmpclave + "'";
+                    }
+                }
+            }
+
+            if (ClavesNormalizadas.Length > 0)
+            {
+                ClavesNormalizadas = ClavesNormalizadas.Substring(1);
+            }
+         
+
+            return ClavesNormalizadas;
+        }
+
         static private List< List<RANDBData> > ObtenerRemisiones(bool PorFechas, DateTime fechaInicio, DateTime fechaFinal,string Claves)
         {
             string CadenaConexion = ConfigurationManager.ConnectionStrings["ArtluxSAE"].ToString();
             string Num_Empresa = ConfigurationManager.AppSettings["NumEmpresaSAE"];
-            string Clientes = ConfigurationManager.AppSettings["ClaveCliente"];
+            string Clientes = DBManager.ProcesaClavesAlfaNumericas(ConfigurationManager.AppSettings["ClaveCliente"]);
             List<List<RANDBData>> data = new List<List<RANDBData>>();
-            
+                      
             FbCommand fbComando = new FbCommand("", new FbConnection(CadenaConexion));
             FbDataAdapter fbDataAdaptador = new FbDataAdapter();
             DataTable dtRANS = new DataTable();
             string Texto_sql = "";
-            
-            Texto_sql += " SELECT rem.TIP_DOC,rem.CVE_DOC,rem.CVE_CLPV, rem.STATUS, rem.FECHA_DOC,Par.CVE_OBS RAN, Rans.STR_OBS STR_RAN";
+
+            if (Clientes.Length <= 0)
+            {
+                throw new Exception("La clave o claves de cliente dadas, no son validas.");
+            }
+
+            Texto_sql += " SELECT rem.TIP_DOC,rem.CVE_DOC,rem.CVE_CLPV,cliente.NOMBRE, rem.STATUS, rem.FECHA_DOC,Par.CVE_OBS RAN, Rans.STR_OBS STR_RAN";
             Texto_sql += "     ,rem.FECHA_VEN,rem.FECHA_ENT,Par.CVE_ART,Par.CANT,rem.DAT_ENVIO";
             Texto_sql += " FROM FACTR" + Num_Empresa + " Rem";
             Texto_sql += "     inner join Par_Factr" + Num_Empresa + " Par on rem.CVE_DOC = Par.CVE_DOC";
             Texto_sql += "     left join OBS_DOCF" + Num_Empresa + " Rans on Par.cve_obs = Rans.CVE_OBS";
             Texto_sql += "     inner join INFENVIO" + Num_Empresa + " envio on rem.DAT_ENVIO = envio.CVE_INFO";
+            Texto_sql += "     left join CLIE" + Num_Empresa + " cliente on rem.CVE_CLPV = cliente.CLAVE";
             //Texto_sql += " WHERE status = 'E' and rem.CVE_CLPV in ('" + Clientes + "')";
-            Texto_sql += " WHERE rem.CVE_CLPV in ('" + Clientes + "')";
+            Texto_sql += " WHERE rem.CVE_CLPV in (" + Clientes + ")";
 
             if (PorFechas)
             {
@@ -96,7 +114,7 @@ namespace GeneradorASN.DAL
                     {
                         RANDBData Datos = new RANDBData();
                        
-                        Datos.RAN = drRAN["RAN"].ToString();
+                        Datos.RAN = drRAN["STR_RAN"].ToString();
                         Datos.Remision = drRAN["CVE_DOC"].ToString();
                         Datos.FechaCreacion = (DateTime)drRAN["FECHA_VEN"];
                         Datos.FechaEnvio = (DateTime)drRAN["FECHA_ENT"];

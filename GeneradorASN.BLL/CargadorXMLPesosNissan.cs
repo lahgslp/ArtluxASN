@@ -12,10 +12,10 @@ namespace GeneradorASN.BLL
     public class MedidasArticulo
     {
         public string Clave = "";
-        public decimal Peso = 0.0M;
-        public decimal Largo = 0.0M;
-        public decimal Ancho = 0.0M;
-        public decimal Altura = 0.0M;
+        public double Peso = 0;
+        public double Largo = 0;
+        public double Ancho = 0;
+        public double Altura = 0;
         public int PiezasXcaja = 0;
     }
 
@@ -40,12 +40,11 @@ namespace GeneradorASN.BLL
             {
                 MedidasArticulo Medida = new MedidasArticulo();
                 try
-                {
-                    //dias = Convert.ToInt32(Articulo["TiempoLogistica"].InnerText);
-                    Medida.Peso = Convert.ToDecimal (Articulo["Peso"].InnerText);
-                    Medida.Largo = Convert.ToDecimal(Articulo["Largo"].InnerText);
-                    Medida.Ancho = Convert.ToDecimal(Articulo["Ancho"].InnerText);
-                    Medida.Altura = Convert.ToDecimal(Articulo["Altura"].InnerText);
+                {                   
+                    Medida.Peso = Convert.ToDouble(Articulo["Peso"].InnerText);
+                    Medida.Largo = Convert.ToDouble(Articulo["Largo"].InnerText);
+                    Medida.Ancho = Convert.ToDouble(Articulo["Ancho"].InnerText);
+                    Medida.Altura = Convert.ToDouble(Articulo["Altura"].InnerText);
                     Medida.PiezasXcaja = Convert.ToInt32 (Articulo["PiezasCaja"].InnerText);
                 }
                 catch (Exception e)

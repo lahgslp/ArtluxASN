@@ -31,15 +31,15 @@ namespace GeneradorASN.BLL
                 }
                 else
                 {
-                    ListaRemisiones = DBManager.ObtenerRemisiones(filtros.Folios);
-                    //ListaRemisiones = DBManager.ObtenerRemisiones("2888,123abc,2942,2b#^--12,3003,ab123");
+                    //ListaRemisiones = DBManager.ObtenerRemisiones(filtros.Folios);
+                    ListaRemisiones = DBManager.ObtenerRemisiones("2888,123abc,2942,2b#^--12,3003,ab123");
                 }
                                
                 foreach (List<RANDBData> ListaDeRANs in ListaRemisiones)
                 {
                     RemisionesDataSet.RemisionesDataTableRow rowRemision = ds.RemisionesDataTable.NewRemisionesDataTableRow();
                     string strListaRANs = "";
-                    double PesoTotal = 0;
+                    float PesoTotal = 0;
 
                     CveDoc = ListaDeRANs[0].Remision;
                     rowRemision.FolioRemision = ListaDeRANs[0].Remision;
@@ -51,7 +51,7 @@ namespace GeneradorASN.BLL
 
                     foreach (RANDBData ran in ListaDeRANs)
                     {
-                        double PesoPartida = 0;
+                        float PesoPartida = 0;
                         RemisionesDataSet.PartidasDataTableRow rowPartida = ds.PartidasDataTable.NewPartidasDataTableRow();
                         MedidasArticulo MedidaArticulo = (MedidasArticulo)PesosArticulo[ran.ClaveProducto];
 
@@ -61,7 +61,7 @@ namespace GeneradorASN.BLL
                             registrador.RegistrarAdvertencia("No se encontro el articulo '"+ ran.ClaveProducto + "' dentro del archivo de pesos.");
                         }
                         else {
-                            PesoPartida = (double)((ran.Cantidad / MedidaArticulo.PiezasXcaja) * MedidaArticulo.Peso);
+                            PesoPartida = (float)(ran.Cantidad / MedidaArticulo.PiezasXcaja * MedidaArticulo.Peso);
                         }
                         
                         rowPartida.FolioRemision = ran.Remision;
@@ -83,7 +83,6 @@ namespace GeneradorASN.BLL
                     rowRemision.PesoTotal = PesoTotal;
                 }
 
-                return ds;
             }
             catch (Exception ex) {
                 registrador.RegistrarError("Ocurrio un error desconocido al procesar la remisión '"+CveDoc+"' con RAN '"+RAN+"'. Detalles '"+ex.Message +"'");

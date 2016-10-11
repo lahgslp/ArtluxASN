@@ -31,8 +31,8 @@ namespace GeneradorASN.BLL
                 }
                 else
                 {
-                    //ListaRemisiones = DBManager.ObtenerRemisiones(filtros.Folios);
-                    ListaRemisiones = DBManager.ObtenerRemisiones("2888,123abc,2942,2b#^--12,3003,ab123");
+                    ListaRemisiones = DBManager.ObtenerRemisiones(filtros.Folios);
+                    //ListaRemisiones = DBManager.ObtenerRemisiones("2888,123abc,2942,2b#^--12,3003,ab123");
                 }
                                
                 foreach (List<RANDBData> ListaDeRANs in ListaRemisiones)

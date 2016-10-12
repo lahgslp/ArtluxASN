@@ -82,7 +82,7 @@
             // dateTimePickerFechaInicio
             // 
             this.dateTimePickerFechaInicio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePickerFechaInicio.Location = new System.Drawing.Point(265, 15);
+            this.dateTimePickerFechaInicio.Location = new System.Drawing.Point(362, 15);
             this.dateTimePickerFechaInicio.Name = "dateTimePickerFechaInicio";
             this.dateTimePickerFechaInicio.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerFechaInicio.TabIndex = 2;
@@ -91,7 +91,7 @@
             // dateTimePickerFechaFinal
             // 
             this.dateTimePickerFechaFinal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePickerFechaFinal.Location = new System.Drawing.Point(548, 15);
+            this.dateTimePickerFechaFinal.Location = new System.Drawing.Point(645, 15);
             this.dateTimePickerFechaFinal.Name = "dateTimePickerFechaFinal";
             this.dateTimePickerFechaFinal.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerFechaFinal.TabIndex = 3;
@@ -101,7 +101,7 @@
             // 
             this.labelFechaInicio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFechaInicio.AutoSize = true;
-            this.labelFechaInicio.Location = new System.Drawing.Point(191, 15);
+            this.labelFechaInicio.Location = new System.Drawing.Point(288, 15);
             this.labelFechaInicio.Name = "labelFechaInicio";
             this.labelFechaInicio.Size = new System.Drawing.Size(68, 13);
             this.labelFechaInicio.TabIndex = 4;
@@ -111,7 +111,7 @@
             // 
             this.labelFechaFinal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFechaFinal.AutoSize = true;
-            this.labelFechaFinal.Location = new System.Drawing.Point(477, 15);
+            this.labelFechaFinal.Location = new System.Drawing.Point(574, 15);
             this.labelFechaFinal.Name = "labelFechaFinal";
             this.labelFechaFinal.Size = new System.Drawing.Size(65, 13);
             this.labelFechaFinal.TabIndex = 6;
@@ -125,7 +125,7 @@
             this.groupBoxRANs.Controls.Add(this.dataGridViewRANs);
             this.groupBoxRANs.Location = new System.Drawing.Point(12, 41);
             this.groupBoxRANs.Name = "groupBoxRANs";
-            this.groupBoxRANs.Size = new System.Drawing.Size(736, 224);
+            this.groupBoxRANs.Size = new System.Drawing.Size(833, 225);
             this.groupBoxRANs.TabIndex = 7;
             this.groupBoxRANs.TabStop = false;
             this.groupBoxRANs.Text = "Listado de RANs";
@@ -149,15 +149,13 @@
             this.dataGridViewRANs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewRANs.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewRANs.Name = "dataGridViewRANs";
-            this.dataGridViewRANs.ReadOnly = true;
-            this.dataGridViewRANs.Size = new System.Drawing.Size(730, 205);
+            this.dataGridViewRANs.Size = new System.Drawing.Size(827, 206);
             this.dataGridViewRANs.TabIndex = 0;
             // 
             // Selected
             // 
             this.Selected.HeaderText = "Incluir";
             this.Selected.Name = "Selected";
-            this.Selected.ReadOnly = true;
             this.Selected.Width = 40;
             // 
             // folioRemisionDataGridViewTextBoxColumn
@@ -223,7 +221,7 @@
             // 
             this.labelDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelDestino.AutoSize = true;
-            this.labelDestino.Location = new System.Drawing.Point(12, 274);
+            this.labelDestino.Location = new System.Drawing.Point(12, 275);
             this.labelDestino.Name = "labelDestino";
             this.labelDestino.Size = new System.Drawing.Size(46, 13);
             this.labelDestino.TabIndex = 8;
@@ -232,7 +230,7 @@
             // textBoxRutaDestino
             // 
             this.textBoxRutaDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxRutaDestino.Location = new System.Drawing.Point(64, 271);
+            this.textBoxRutaDestino.Location = new System.Drawing.Point(64, 272);
             this.textBoxRutaDestino.Name = "textBoxRutaDestino";
             this.textBoxRutaDestino.ReadOnly = true;
             this.textBoxRutaDestino.Size = new System.Drawing.Size(369, 20);
@@ -241,7 +239,7 @@
             // buttonCargar
             // 
             this.buttonCargar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCargar.Location = new System.Drawing.Point(670, 271);
+            this.buttonCargar.Location = new System.Drawing.Point(767, 272);
             this.buttonCargar.Name = "buttonCargar";
             this.buttonCargar.Size = new System.Drawing.Size(75, 23);
             this.buttonCargar.TabIndex = 10;
@@ -252,7 +250,7 @@
             // buttonCambiarRuta
             // 
             this.buttonCambiarRuta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonCambiarRuta.Location = new System.Drawing.Point(439, 271);
+            this.buttonCambiarRuta.Location = new System.Drawing.Point(439, 272);
             this.buttonCambiarRuta.Name = "buttonCambiarRuta";
             this.buttonCambiarRuta.Size = new System.Drawing.Size(75, 23);
             this.buttonCambiarRuta.TabIndex = 11;
@@ -264,7 +262,7 @@
             // 
             this.linkCarpetaRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkCarpetaRegistro.AutoSize = true;
-            this.linkCarpetaRegistro.Location = new System.Drawing.Point(15, 294);
+            this.linkCarpetaRegistro.Location = new System.Drawing.Point(15, 295);
             this.linkCarpetaRegistro.Name = "linkCarpetaRegistro";
             this.linkCarpetaRegistro.Size = new System.Drawing.Size(170, 13);
             this.linkCarpetaRegistro.TabIndex = 12;
@@ -276,7 +274,7 @@
             // 
             this.labelFolios.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFolios.AutoSize = true;
-            this.labelFolios.Location = new System.Drawing.Point(191, 15);
+            this.labelFolios.Location = new System.Drawing.Point(288, 15);
             this.labelFolios.Name = "labelFolios";
             this.labelFolios.Size = new System.Drawing.Size(37, 13);
             this.labelFolios.TabIndex = 13;
@@ -288,13 +286,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxFolios.Location = new System.Drawing.Point(234, 13);
             this.textBoxFolios.Name = "textBoxFolios";
-            this.textBoxFolios.Size = new System.Drawing.Size(433, 20);
+            this.textBoxFolios.Size = new System.Drawing.Size(530, 20);
             this.textBoxFolios.TabIndex = 14;
             // 
             // buttonRefrescar
             // 
             this.buttonRefrescar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRefrescar.Location = new System.Drawing.Point(673, 12);
+            this.buttonRefrescar.Location = new System.Drawing.Point(770, 12);
             this.buttonRefrescar.Name = "buttonRefrescar";
             this.buttonRefrescar.Size = new System.Drawing.Size(75, 23);
             this.buttonRefrescar.TabIndex = 15;
@@ -306,7 +304,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(760, 325);
+            this.ClientSize = new System.Drawing.Size(857, 326);
             this.Controls.Add(this.buttonRefrescar);
             this.Controls.Add(this.textBoxFolios);
             this.Controls.Add(this.labelFolios);
@@ -351,6 +349,9 @@
         private System.Windows.Forms.LinkLabel linkCarpetaRegistro;
         private System.Windows.Forms.BindingSource remisionesDataTableBindingSource;
         private System.Windows.Forms.BindingSource remisionesDataSetBindingSource;
+        private System.Windows.Forms.Label labelFolios;
+        private System.Windows.Forms.TextBox textBoxFolios;
+        private System.Windows.Forms.Button buttonRefrescar;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Selected;
         private System.Windows.Forms.DataGridViewTextBoxColumn folioRemisionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidadTotalDataGridViewTextBoxColumn;
@@ -359,9 +360,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaDocumentoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaEntregaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn listaRANsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label labelFolios;
-        private System.Windows.Forms.TextBox textBoxFolios;
-        private System.Windows.Forms.Button buttonRefrescar;
     }
 }
 

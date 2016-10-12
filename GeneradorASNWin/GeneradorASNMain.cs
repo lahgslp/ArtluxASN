@@ -80,11 +80,23 @@ namespace GeneradorASNWin
             }
         }
 
+        void InicializarDataGridView()
+        {
+            foreach (DataGridViewColumn column in dataGridViewRANs.Columns)
+            {
+                if (column.Name != "Selected")
+                {
+                    column.ReadOnly = true;
+                }
+            }
+        }
+
         private void InicializarControles()
         {
             InicializarComboPeriodos();
             DesactivaControlesFecha();
             DesactivaControlesFolios();
+            //InicializarDataGridView();
         }
 
         private void GeneradorASN_Load(object sender, EventArgs e)
@@ -134,11 +146,6 @@ namespace GeneradorASNWin
         }
 
         private void linkCarpetaRegistro_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
-
-        private void buttonCargar_Click(object sender, EventArgs e)
         {
 
         }
@@ -216,6 +223,22 @@ namespace GeneradorASNWin
             Cursor.Current = Cursors.WaitCursor;
             remisionesDataTableBindingSource.DataSource = RemisionesManager.ObtenerRemisiones(filtros, registrador);
             Cursor.Current = Cursors.Default;
+        }
+
+        private void buttonCargar_Click(object sender, EventArgs e)
+        {
+            List<string> foliosElegidos = new List<string>();
+            foreach (DataGridViewRow row in dataGridViewRANs.Rows)
+            {
+                if (row.Cells["Selected"].Value != null)
+                {
+                    if (Convert.ToBoolean(row.Cells["Selected"].Value) == true)
+                    {
+                        foliosElegidos.Add(Convert.ToString(row.Cells["folioRemisionDataGridViewTextBoxColumn"].Value));
+                    }
+                }
+            }
+            //http://www.codeproject.com/Articles/42437/Toggling-the-States-of-all-CheckBoxes-Inside-a-Dat
         }
     }
 }

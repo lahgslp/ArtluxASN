@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace GeneradorASN.BLL
 {
-    class ExportadorASN
+    public class ExportadorASN
     {
-        static public int Exportar()
+        static public int Exportar(string ruta, List<string> folios, GeneradorASN.Entities.RemisionesDataSet Remisiones, Registrador.IRegistroEjecucion registrador)
         {
             return 0;
         }

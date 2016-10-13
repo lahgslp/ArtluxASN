@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GeneradorASN.BLL;
+using GeneradorASN.Entities;
 
 namespace GeneradorASNWin
 {
@@ -16,6 +17,8 @@ namespace GeneradorASNWin
         bool flagComboPeriodos = false; //Para evitar primera ejecucion de calculo mientras se asigna el DataSource
         bool controlesFechaActivos = true;//Por default en true para que se deshabiliten al iniciar
         bool controlesFoliosActivos = true;//Por default en true para que se deshabiliten al iniciar
+
+        RemisionesDataSet Remisiones;
 
         public GeneradorASNMain()
         {
@@ -201,6 +204,7 @@ namespace GeneradorASNWin
                 MessageBox.Show("Por favor introduzca folios separados por comas", "Folios vacios", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void CargarDatos()
         {
             DatosFiltro filtros = new DatosFiltro();
@@ -221,22 +225,40 @@ namespace GeneradorASNWin
             Registrador.IRegistroEjecucion registrador = new Registrador.RegistroEjecucionArchivo("");
 
             Cursor.Current = Cursors.WaitCursor;
-            remisionesDataTableBindingSource.DataSource = RemisionesManager.ObtenerRemisiones(filtros, registrador);
+            Remisiones = RemisionesManager.ObtenerRemisiones(filtros, registrador);
+            remisionesDataTableBindingSource.DataSource = Remisiones;
             Cursor.Current = Cursors.Default;
         }
 
         private void buttonCargar_Click(object sender, EventArgs e)
         {
             List<string> foliosElegidos = new List<string>();
-            foreach (DataGridViewRow row in dataGridViewRANs.Rows)
+            if (dataGridViewRANs.Rows.Count > 0)
             {
-                if (row.Cells["Selected"].Value != null)
+                foreach (DataGridViewRow row in dataGridViewRANs.Rows)
                 {
-                    if (Convert.ToBoolean(row.Cells["Selected"].Value) == true)
+                    if (row.Cells["Selected"].Value != null)
                     {
-                        foliosElegidos.Add(Convert.ToString(row.Cells["folioRemisionDataGridViewTextBoxColumn"].Value));
+                        if (Convert.ToBoolean(row.Cells["Selected"].Value) == true)
+                        {
+                            foliosElegidos.Add(Convert.ToString(row.Cells["folioRemisionDataGridViewTextBoxColumn"].Value));
+                        }
                     }
                 }
+                if (foliosElegidos.Count > 0)
+                {
+                    Registrador.IRegistroEjecucion registrador = new Registrador.RegistroEjecucionArchivo("");
+
+                    ExportadorASN.Exportar("", foliosElegidos, Remisiones, registrador);
+                }
+                else
+                {
+                    MessageBox.Show("No hay remisiones seleccionadas. Favor de seleccionar remisiones a cargar ASN", "Seleccionar Remisiones");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay remisiones disponibles para cargar","No hay Remisiones");
             }
             //http://www.codeproject.com/Articles/42437/Toggling-the-States-of-all-CheckBoxes-Inside-a-Dat
         }

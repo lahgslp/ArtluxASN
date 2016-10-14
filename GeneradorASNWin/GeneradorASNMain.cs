@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GeneradorASN.BLL;
 using GeneradorASN.Entities;
+using System.Configuration;
 
 namespace GeneradorASNWin
 {
@@ -248,8 +249,8 @@ namespace GeneradorASNWin
                 if (foliosElegidos.Count > 0)
                 {
                     Registrador.IRegistroEjecucion registrador = new Registrador.RegistroEjecucionArchivo("");
-
-                    ExportadorASN.Exportar("", foliosElegidos, Remisiones, registrador);
+                    
+                    ExportadorASN.ExportarRemisiones(ConfigurationManager.AppSettings["RutaDestino"], foliosElegidos, Remisiones, registrador);
                 }
                 else
                 {

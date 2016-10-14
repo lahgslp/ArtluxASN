@@ -24,7 +24,7 @@ namespace Registrador
         {
             if (NombreArchivo != String.Empty)
             {
-                string folder = Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData) + "\\" + "Registrador";
+                string folder = Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData) + "\\" + "GeneradorASNWin";
                 if (!Directory.Exists(folder))
                 {
                     Directory.CreateDirectory(folder);

@@ -288,6 +288,7 @@
             this.textBoxFolios.Name = "textBoxFolios";
             this.textBoxFolios.Size = new System.Drawing.Size(530, 20);
             this.textBoxFolios.TabIndex = 14;
+            this.textBoxFolios.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxFolios_KeyDown);
             // 
             // buttonRefrescar
             // 

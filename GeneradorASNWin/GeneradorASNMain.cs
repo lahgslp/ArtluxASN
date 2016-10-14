@@ -84,23 +84,12 @@ namespace GeneradorASNWin
             }
         }
 
-        void InicializarDataGridView()
-        {
-            foreach (DataGridViewColumn column in dataGridViewRANs.Columns)
-            {
-                if (column.Name != "Selected")
-                {
-                    column.ReadOnly = true;
-                }
-            }
-        }
-
         private void InicializarControles()
         {
             InicializarComboPeriodos();
             DesactivaControlesFecha();
             DesactivaControlesFolios();
-            //InicializarDataGridView();
+            this.textBoxRutaDestino.Text = ConfigurationManager.AppSettings["RutaDestino"];
         }
 
         private void GeneradorASN_Load(object sender, EventArgs e)
@@ -112,7 +101,12 @@ namespace GeneradorASNWin
 
         private void buttonCambiarRuta_Click(object sender, EventArgs e)
         {
-
+            FolderBrowserDialog selRuta = new FolderBrowserDialog();
+            selRuta.SelectedPath = this.textBoxRutaDestino.Text;
+            if (selRuta.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.textBoxRutaDestino.Text = selRuta.SelectedPath;
+            }
         }
 
         private void dateTimePickerFechaInicio_ValueChanged(object sender, EventArgs e)
@@ -151,7 +145,14 @@ namespace GeneradorASNWin
 
         private void linkCarpetaRegistro_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            try
+            {
+                System.Diagnostics.Process.Start(Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData) + "\\" + "GeneradorASNWin");
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
 
         private void comboPeriodo_SelectedValueChanged(object sender, EventArgs e)
@@ -178,7 +179,6 @@ namespace GeneradorASNWin
                     GeneradorPeriodosdeFechas.CalcularFechas(periodo, DateTime.Now, out inicio, out final);
                     dateTimePickerFechaInicio.Value = inicio;
                     dateTimePickerFechaFinal.Value = final;
-                    //MessageBox.Show("Desde " + dateTimePickerFechaInicio.Value.ToShortDateString() + " hasta " + dateTimePickerFechaFinal.Value.ToShortDateString());
                     CargarDatos();
                 }
             }
@@ -203,6 +203,14 @@ namespace GeneradorASNWin
             else
             {
                 MessageBox.Show("Por favor introduzca folios separados por comas", "Folios vacios", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void textBoxFolios_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonRefrescar_Click(null, null);
             }
         }
 
@@ -250,7 +258,7 @@ namespace GeneradorASNWin
                 {
                     Registrador.IRegistroEjecucion registrador = new Registrador.RegistroEjecucionArchivo("");
                     
-                    ExportadorASN.ExportarRemisiones(ConfigurationManager.AppSettings["RutaDestino"], foliosElegidos, Remisiones, registrador);
+                    ExportadorASN.ExportarRemisiones(this.textBoxRutaDestino.Text, foliosElegidos, Remisiones, registrador);
                 }
                 else
                 {

@@ -22,16 +22,46 @@ namespace GeneradorASN.BLL
 
         static public int Exportar(string ruta, GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision, GeneradorASN.Entities.RemisionesDataSet Remisiones, Registrador.IRegistroEjecucion registrador)
         {
+            double candidadTotalProducto = 0;
             string archivo = ruta + "\\" + "ASN" + remision.FolioRemision.Replace(" ", "") + ".txt";
             using (System.IO.StreamWriter archivoASN = System.IO.File.CreateText(archivo))
             {
-                //int ContadorDT1 = 2;
-                //int ContadorDT2 = 2;
+                List<string> productosProcesados = new List<string>();
+                int ContadorDT1 = 2;
 
                 //Firma inicial
                 archivoASN.WriteLine(":N:");
                 //Header
                 archivoASN.WriteLine(GenerarHeader(remision));
+                foreach (GeneradorASN.Entities.RemisionesDataSet.PartidasDataTableRow partidaProductos in Remisiones.PartidasDataTable.Rows)
+                {
+                    if (remision.FolioRemision == partidaProductos.FolioRemision)
+                    {
+                        if (productosProcesados.IndexOf(partidaProductos.ClaveProducto) < 0)
+                        {
+                            List<GeneradorASN.Entities.RemisionesDataSet.PartidasDataTableRow> lineasDT2 = new List<GeneradorASN.Entities.RemisionesDataSet.PartidasDataTableRow>();
+                            candidadTotalProducto = 0;
+
+                            foreach (GeneradorASN.Entities.RemisionesDataSet.PartidasDataTableRow partidaDetalles in Remisiones.PartidasDataTable.Rows)
+                            {
+                                if (remision.FolioRemision == partidaDetalles.FolioRemision && partidaProductos.ClaveProducto == partidaDetalles.ClaveProducto)
+                                {
+                                    candidadTotalProducto += partidaDetalles.CantidadPartida;
+                                    lineasDT2.Add(partidaDetalles);
+                                }
+                            }
+                            productosProcesados.Add(partidaProductos.ClaveProducto);
+                            archivoASN.WriteLine(GenerarDT1(remision, partidaProductos, Remisiones, ContadorDT1, candidadTotalProducto));
+                            ContadorDT1++;
+                            foreach (GeneradorASN.Entities.RemisionesDataSet.PartidasDataTableRow lineaDT2 in lineasDT2)
+                            {
+                                archivoASN.WriteLine(GenerarDT2(remision, lineaDT2, Remisiones, ContadorDT1));
+                                ContadorDT1++;
+                            }
+                            lineasDT2.Clear();
+                        }
+                    }
+                }
 
             }
             return 0;
@@ -39,6 +69,7 @@ namespace GeneradorASN.BLL
 
         static public string GenerarHeader(GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision)
         {
+            #region strings
             string Header = "HDR";
             string Purpose_Code = "00";
             string ASN_Number = "WCA" + remision.FolioRemision.Replace(" ", "").PadLeft(5, '0') + "       ";
@@ -99,6 +130,7 @@ namespace GeneradorASN.BLL
             string ContainerType4 = ContainerType2;
             string ContainerQuantity4 = ContainerQuantity2;
             string CantidadAEmbarcar = "0                 ";
+            #endregion
 
             DateTime fechaDocumento = DateTime.Now; //remision.FechaDocumento;
 
@@ -179,14 +211,62 @@ namespace GeneradorASN.BLL
                 ContainerType2 + ContainerQuantity2 + ContainerType3 + ContainerQuantity3 + ContainerType4 + ContainerQuantity4 + CantidadAEmbarcar;
         }
 
-        static public string GenerarDT1(string folio, GeneradorASN.Entities.RemisionesDataSet Remisiones, int ContadorDT1)
+        static public string GenerarDT1(GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision, GeneradorASN.Entities.RemisionesDataSet.PartidasDataTableRow partida, GeneradorASN.Entities.RemisionesDataSet Remisiones, int ContadorDT1, double TotalProducto)
         {
-            return "DT1";
+            #region strings
+            string DT = "DT1";
+            string ContadorDeParte = ContadorDT1.ToString("N0");
+            string ConsecutivoDetallesDoc = "     ";
+            string NivelDeEmpaque = "   ";
+            string TrnsClientPartNumber = partida.ClaveProducto;
+            string TrnsECLevel = "                              ";
+            string TrnsDtlCustField4 = "                                   ";
+            string ContainerPartNumber = "                              ";
+            string TrnsUnitsShipped = TotalProducto.ToString("N0");
+            string TrnsUMUnitsShipped = "EA ";
+            string TrnsCumulativeQuantity = "0           ";
+            string TrnsPONumber = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            #endregion
+
+            while (ContadorDeParte.Length < 5)
+            {
+                ContadorDeParte += " ";
+            }
+
+            while (TrnsClientPartNumber.Length < 30)
+            {
+                TrnsClientPartNumber += " ";
+            }
+
+            while (TrnsUnitsShipped.Length < 12)
+            {
+                TrnsUnitsShipped += " ";
+            }
+            return DT + ContadorDeParte + ConsecutivoDetallesDoc + NivelDeEmpaque + TrnsClientPartNumber + TrnsECLevel + TrnsDtlCustField4 + ContainerPartNumber + TrnsUnitsShipped + TrnsUMUnitsShipped +
+                TrnsCumulativeQuantity + TrnsPONumber;
         }
 
-        static public string GenerarDT2(string folio, GeneradorASN.Entities.RemisionesDataSet Remisiones, int ContadorDT2)
+        static public string GenerarDT2(GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision, GeneradorASN.Entities.RemisionesDataSet.PartidasDataTableRow partida, GeneradorASN.Entities.RemisionesDataSet Remisiones, int ContadorDT2)
         {
-            return "DT2";
+            #region strings
+            string DT = "DT2";
+            string Trnspallet = partida.RAN;
+            string TrnsNoCases = partida.CantidadPartida.ToString("N0");
+            string TrnsLabelSerial = "          ";
+            #endregion
+
+            while (Trnspallet.Length < 10)
+            {
+                Trnspallet += " ";
+            }
+
+            while (TrnsNoCases.Length < 7)
+            {
+                TrnsNoCases += " ";
+            }
+
+
+            return DT + Trnspallet + TrnsNoCases + TrnsLabelSerial;
         }
     }
 }

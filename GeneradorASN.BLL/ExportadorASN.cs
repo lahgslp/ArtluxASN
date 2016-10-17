@@ -14,31 +14,34 @@ namespace GeneradorASN.BLL
             {
                 if (folios.IndexOf(remision.FolioRemision) >= 0)
                 {
-                    Exportar(ruta, remision.FolioRemision, Remisiones, registrador);
+                    Exportar(ruta, remision, Remisiones, registrador);
                 }
             }
             return 0;
         }
 
-        static public int Exportar(string ruta, string folio, GeneradorASN.Entities.RemisionesDataSet Remisiones, Registrador.IRegistroEjecucion registrador)
+        static public int Exportar(string ruta, GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision, GeneradorASN.Entities.RemisionesDataSet Remisiones, Registrador.IRegistroEjecucion registrador)
         {
-            string archivo = ruta + "\\" + "ASN" + folio.Replace(" ", "") + ".txt";
+            string archivo = ruta + "\\" + "ASN" + remision.FolioRemision.Replace(" ", "") + ".txt";
             using (System.IO.StreamWriter archivoASN = System.IO.File.CreateText(archivo))
             {
+                //int ContadorDT1 = 2;
+                //int ContadorDT2 = 2;
+
                 //Firma inicial
                 archivoASN.WriteLine(":N:");
                 //Header
-                archivoASN.WriteLine(GenerarHeader(folio, Remisiones));
+                archivoASN.WriteLine(GenerarHeader(remision));
 
             }
             return 0;
         }
 
-        static public string GenerarHeader(string folio, GeneradorASN.Entities.RemisionesDataSet Remisiones)
+        static public string GenerarHeader(GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision)
         {
             string Header = "HDR";
             string Purpose_Code = "00";
-            string ASN_Number = "WCA" + folio.Replace(" ", "").PadLeft(5, '0') + "       ";
+            string ASN_Number = "WCA" + remision.FolioRemision.Replace(" ", "").PadLeft(5, '0') + "       ";
             string Ship_Date = "";
             string Ship_Time = "";
             string Create_Date = "";
@@ -97,100 +100,93 @@ namespace GeneradorASN.BLL
             string ContainerQuantity4 = ContainerQuantity2;
             string CantidadAEmbarcar = "0                 ";
 
-            GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision = null;
+            DateTime fechaDocumento = DateTime.Now; //remision.FechaDocumento;
 
-            foreach (GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow rem in Remisiones.RemisionesDataTable.Rows)
+            ASN_Number = "WCA" + remision.FolioRemision.Replace(" ", "").PadLeft(6, '0');
+            while (ASN_Number.Length < 16)
             {
-                if(rem.FolioRemision ==  folio)
-                {
-                    remision = rem;
-                }
+                ASN_Number += " ";
             }
 
-            if (remision != null)
+            //Fechas
+            Ship_Date = fechaDocumento.ToString("yyyyMMdd");
+            Ship_Time = fechaDocumento.ToString("hhmm");
+            Create_Date = fechaDocumento.ToString("yyyyMMdd");
+            Create_Time = fechaDocumento.ToString("hhmm");
+            EstimatedArrival_Date = remision.FechaEntrega.ToString("yyyyMMdd");
+            EstimatedArrival_Time = fechaDocumento.ToString("hhmm");
+
+            //Pesos
+            Net_Weight_Value = Gross_Weight_Value = remision.PesoTotal.ToString("N0");
+            while (Gross_Weight_Value.Length < 18)
             {
-                DateTime fechaDocumento = DateTime.Now; //remision.FechaDocumento;
-
-                ASN_Number = "WCA" + folio.Replace(" ", "").PadLeft(6, '0');
-                while (ASN_Number.Length < 16)
-                {
-                    ASN_Number += " ";
-                }
-
-                //Fechas
-                Ship_Date = fechaDocumento.ToString("yyyyMMdd");
-                Ship_Time = fechaDocumento.ToString("hhmm");
-                Create_Date = fechaDocumento.ToString("yyyyMMdd");
-                Create_Time = fechaDocumento.ToString("hhmm");
-                EstimatedArrival_Date = remision.FechaEntrega.ToString("yyyyMMdd");
-                EstimatedArrival_Time = fechaDocumento.ToString("hhmm");
-
-                //Pesos
-                Net_Weight_Value = Gross_Weight_Value = remision.PesoTotal.ToString("N0");
-                while (Gross_Weight_Value.Length < 18)
-                {
-                    Gross_Weight_Value += " ";
-                }
-                while (Net_Weight_Value.Length < 18)
-                {
-                    Net_Weight_Value += " ";
-                }
-
-                //Cantidades
-                Lading_qty = remision.CantidadTotal.ToString("N0");
-                while (Lading_qty.Length < 7)
-                {
-                    Lading_qty += " ";
-                }
-
-                //Placas
-                while (Equipment_Initial.Length < 4)
-                {
-                    Equipment_Initial += " ";
-                }
-                while (Equipment_Number.Length < 17)
-                {
-                    Equipment_Number += " ";
-                }
-
-                //Factura
-                TrnsInvoiceNum = ASN_Number;
-                while (TrnsInvoiceNum.Length < 30)
-                {
-                    TrnsInvoiceNum += " ";
-                }
-                Reference_Number = ASN_Number;
-
-                //Cantidades
-                TotalLines = (remision.PartidasTotales + 1).ToString("N0"); //Checar el '+1'
-                while (TotalLines.Length < 10)
-                {
-                    TotalLines += " ";
-                }
-
-                return Header + Purpose_Code + ASN_Number +
-                    Ship_Date + Ship_Time + Create_Date + Create_Time + EstimatedArrival_Date + EstimatedArrival_Time + TrnsTimeZone +
-                    Gross_Weight_Value + Net_Weight_Value + Gross_Weight_UM +
-                    Pack_Code + Lading_qty +
-                    TrnsScacCode + TransportStage + TrnsCarrierMode + TrnsRouting + TrnsCarrierLocId +
-                    TrnsEquipCode + Equipment_Initial + Equipment_Number +
-                    TrnsInvoiceNum + TrnsAirBillNumber + TrnsFreightBillNumber + TrnsCarrierBillNumber +
-                    Reference_Number +
-                    TrnsMasterBillofLading + TrnsSealNumber +
-                    Supplier_Number + TrnsShipFromId +
-                    Ship_To + TrnsUltimateDest +
-                    TrnsUltimateDest2 + TrnsConsigneeId + OrderedBy +
-                    Invoice_Total_Amount + Number_of_Line_Items +
-                    TrnsDockCode + ExcessReasonCode + TrnsExcessTrans + TrnsAETC + MetodoDePago + TerminosDeTransporte + TrnsCurrCode +
-                    TrnsInvoiceTotal + NombreCliente +
-                    TotalLines +
-                    TotalUnitsShipped + TrnsSealNum2 + TrnsSealNum3 + TrnsSealNum4 +
-                    ContainerType2 + ContainerQuantity2 + ContainerType3 + ContainerQuantity3 + ContainerType4 + ContainerQuantity4 + CantidadAEmbarcar;
+                Gross_Weight_Value += " ";
             }
-            else
+            while (Net_Weight_Value.Length < 18)
             {
-                return "ERROR";
+                Net_Weight_Value += " ";
             }
+
+            //Cantidades
+            Lading_qty = remision.CantidadTotal.ToString("N0");
+            while (Lading_qty.Length < 7)
+            {
+                Lading_qty += " ";
+            }
+
+            //Placas
+            while (Equipment_Initial.Length < 4)
+            {
+                Equipment_Initial += " ";
+            }
+            while (Equipment_Number.Length < 17)
+            {
+                Equipment_Number += " ";
+            }
+
+            //Factura
+            TrnsInvoiceNum = ASN_Number;
+            while (TrnsInvoiceNum.Length < 30)
+            {
+                TrnsInvoiceNum += " ";
+            }
+            Reference_Number = ASN_Number;
+
+            //Cantidades
+            TotalLines = (remision.PartidasTotales + 1).ToString("N0"); //Checar el '+1'
+            while (TotalLines.Length < 10)
+            {
+                TotalLines += " ";
+            }
+
+            return Header + Purpose_Code + ASN_Number +
+                Ship_Date + Ship_Time + Create_Date + Create_Time + EstimatedArrival_Date + EstimatedArrival_Time + TrnsTimeZone +
+                Gross_Weight_Value + Net_Weight_Value + Gross_Weight_UM +
+                Pack_Code + Lading_qty +
+                TrnsScacCode + TransportStage + TrnsCarrierMode + TrnsRouting + TrnsCarrierLocId +
+                TrnsEquipCode + Equipment_Initial + Equipment_Number +
+                TrnsInvoiceNum + TrnsAirBillNumber + TrnsFreightBillNumber + TrnsCarrierBillNumber +
+                Reference_Number +
+                TrnsMasterBillofLading + TrnsSealNumber +
+                Supplier_Number + TrnsShipFromId +
+                Ship_To + TrnsUltimateDest +
+                TrnsUltimateDest2 + TrnsConsigneeId + OrderedBy +
+                Invoice_Total_Amount + Number_of_Line_Items +
+                TrnsDockCode + ExcessReasonCode + TrnsExcessTrans + TrnsAETC + MetodoDePago + TerminosDeTransporte + TrnsCurrCode +
+                TrnsInvoiceTotal + NombreCliente +
+                TotalLines +
+                TotalUnitsShipped + TrnsSealNum2 + TrnsSealNum3 + TrnsSealNum4 +
+                ContainerType2 + ContainerQuantity2 + ContainerType3 + ContainerQuantity3 + ContainerType4 + ContainerQuantity4 + CantidadAEmbarcar;
+        }
+
+        static public string GenerarDT1(string folio, GeneradorASN.Entities.RemisionesDataSet Remisiones, int ContadorDT1)
+        {
+            return "DT1";
+        }
+
+        static public string GenerarDT2(string folio, GeneradorASN.Entities.RemisionesDataSet Remisiones, int ContadorDT2)
+        {
+            return "DT2";
         }
     }
 }

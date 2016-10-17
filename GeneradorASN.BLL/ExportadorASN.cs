@@ -75,78 +75,122 @@ namespace GeneradorASN.BLL
             string OrderedBy = "                                   ";
             string Invoice_Total_Amount = "";
             string Number_of_Line_Items = "";
+            string TrnsDockCode = "0                        ";
+            string ExcessReasonCode = "   ";
+            string TrnsExcessTrans = "   ";
+            string TrnsAETC = "                 ";
+            string MetodoDePago = "  ";
+            string TerminosDeTransporte = "   ";
+            string TrnsCurrCode = "   ";
+            string TrnsInvoiceTotal = "0              ";
+            string NombreCliente = "                                   ";
+            string TotalLines = "";
+            string TotalUnitsShipped = "0         ";
+            string TrnsSealNum2 = "          ";
+            string TrnsSealNum3 = "        ";
+            string TrnsSealNum4 = "        ";
+            string ContainerType2 = "          ";
+            string ContainerQuantity2 = "0  ";
+            string ContainerType3 = ContainerType2;
+            string ContainerQuantity3 = ContainerQuantity2;
+            string ContainerType4 = ContainerType2;
+            string ContainerQuantity4 = ContainerQuantity2;
+            string CantidadAEmbarcar = "0                 ";
 
-            foreach (GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision in Remisiones.RemisionesDataTable.Rows)
+            GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision = null;
+
+            foreach (GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow rem in Remisiones.RemisionesDataTable.Rows)
             {
-                if(remision.FolioRemision ==  folio)
+                if(rem.FolioRemision ==  folio)
                 {
-                    DateTime fechaDocumento = DateTime.Now; //remision.FechaDocumento;
-
-                    ASN_Number = "WCA" + folio.Replace(" ", "").PadLeft(6, '0');
-                    while (ASN_Number.Length < 16)
-                    {
-                        ASN_Number += " ";
-                    }
-
-                    //Fechas
-                    Ship_Date = fechaDocumento.ToString("yyyyMMdd");
-                    Ship_Time = fechaDocumento.ToString("hhmm");
-                    Create_Date = fechaDocumento.ToString("yyyyMMdd");
-                    Create_Time = fechaDocumento.ToString("hhmm");
-                    EstimatedArrival_Date = remision.FechaEntrega.ToString("yyyyMMdd");
-                    EstimatedArrival_Time = fechaDocumento.ToString("hhmm");
-
-                    //Pesos
-                    Net_Weight_Value = Gross_Weight_Value = remision.PesoTotal.ToString("N0");
-                    while (Gross_Weight_Value.Length < 18)
-                    {
-                        Gross_Weight_Value += " ";
-                    }
-                    while (Net_Weight_Value.Length < 18)
-                    {
-                        Net_Weight_Value += " ";
-                    }
-
-                    //Cantidades
-                    Lading_qty = remision.PartidasTotales.ToString("N0");
-                    while (Lading_qty.Length < 7)
-                    {
-                        Lading_qty += " ";
-                    }
-
-                    //Placas
-                    while (Equipment_Initial.Length < 4)
-                    {
-                        Equipment_Initial += " ";
-                    }
-                    while (Equipment_Number.Length < 17)
-                    {
-                        Equipment_Number += " ";
-                    }
-
-                    //Factura
-                    TrnsInvoiceNum = ASN_Number;
-                    while (TrnsInvoiceNum.Length < 30)
-                    {
-                        TrnsInvoiceNum += " ";
-                    }
-                    Reference_Number = ASN_Number;
+                    remision = rem;
                 }
             }
 
-            return Header + Purpose_Code + ASN_Number + 
-                Ship_Date + Ship_Time + Create_Date + Create_Time + EstimatedArrival_Date + EstimatedArrival_Time + TrnsTimeZone +
-                Gross_Weight_Value + Net_Weight_Value + Gross_Weight_UM +
-                Pack_Code + Lading_qty +
-                TrnsScacCode + TransportStage + TrnsCarrierMode + TrnsRouting + TrnsCarrierLocId +
-                TrnsEquipCode + Equipment_Initial + Equipment_Number +
-                TrnsInvoiceNum + TrnsAirBillNumber + TrnsFreightBillNumber + TrnsCarrierBillNumber +
-                Reference_Number +
-                TrnsMasterBillofLading + TrnsSealNumber +
-                Supplier_Number + TrnsShipFromId +
-                Ship_To + TrnsUltimateDest +
-                TrnsUltimateDest2 + TrnsConsigneeId + OrderedBy +
-                Invoice_Total_Amount + Number_of_Line_Items;
+            if (remision != null)
+            {
+                DateTime fechaDocumento = DateTime.Now; //remision.FechaDocumento;
+
+                ASN_Number = "WCA" + folio.Replace(" ", "").PadLeft(6, '0');
+                while (ASN_Number.Length < 16)
+                {
+                    ASN_Number += " ";
+                }
+
+                //Fechas
+                Ship_Date = fechaDocumento.ToString("yyyyMMdd");
+                Ship_Time = fechaDocumento.ToString("hhmm");
+                Create_Date = fechaDocumento.ToString("yyyyMMdd");
+                Create_Time = fechaDocumento.ToString("hhmm");
+                EstimatedArrival_Date = remision.FechaEntrega.ToString("yyyyMMdd");
+                EstimatedArrival_Time = fechaDocumento.ToString("hhmm");
+
+                //Pesos
+                Net_Weight_Value = Gross_Weight_Value = remision.PesoTotal.ToString("N0");
+                while (Gross_Weight_Value.Length < 18)
+                {
+                    Gross_Weight_Value += " ";
+                }
+                while (Net_Weight_Value.Length < 18)
+                {
+                    Net_Weight_Value += " ";
+                }
+
+                //Cantidades
+                Lading_qty = remision.CantidadTotal.ToString("N0");
+                while (Lading_qty.Length < 7)
+                {
+                    Lading_qty += " ";
+                }
+
+                //Placas
+                while (Equipment_Initial.Length < 4)
+                {
+                    Equipment_Initial += " ";
+                }
+                while (Equipment_Number.Length < 17)
+                {
+                    Equipment_Number += " ";
+                }
+
+                //Factura
+                TrnsInvoiceNum = ASN_Number;
+                while (TrnsInvoiceNum.Length < 30)
+                {
+                    TrnsInvoiceNum += " ";
+                }
+                Reference_Number = ASN_Number;
+
+                //Cantidades
+                TotalLines = (remision.PartidasTotales + 1).ToString("N0"); //Checar el '+1'
+                while (TotalLines.Length < 10)
+                {
+                    TotalLines += " ";
+                }
+
+                return Header + Purpose_Code + ASN_Number +
+                    Ship_Date + Ship_Time + Create_Date + Create_Time + EstimatedArrival_Date + EstimatedArrival_Time + TrnsTimeZone +
+                    Gross_Weight_Value + Net_Weight_Value + Gross_Weight_UM +
+                    Pack_Code + Lading_qty +
+                    TrnsScacCode + TransportStage + TrnsCarrierMode + TrnsRouting + TrnsCarrierLocId +
+                    TrnsEquipCode + Equipment_Initial + Equipment_Number +
+                    TrnsInvoiceNum + TrnsAirBillNumber + TrnsFreightBillNumber + TrnsCarrierBillNumber +
+                    Reference_Number +
+                    TrnsMasterBillofLading + TrnsSealNumber +
+                    Supplier_Number + TrnsShipFromId +
+                    Ship_To + TrnsUltimateDest +
+                    TrnsUltimateDest2 + TrnsConsigneeId + OrderedBy +
+                    Invoice_Total_Amount + Number_of_Line_Items +
+                    TrnsDockCode + ExcessReasonCode + TrnsExcessTrans + TrnsAETC + MetodoDePago + TerminosDeTransporte + TrnsCurrCode +
+                    TrnsInvoiceTotal + NombreCliente +
+                    TotalLines +
+                    TotalUnitsShipped + TrnsSealNum2 + TrnsSealNum3 + TrnsSealNum4 +
+                    ContainerType2 + ContainerQuantity2 + ContainerType3 + ContainerQuantity3 + ContainerType4 + ContainerQuantity4 + CantidadAEmbarcar;
+            }
+            else
+            {
+                return "ERROR";
+            }
         }
     }
 }

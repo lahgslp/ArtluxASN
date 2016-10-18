@@ -218,14 +218,38 @@ namespace GeneradorASN.BLL
             string ContadorDeParte = ContadorDT1.ToString("N0");
             string ConsecutivoDetallesDoc = "     ";
             string NivelDeEmpaque = "   ";
-            string TrnsClientPartNumber = partida.ClaveProducto;
+            string TrnsClientPartNumber = partida.ClaveProductoAlterna;
             string TrnsECLevel = "                              ";
             string TrnsDtlCustField4 = "                                   ";
             string ContainerPartNumber = "                              ";
             string TrnsUnitsShipped = TotalProducto.ToString("N0");
             string TrnsUMUnitsShipped = "EA ";
             string TrnsCumulativeQuantity = "0           ";
-            string TrnsPONumber = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            string TrnsPONumber = remision.FolioRemision.Replace(" ", "");
+            string ReleaseNumber = "                              ";
+            string ContractNumber = "          ";
+            string TrnsDtlBillofLading = "                ";
+            string TrnsDtlPackSlipNumber = "                ";
+            string TrnsReleaseNum = "                ";
+            string TrnsDtlShipTo = "                 ";
+            string UltimateDestination = "                 ";
+            string TrnsDtlDock = "        ";
+            string TrnsDtlDockClauseNumber = "    ";
+            string TrnsDtlDockChargeTotalAmount = "         ";
+            string TrnsDtlDockDescription = "                                                                           ";
+            string TrnsUnitPrice = "0              ";   //TBD - Precio
+            string TrnsContainerQuantity = "0    "; //TBD - Number of Loads
+            string TrnsUnitsPerContainer = "0      ";
+            string TrnsContainerCode = "RCK              ";
+            string SerialNumber = "                                   ";
+            string VolumeOfPackage = "0              ";
+            string FechaDeProduccion = "        ";
+            string FechaDeFacturacion = "        ";
+            string CantidadDeContenedores = "0        ";
+            string UnidadDeMedidaEnVolumen = "   ";
+            string NumeroDeReferenciaDelEmpaque = "                                   ";
+            //string NumeroDeSerieDelContenedor = "                                   ";
+
             #endregion
 
             while (ContadorDeParte.Length < 5)
@@ -242,8 +266,17 @@ namespace GeneradorASN.BLL
             {
                 TrnsUnitsShipped += " ";
             }
+
+            //PO Number
+            while (TrnsPONumber.Length < 35)
+            {
+                TrnsPONumber += " ";
+            }
             return DT + ContadorDeParte + ConsecutivoDetallesDoc + NivelDeEmpaque + TrnsClientPartNumber + TrnsECLevel + TrnsDtlCustField4 + ContainerPartNumber + TrnsUnitsShipped + TrnsUMUnitsShipped +
-                TrnsCumulativeQuantity + TrnsPONumber;
+                TrnsCumulativeQuantity + TrnsPONumber + ReleaseNumber + ContractNumber +
+                TrnsDtlBillofLading + TrnsDtlPackSlipNumber + TrnsReleaseNum + TrnsDtlShipTo + UltimateDestination + TrnsDtlDock + TrnsDtlDockClauseNumber + TrnsDtlDockChargeTotalAmount + TrnsDtlDockDescription +
+                TrnsUnitPrice + TrnsContainerQuantity + TrnsUnitsPerContainer + TrnsContainerCode + SerialNumber + VolumeOfPackage + FechaDeProduccion + FechaDeFacturacion + CantidadDeContenedores + UnidadDeMedidaEnVolumen +
+                NumeroDeReferenciaDelEmpaque /*+ NumeroDeSerieDelContenedor*/;
         }
 
         static public string GenerarDT2(GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision, GeneradorASN.Entities.RemisionesDataSet.PartidasDataTableRow partida, GeneradorASN.Entities.RemisionesDataSet Remisiones, int ContadorDT2)

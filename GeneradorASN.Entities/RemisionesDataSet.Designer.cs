@@ -343,6 +343,10 @@ namespace GeneradorASN.Entities {
             
             private global::System.Data.DataColumn columnListaRANs;
             
+            private global::System.Data.DataColumn columnClaveCliente;
+            
+            private global::System.Data.DataColumn columnNombreCliente;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public RemisionesDataTableDataTable() {
@@ -434,6 +438,22 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ClaveClienteColumn {
+                get {
+                    return this.columnClaveCliente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreClienteColumn {
+                get {
+                    return this.columnNombreCliente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -469,7 +489,7 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public RemisionesDataTableRow AddRemisionesDataTableRow(string FolioRemision, double CantidadTotal, int PartidasTotales, double PesoTotal, System.DateTime FechaDocumento, System.DateTime FechaEntrega, string ListaRANs) {
+            public RemisionesDataTableRow AddRemisionesDataTableRow(string FolioRemision, double CantidadTotal, int PartidasTotales, double PesoTotal, System.DateTime FechaDocumento, System.DateTime FechaEntrega, string ListaRANs, string ClaveCliente, string NombreCliente) {
                 RemisionesDataTableRow rowRemisionesDataTableRow = ((RemisionesDataTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         FolioRemision,
@@ -478,7 +498,9 @@ namespace GeneradorASN.Entities {
                         PesoTotal,
                         FechaDocumento,
                         FechaEntrega,
-                        ListaRANs};
+                        ListaRANs,
+                        ClaveCliente,
+                        NombreCliente};
                 rowRemisionesDataTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRemisionesDataTableRow);
                 return rowRemisionesDataTableRow;
@@ -508,6 +530,8 @@ namespace GeneradorASN.Entities {
                 this.columnFechaDocumento = base.Columns["FechaDocumento"];
                 this.columnFechaEntrega = base.Columns["FechaEntrega"];
                 this.columnListaRANs = base.Columns["ListaRANs"];
+                this.columnClaveCliente = base.Columns["ClaveCliente"];
+                this.columnNombreCliente = base.Columns["NombreCliente"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -527,6 +551,10 @@ namespace GeneradorASN.Entities {
                 base.Columns.Add(this.columnFechaEntrega);
                 this.columnListaRANs = new global::System.Data.DataColumn("ListaRANs", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnListaRANs);
+                this.columnClaveCliente = new global::System.Data.DataColumn("ClaveCliente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnClaveCliente);
+                this.columnNombreCliente = new global::System.Data.DataColumn("NombreCliente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreCliente);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnFolioRemision}, false));
                 this.columnFolioRemision.Unique = true;
@@ -673,6 +701,8 @@ namespace GeneradorASN.Entities {
             
             private global::System.Data.DataColumn columnRAN;
             
+            private global::System.Data.DataColumn columnClaveProductoAlterna;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PartidasDataTableDataTable() {
@@ -748,6 +778,14 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ClaveProductoAlternaColumn {
+                get {
+                    return this.columnClaveProductoAlterna;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -783,14 +821,15 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PartidasDataTableRow AddPartidasDataTableRow(RemisionesDataTableRow parentRemisionesDataTableRowByFK_RemisionesDataTable_PartidasDataTable, string ClaveProducto, double CantidadPartida, double PesoPartida, string RAN) {
+            public PartidasDataTableRow AddPartidasDataTableRow(RemisionesDataTableRow parentRemisionesDataTableRowByFK_RemisionesDataTable_PartidasDataTable, string ClaveProducto, double CantidadPartida, double PesoPartida, string RAN, string ClaveProductoAlterna) {
                 PartidasDataTableRow rowPartidasDataTableRow = ((PartidasDataTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         ClaveProducto,
                         CantidadPartida,
                         PesoPartida,
-                        RAN};
+                        RAN,
+                        ClaveProductoAlterna};
                 if ((parentRemisionesDataTableRowByFK_RemisionesDataTable_PartidasDataTable != null)) {
                     columnValuesArray[0] = parentRemisionesDataTableRowByFK_RemisionesDataTable_PartidasDataTable[0];
                 }
@@ -821,6 +860,7 @@ namespace GeneradorASN.Entities {
                 this.columnCantidadPartida = base.Columns["CantidadPartida"];
                 this.columnPesoPartida = base.Columns["PesoPartida"];
                 this.columnRAN = base.Columns["RAN"];
+                this.columnClaveProductoAlterna = base.Columns["ClaveProductoAlterna"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -836,6 +876,8 @@ namespace GeneradorASN.Entities {
                 base.Columns.Add(this.columnPesoPartida);
                 this.columnRAN = new global::System.Data.DataColumn("RAN", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRAN);
+                this.columnClaveProductoAlterna = new global::System.Data.DataColumn("ClaveProductoAlterna", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnClaveProductoAlterna);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1090,6 +1132,38 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ClaveCliente {
+                get {
+                    try {
+                        return ((string)(this[this.tableRemisionesDataTable.ClaveClienteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ClaveCliente\' in table \'RemisionesDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRemisionesDataTable.ClaveClienteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NombreCliente {
+                get {
+                    try {
+                        return ((string)(this[this.tableRemisionesDataTable.NombreClienteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NombreCliente\' in table \'RemisionesDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRemisionesDataTable.NombreClienteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFolioRemisionNull() {
                 return this.IsNull(this.tableRemisionesDataTable.FolioRemisionColumn);
             }
@@ -1170,6 +1244,30 @@ namespace GeneradorASN.Entities {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetListaRANsNull() {
                 this[this.tableRemisionesDataTable.ListaRANsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsClaveClienteNull() {
+                return this.IsNull(this.tableRemisionesDataTable.ClaveClienteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetClaveClienteNull() {
+                this[this.tableRemisionesDataTable.ClaveClienteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreClienteNull() {
+                return this.IsNull(this.tableRemisionesDataTable.NombreClienteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreClienteNull() {
+                this[this.tableRemisionesDataTable.NombreClienteColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1280,6 +1378,23 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ClaveProductoAlterna {
+                get {
+                    try {
+                        return ((string)(this[this.tablePartidasDataTable.ClaveProductoAlternaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ClaveProductoAlterna\' in table \'PartidasDataTable\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tablePartidasDataTable.ClaveProductoAlternaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public RemisionesDataTableRow RemisionesDataTableRow {
                 get {
                     return ((RemisionesDataTableRow)(this.GetParentRow(this.Table.ParentRelations["FK_RemisionesDataTable_PartidasDataTable"])));
@@ -1347,6 +1462,18 @@ namespace GeneradorASN.Entities {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetRANNull() {
                 this[this.tablePartidasDataTable.RANColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsClaveProductoAlternaNull() {
+                return this.IsNull(this.tablePartidasDataTable.ClaveProductoAlternaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetClaveProductoAlternaNull() {
+                this[this.tablePartidasDataTable.ClaveProductoAlternaColumn] = global::System.Convert.DBNull;
             }
         }
         

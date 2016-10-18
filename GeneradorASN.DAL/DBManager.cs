@@ -74,12 +74,13 @@ namespace GeneradorASN.DAL
             }
 
             Texto_sql += " SELECT rem.TIP_DOC,rem.CVE_DOC,rem.CVE_CLPV,cliente.NOMBRE, rem.STATUS, rem.FECHA_DOC,Par.CVE_OBS RAN, Rans.STR_OBS STR_RAN";
-            Texto_sql += "     ,rem.FECHA_VEN,rem.FECHA_ENT,Par.CVE_ART,Par.CANT,rem.DAT_ENVIO";
+            Texto_sql += "     ,rem.FECHA_VEN,rem.FECHA_ENT,Par.CVE_ART,Par.CANT,rem.DAT_ENVIO,coalesce(alternas.CVE_ALTER,'') CVE_ALTER ";
             Texto_sql += " FROM FACTR" + Num_Empresa + " Rem";
             Texto_sql += "     inner join Par_Factr" + Num_Empresa + " Par on rem.CVE_DOC = Par.CVE_DOC";
             Texto_sql += "     left join OBS_DOCF" + Num_Empresa + " Rans on Par.cve_obs = Rans.CVE_OBS";
             Texto_sql += "     inner join INFENVIO" + Num_Empresa + " envio on rem.DAT_ENVIO = envio.CVE_INFO";
             Texto_sql += "     left join CLIE" + Num_Empresa + " cliente on rem.CVE_CLPV = cliente.CLAVE";
+            Texto_sql += "     left join CVES_ALTER" + Num_Empresa + " alternas on Par.CVE_ART = alternas.CVE_ART";
             //Texto_sql += " WHERE status = 'E' and rem.CVE_CLPV in ('" + Clientes + "')";
             Texto_sql += " WHERE rem.CVE_CLPV in (" + Clientes + ")";
 
@@ -120,6 +121,9 @@ namespace GeneradorASN.DAL
                         Datos.FechaEnvio = (DateTime)drRAN["FECHA_ENT"];
                         Datos.ClaveProducto = drRAN["CVE_ART"].ToString();
                         Datos.Cantidad = Convert.ToInt32(drRAN["CANT"]);
+                        Datos.ClaveCliente = drRAN["CVE_CLPV"].ToString();
+                        Datos.NombreCliente = drRAN["NOMBRE"].ToString();
+                        Datos.ClaveProductoAlterna = drRAN["CVE_ALTER"].ToString();
 
                         CantidadTotal += Datos.Cantidad;
                           

@@ -47,6 +47,9 @@ namespace GeneradorASN.BLL
                     rowRemision.PartidasTotales = ListaDeRANs.Count;
                     rowRemision.FechaDocumento = ListaDeRANs[0].FechaCreacion;
                     rowRemision.FechaEntrega = ListaDeRANs[0].FechaEnvio;
+                    rowRemision.ClaveCliente = ListaDeRANs[0].ClaveCliente ;
+                    rowRemision.NombreCliente = ListaDeRANs[0].NombreCliente;   
+
                     ds.RemisionesDataTable.Rows.Add(rowRemision);
 
                     foreach (RANDBData ran in ListaDeRANs)
@@ -69,6 +72,7 @@ namespace GeneradorASN.BLL
                         rowPartida.CantidadPartida = ran.Cantidad;
                         rowPartida.PesoPartida = PesoPartida;
                         rowPartida.RAN = ran.RAN;
+                        rowPartida.ClaveProductoAlterna = ran.ClaveProductoAlterna; 
 
                         PesoTotal += PesoPartida;
                         ds.PartidasDataTable.Rows.Add(rowPartida);
@@ -76,7 +80,10 @@ namespace GeneradorASN.BLL
                         strListaRANs += "," + ran.RAN;
 
                         if (string.IsNullOrEmpty(ran.RAN.Trim())) {
-                            registrador.RegistrarAdvertencia("No se encontro RAN para la clave de remisión '" + ran.Remision + "' con cleve de articulo '"+ ran.ClaveProducto + "'.");
+                            registrador.RegistrarAdvertencia("No se encontro RAN para la clave de remisión '" + ran.Remision + "' con clave de articulo '"+ ran.ClaveProducto + "'.");
+                        }
+                        if (string.IsNullOrEmpty(ran.ClaveProductoAlterna .Trim())){
+                            registrador.RegistrarAdvertencia("No se encontro 'Clave Alterna' para la clave de producto '" + ran.ClaveProducto + "'.");
                         }
                     }
                     rowRemision.ListaRANs = strListaRANs.Trim().Length > 1 ? strListaRANs.Substring(1) : "";

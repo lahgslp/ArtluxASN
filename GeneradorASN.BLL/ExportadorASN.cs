@@ -149,7 +149,7 @@ namespace GeneradorASN.BLL
             EstimatedArrival_Time = fechaDocumento.ToString("hhmm");
 
             //Pesos
-            Net_Weight_Value = Gross_Weight_Value = remision.PesoTotal.ToString("N0");
+            Net_Weight_Value = Gross_Weight_Value = remision.PesoTotal.ToString();
             while (Gross_Weight_Value.Length < 18)
             {
                 Gross_Weight_Value += " ";
@@ -160,7 +160,7 @@ namespace GeneradorASN.BLL
             }
 
             //Cantidades
-            Lading_qty = remision.CantidadTotal.ToString("N0");
+            Lading_qty = remision.CantidadTotal.ToString();
             while (Lading_qty.Length < 7)
             {
                 Lading_qty += " ";
@@ -185,7 +185,7 @@ namespace GeneradorASN.BLL
             Reference_Number = ASN_Number;
 
             //Cantidades
-            TotalLines = (remision.PartidasTotales + 1).ToString("N0"); //Checar el '+1'
+            TotalLines = (remision.PartidasTotales + 1).ToString(); //Checar el '+1'
             while (TotalLines.Length < 10)
             {
                 TotalLines += " ";
@@ -215,14 +215,14 @@ namespace GeneradorASN.BLL
         {
             #region strings
             string DT = "DT1";
-            string ContadorDeParte = ContadorDT1.ToString("N0");
+            string ContadorDeParte = ContadorDT1.ToString();
             string ConsecutivoDetallesDoc = "     ";
             string NivelDeEmpaque = "   ";
             string TrnsClientPartNumber = partida.ClaveProductoAlterna;
             string TrnsECLevel = "                              ";
             string TrnsDtlCustField4 = "                                   ";
             string ContainerPartNumber = "                              ";
-            string TrnsUnitsShipped = TotalProducto.ToString("N0");
+            string TrnsUnitsShipped = TotalProducto.ToString();
             string TrnsUMUnitsShipped = "EA ";
             string TrnsCumulativeQuantity = "0           ";
             string TrnsPONumber = remision.FolioRemision.Replace(" ", "");
@@ -283,8 +283,8 @@ namespace GeneradorASN.BLL
         {
             #region strings
             string DT = "DT2";
-            string Trnspallet = partida.RAN;
-            string TrnsNoCases = partida.CantidadPartida.ToString("N0");
+            string Trnspallet = partida.RAN.Trim();
+            string TrnsNoCases = partida.CantidadPartida.ToString();
             string TrnsLabelSerial = "          ";
             #endregion
 

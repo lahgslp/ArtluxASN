@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneradorASNMain));
             this.labelPeriodo = new System.Windows.Forms.Label();
             this.comboPeriodo = new System.Windows.Forms.ComboBox();
             this.dateTimePickerFechaInicio = new System.Windows.Forms.DateTimePicker();
@@ -321,6 +322,7 @@
             this.Controls.Add(this.dateTimePickerFechaInicio);
             this.Controls.Add(this.comboPeriodo);
             this.Controls.Add(this.labelPeriodo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GeneradorASNMain";
             this.Text = "Generador de ASN Nissan de SAE - Artlux S.A. de C.V.";
             this.Load += new System.EventHandler(this.GeneradorASN_Load);

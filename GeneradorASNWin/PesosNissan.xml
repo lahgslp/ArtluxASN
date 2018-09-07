@@ -1,115 +1,334 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Pesos>
   <Articulo>
-    <ClaveAlterna>NIS-PFAR-120M</ClaveAlterna>
-    <Peso>0</Peso>
+    <ClaveAlterna>NIMEXU8Q12DD</ClaveAlterna>
+    <Peso>6</Peso>
     <Largo>0</Largo>
     <Ancho>0</Ancho>
     <Altura>0</Altura>
-    <PiezasCaja>24</PiezasCaja>
-  </Articulo>
-  <Articulo>
-    <ClaveAlterna>NIS-LMO1-500M</ClaveAlterna>
-    <Peso>6</Peso>
-    <Largo>0.27</Largo>
-    <Ancho>0.21</Ancho>
-    <Altura>0.23</Altura>
     <PiezasCaja>12</PiezasCaja>
   </Articulo>
   <Articulo>
-    <ClaveAlterna>NIS-LMOT-500M</ClaveAlterna>
+    <ClaveAlterna>NIMEXU03Q3DD</ClaveAlterna>
     <Peso>6</Peso>
-    <Largo>0.27</Largo>
-    <Ancho>0.21</Ancho>
-    <Altura>0.23</Altura>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
     <PiezasCaja>12</PiezasCaja>
   </Articulo>
   <Articulo>
-    <ClaveAlterna>NIS-LMUL-355M</ClaveAlterna>
+    <ClaveAlterna>NIMEXU08Q2DD</ClaveAlterna>
     <Peso>4</Peso>
-    <Largo>0.27</Largo>
-    <Ancho>0.19</Ancho>
-    <Altura>0.23</Altura>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
     <PiezasCaja>12</PiezasCaja>
   </Articulo>
   <Articulo>
-    <ClaveAlterna>NIS-LSEM-355M</ClaveAlterna>
+    <ClaveAlterna>NIMEXU08Q3DD</ClaveAlterna>
     <Peso>5</Peso>
-    <Largo>0.31</Largo>
-    <Ancho>0.18</Ancho>
-    <Altura>0.22</Altura>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
     <PiezasCaja>12</PiezasCaja>
   </Articulo>
   <Articulo>
-    <ClaveAlterna>NIS-PTBA-002P</ClaveAlterna>
-    <Peso>0.6</Peso>
-    <Largo>0.17</Largo>
-    <Ancho>0.17</Ancho>
-    <Altura>0.18</Altura>
+    <ClaveAlterna>NIMEXU8Q10DD</ClaveAlterna>
+    <Peso>.06</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
     <PiezasCaja>48</PiezasCaja>
   </Articulo>
   <Articulo>
-    <ClaveAlterna>NIS-SLIM-200M</ClaveAlterna>
+    <ClaveAlterna>NIMEXU04Q5DD</ClaveAlterna>
     <Peso>5.4</Peso>
-    <Largo>0.35</Largo>
-    <Ancho>0.23</Ancho>
-    <Altura>0.13</Altura>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
     <PiezasCaja>24</PiezasCaja>
   </Articulo>
   <Articulo>
-    <ClaveAlterna>NIS-LIAE-400M</ClaveAlterna>
+    <ClaveAlterna>NIMEXU03Q9DD</ClaveAlterna>
     <Peso>6</Peso>
-    <Largo>0.29</Largo>
-    <Ancho>0.22</Ancho>
-    <Altura>0.25</Altura>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
     <PiezasCaja>12</PiezasCaja>
   </Articulo>
+  
+  
   <Articulo>
-    <ClaveAlterna>NIS-LFRE-450M</ClaveAlterna>
+    <ClaveAlterna>NIMEXU03Q1DD</ClaveAlterna>
     <Peso>6</Peso>
-    <Largo>0.29</Largo>
-    <Ancho>0.22</Ancho>
-    <Altura>0.25</Altura>
-    <PiezasCaja>12</PiezasCaja>
-  </Articulo>
-  <Articulo>
-    <ClaveAlterna>NIS-APUR-255M</ClaveAlterna>
-    <Peso>3.2</Peso>
-    <Largo>0.23</Largo>
-    <Ancho>0.18</Ancho>
-    <Altura>0.23</Altura>
-    <PiezasCaja>12</PiezasCaja>
-  </Articulo>
-  <Articulo>
-    <ClaveAlterna>NIS-EASM-1P</ClaveAlterna>
-    <Peso>0</Peso>
     <Largo>0</Largo>
     <Ancho>0</Ancho>
     <Altura>0</Altura>
     <PiezasCaja>12</PiezasCaja>
   </Articulo>
   <Articulo>
-    <ClaveAlterna>NIS-LCAC-355M</ClaveAlterna>
+    <ClaveAlterna>NIMEXU08Q5DD</ClaveAlterna>
+    <Peso>3.2</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEXU8Q11DD</ClaveAlterna>
     <Peso>4</Peso>
-    <Largo>0.27</Largo>
-    <Ancho>0.19</Ancho>
-    <Altura>0.23</Altura>
-    <PiezasCaja>12</PiezasCaja>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>1</PiezasCaja>
   </Articulo>
   <Articulo>
-    <ClaveAlterna>NIS-LCAP-450M</ClaveAlterna>
+    <ClaveAlterna>NIMEXU03Q2DD</ClaveAlterna>
     <Peso>6</Peso>
-    <Largo>0.29</Largo>
-    <Ancho>0.22</Ancho>
-    <Altura>0.25</Altura>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
     <PiezasCaja>12</PiezasCaja>
   </Articulo>
   <Articulo>
-    <ClaveAlterna>NIS-LDFB-060M</ClaveAlterna>
+    <ClaveAlterna>NIMEXU08Q9DD</ClaveAlterna>
     <Peso>2</Peso>
-    <Largo>0.22</Largo>
-    <Ancho>0.17</Ancho>
-    <Altura>0.12</Altura>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEXU04T1DD</ClaveAlterna>
+    <Peso>1</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
     <PiezasCaja>24</PiezasCaja>
   </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A01DD</ClaveAlterna>
+    <Peso>5.15</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A02DD</ClaveAlterna>
+    <Peso>5</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A03DD</ClaveAlterna>
+    <Peso>5.6</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo> 
+  <Articulo>
+    <ClaveAlterna>NIMEX17A04DD</ClaveAlterna>
+    <Peso>6.2</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A05DD</ClaveAlterna>
+    <Peso>3.6</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A06DD</ClaveAlterna>
+    <Peso>5.2</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A07DD</ClaveAlterna>
+    <Peso>1.6</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>48</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A08DD</ClaveAlterna>
+    <Peso>5.2</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A09DD</ClaveAlterna>
+    <Peso>3.2</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>1</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A10DD</ClaveAlterna>
+    <Peso>3.2</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>1</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A11DD</ClaveAlterna>
+    <Peso>4.6</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>1</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A12DD</ClaveAlterna>
+    <Peso>1</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>2</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A13DD</ClaveAlterna>
+    <Peso>1</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>2</PiezasCaja>
+  </Articulo> 
+  <Articulo>
+    <ClaveAlterna>NIMEX17A14DD</ClaveAlterna>
+    <Peso>4</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>1</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A15DD</ClaveAlterna>
+    <Peso>3.6</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>1</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A16DD</ClaveAlterna>
+    <Peso>3.2</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>1</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A17DD</ClaveAlterna>
+    <Peso>21</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>1</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A18DD</ClaveAlterna>
+    <Peso>4</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A19DD</ClaveAlterna>
+    <Peso>4.8</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A20DD</ClaveAlterna>
+    <Peso>4.8</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A21DD</ClaveAlterna>
+    <Peso>6.4</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A22DD</ClaveAlterna>
+    <Peso>4.2</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>48</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEX17A23DD</ClaveAlterna>
+    <Peso>4.2</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>48</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEXU15Q1DD</ClaveAlterna>
+    <Peso>22</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>1</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEXU15Q2DD</ClaveAlterna>
+    <Peso>21.6</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>1</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEXU15Q3DD</ClaveAlterna>
+    <Peso>20.2</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>1</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEXU15Q4DD</ClaveAlterna>
+    <Peso>5</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo>
+  <Articulo>
+    <ClaveAlterna>NIMEXU17Q1DD</ClaveAlterna>
+    <Peso>6.8</Peso>
+    <Largo>0</Largo>
+    <Ancho>0</Ancho>
+    <Altura>0</Altura>
+    <PiezasCaja>12</PiezasCaja>
+  </Articulo>
+  
 </Pesos>

@@ -236,6 +236,13 @@ namespace GeneradorASNWin
             Cursor.Current = Cursors.WaitCursor;
             Remisiones = RemisionesManager.ObtenerRemisiones(filtros, registrador);
             remisionesDataTableBindingSource.DataSource = Remisiones;
+
+            foreach (DataGridViewRow row in dataGridViewRANs.Rows)
+            {
+                if(((DateTime)row.Cells["fechaDocumentoDataGridViewTextBoxColumn"].Value) >= DateTime.Today)
+                    row.Cells["Selected"].Value = true;
+            }
+
             Cursor.Current = Cursors.Default;
         }
 
@@ -270,6 +277,24 @@ namespace GeneradorASNWin
                 MessageBox.Show("No hay remisiones disponibles para cargar","No hay Remisiones");
             }
             //http://www.codeproject.com/Articles/42437/Toggling-the-States-of-all-CheckBoxes-Inside-a-Dat
+        }
+
+        private void checkBoxSeleccionaTodo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSeleccionaTodo.Checked)
+            {
+                foreach (DataGridViewRow row in dataGridViewRANs.Rows)
+                {
+                    row.Cells["Selected"].Value = true;
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dataGridViewRANs.Rows)
+                {
+                    row.Cells["Selected"].Value = false;
+                }
+            }
         }
     }
 }

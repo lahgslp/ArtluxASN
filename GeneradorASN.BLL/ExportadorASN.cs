@@ -8,22 +8,48 @@ namespace GeneradorASN.BLL
 {
     public class ExportadorASN
     {
+        //static public int ExportarRemisiones(string ruta, List<string> folios, GeneradorASN.Entities.RemisionesDataSet Remisiones, Registrador.IRegistroEjecucion registrador)
+        //{
+        //    foreach (GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision in Remisiones.RemisionesDataTable.Rows)
+        //    {
+        //        if (folios.IndexOf(remision.FolioRemision) >= 0)
+        //        {
+        //            Exportar(ruta, remision, Remisiones, registrador);
+        //        }
+        //    }
+        //    return 0;
+        //}
         static public int ExportarRemisiones(string ruta, List<string> folios, GeneradorASN.Entities.RemisionesDataSet Remisiones, Registrador.IRegistroEjecucion registrador)
         {
-            foreach (GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision in Remisiones.RemisionesDataTable.Rows)
-            {
-                if (folios.IndexOf(remision.FolioRemision) >= 0)
-                {
-                    Exportar(ruta, remision, Remisiones, registrador);
-                }
-            }
+            Exportar(ruta, folios, Remisiones, registrador);            
             return 0;
         }
 
-        static public int Exportar(string ruta, GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision, GeneradorASN.Entities.RemisionesDataSet Remisiones, Registrador.IRegistroEjecucion registrador)
-        {
+        static public int Exportar(string ruta, List<string> folios, GeneradorASN.Entities.RemisionesDataSet Remisiones, Registrador.IRegistroEjecucion registrador)
+            {
+            //char[] charsToTrim = { ':', '/', ' ' };            
+            string month = DateTime.Now.Month >= 10 ? DateTime.Now.Month.ToString() : "0" + DateTime.Now.Month;
+            string day = DateTime.Now.Day >= 10 ? DateTime.Now.Day.ToString() : "0" + DateTime.Now.Day;
+            int fileNumber = 0;
+            string fileEnd = "00.txt";
+
             double candidadTotalProducto = 0;
-            string archivo = ruta + "\\" + "ASN" + remision.FolioRemision.Replace(" ", "") + ".txt";
+            string archivo = ruta + "\\" + "ASN" + DateTime.Now.Year + month + day;
+
+            while (System.IO.File.Exists(archivo + fileEnd))
+            {
+                fileNumber++;
+                if (fileNumber < 10)
+                {
+                    fileEnd = "0" + fileNumber + ".txt";
+                }
+                else
+                {
+                    fileEnd = fileNumber + ".txt";
+            }
+        }
+            archivo = archivo + fileEnd;
+
             using (System.IO.StreamWriter archivoASN = System.IO.File.CreateText(archivo))
             {
                 List<string> productosProcesados = new List<string>();
@@ -31,7 +57,11 @@ namespace GeneradorASN.BLL
 
                 //Firma inicial
                 archivoASN.WriteLine(":N:");
-                //Header
+
+                foreach (GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision in Remisiones.RemisionesDataTable.Rows)
+                {
+                    if (folios.IndexOf(remision.FolioRemision) >= 0)
+                    {
                 archivoASN.WriteLine(GenerarHeader(remision));
                 foreach (GeneradorASN.Entities.RemisionesDataSet.PartidasDataTableRow partidaProductos in Remisiones.PartidasDataTable.Rows)
                 {
@@ -62,10 +92,59 @@ namespace GeneradorASN.BLL
                         }
                     }
                 }
+                    }
+                }
 
             }
             return 0;
         }
+
+        //static public int Exportar(string ruta, GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision, GeneradorASN.Entities.RemisionesDataSet Remisiones, Registrador.IRegistroEjecucion registrador)
+        //{
+        //    double candidadTotalProducto = 0;
+        //    string archivo = ruta + "\\" + "ASN" + remision.FolioRemision.Replace(" ", "") + ".txt";
+        //    using (System.IO.StreamWriter archivoASN = System.IO.File.CreateText(archivo))
+        //    {
+        //        List<string> productosProcesados = new List<string>();
+        //        int ContadorDT1 = 2;
+
+        //        //Firma inicial
+        //        archivoASN.WriteLine(":N:");
+        //        //Header
+        //        archivoASN.WriteLine(GenerarHeader(remision));
+        //        foreach (GeneradorASN.Entities.RemisionesDataSet.PartidasDataTableRow partidaProductos in Remisiones.PartidasDataTable.Rows)
+        //        {
+        //            if (remision.FolioRemision == partidaProductos.FolioRemision)
+        //            {
+        //                if (productosProcesados.IndexOf(partidaProductos.ClaveProducto) < 0)
+        //                {
+        //                    List<GeneradorASN.Entities.RemisionesDataSet.PartidasDataTableRow> lineasDT2 = new List<GeneradorASN.Entities.RemisionesDataSet.PartidasDataTableRow>();
+        //                    candidadTotalProducto = 0;
+
+        //                    foreach (GeneradorASN.Entities.RemisionesDataSet.PartidasDataTableRow partidaDetalles in Remisiones.PartidasDataTable.Rows)
+        //                    {
+        //                        if (remision.FolioRemision == partidaDetalles.FolioRemision && partidaProductos.ClaveProducto == partidaDetalles.ClaveProducto)
+        //                        {
+        //                            candidadTotalProducto += partidaDetalles.CantidadPartida;
+        //                            lineasDT2.Add(partidaDetalles);
+        //                        }
+        //                    }
+        //                    productosProcesados.Add(partidaProductos.ClaveProducto);
+        //                    archivoASN.WriteLine(GenerarDT1(remision, partidaProductos, Remisiones, ContadorDT1, candidadTotalProducto));
+        //                    ContadorDT1++;
+        //                    foreach (GeneradorASN.Entities.RemisionesDataSet.PartidasDataTableRow lineaDT2 in lineasDT2)
+        //                    {
+        //                        archivoASN.WriteLine(GenerarDT2(remision, lineaDT2, Remisiones, ContadorDT1));
+        //                        ContadorDT1++;
+        //                    }
+        //                    lineasDT2.Clear();
+        //                }
+        //            }
+        //        }
+
+        //    }
+        //    return 0;
+        //}
 
         static public string GenerarHeader(GeneradorASN.Entities.RemisionesDataSet.RemisionesDataTableRow remision)
         {
@@ -107,6 +186,7 @@ namespace GeneradorASN.BLL
             string TrnsUltimateDest2 = "                                   ";
             string TrnsConsigneeId = "                                   ";
             string OrderedBy = "                                   ";
+            //poner total del documento
             string Invoice_Total_Amount = "";
             string Number_of_Line_Items = "";
             string TrnsDockCode = "0                        ";
@@ -116,20 +196,20 @@ namespace GeneradorASN.BLL
             string MetodoDePago = "  ";
             string TerminosDeTransporte = "   ";
             string TrnsCurrCode = "   ";
-            string TrnsInvoiceTotal = "0              ";
+            string TrnsInvoiceTotal = "               ";
             string NombreCliente = "                                   ";
             string TotalLines = "";
-            string TotalUnitsShipped = "0         ";
+            string TotalUnitsShipped = "          ";
             string TrnsSealNum2 = "          ";
             string TrnsSealNum3 = "        ";
             string TrnsSealNum4 = "        ";
             string ContainerType2 = "          ";
-            string ContainerQuantity2 = "0  ";
+            string ContainerQuantity2 = "   ";
             string ContainerType3 = ContainerType2;
             string ContainerQuantity3 = ContainerQuantity2;
             string ContainerType4 = ContainerType2;
             string ContainerQuantity4 = ContainerQuantity2;
-            string CantidadAEmbarcar = "0                 ";
+            string CantidadAEmbarcar = "                  ";
             #endregion
 
             DateTime fechaDocumento = DateTime.Now; //remision.FechaDocumento;
@@ -237,15 +317,15 @@ namespace GeneradorASN.BLL
             string TrnsDtlDockClauseNumber = "    ";
             string TrnsDtlDockChargeTotalAmount = "         ";
             string TrnsDtlDockDescription = "                                                                           ";
-            string TrnsUnitPrice = "0              ";   //TBD - Precio
+            string TrnsUnitPrice = "               ";   //TBD - Precio
             string TrnsContainerQuantity = "0    "; //TBD - Number of Loads
-            string TrnsUnitsPerContainer = "0      ";
+            string TrnsUnitsPerContainer = "       ";
             string TrnsContainerCode = "RCK              ";
             string SerialNumber = "                                   ";
-            string VolumeOfPackage = "0              ";
+            string VolumeOfPackage = "               ";
             string FechaDeProduccion = "        ";
             string FechaDeFacturacion = "        ";
-            string CantidadDeContenedores = "0        ";
+            string CantidadDeContenedores = "         ";
             string UnidadDeMedidaEnVolumen = "   ";
             string NumeroDeReferenciaDelEmpaque = "                                   ";
             //string NumeroDeSerieDelContenedor = "                                   ";
@@ -288,7 +368,7 @@ namespace GeneradorASN.BLL
             string TrnsLabelSerial = "          ";
             #endregion
 
-            while (Trnspallet.Length < 10)
+            while (Trnspallet.Length < 8)
             {
                 Trnspallet += " ";
             }

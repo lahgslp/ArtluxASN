@@ -18,6 +18,9 @@ namespace GeneradorASN.BLL
             RemisionesDataSet ds = new RemisionesDataSet();
             string CveDoc = "";
             string RAN = "";
+
+            //string claves = "";
+            //string clavesAlternas = "";
             try
             {
                 bool PorFechas = filtros.Filtro == TipoFiltro.Fecha; //Determina si es por fechas el filtro  
@@ -27,7 +30,7 @@ namespace GeneradorASN.BLL
                 if (PorFechas)
                 {
                     ListaRemisiones = DBManager.ObtenerRemisiones(filtros.FechaInicio, filtros.FechaFinal);
-                    //ListaRemisiones = DBManager.ObtenerRemisiones(new DateTime(2016,06,01) , new DateTime(2016, 10, 30));
+                    //ListaRemisiones = DBManager.ObtenerRemisiones(new DateTime(2017,06,01) , new DateTime(2018, 10, 30));
                 }
                 else
                 {
@@ -56,7 +59,22 @@ namespace GeneradorASN.BLL
                     {
                         float PesoPartida = 0;
                         RemisionesDataSet.PartidasDataTableRow rowPartida = ds.PartidasDataTable.NewPartidasDataTableRow();
-                        MedidasArticulo MedidaArticulo = (MedidasArticulo)PesosArticulo[ran.ClaveProducto];
+                        MedidasArticulo MedidaArticulo = new MedidasArticulo();
+                                                                        
+                        //if (ran.ClaveProducto.Substring(0, 5) != "NIMEX" && ran.ClaveProductoAlterna.Substring(0, 5) != "NIMEX")
+                        //{
+                        //    claves = claves + ran.ClaveProducto + ",";
+                        //    clavesAlternas = clavesAlternas + ran.ClaveProductoAlterna + ",";
+                        //}
+
+                        if (ran.ClaveProducto.Substring(0, 5) == "NIMEX")
+                        {
+                            MedidaArticulo = (MedidasArticulo)PesosArticulo[ran.ClaveProducto];
+                        }
+                        else
+                        {
+                            MedidaArticulo = (MedidasArticulo)PesosArticulo[ran.ClaveProductoAlterna];
+                        }
 
                         RAN = ran.RAN;
                         if (MedidaArticulo == null)

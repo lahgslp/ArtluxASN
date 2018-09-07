@@ -56,6 +56,7 @@
             this.labelFolios = new System.Windows.Forms.Label();
             this.textBoxFolios = new System.Windows.Forms.TextBox();
             this.buttonRefrescar = new System.Windows.Forms.Button();
+            this.checkBoxSeleccionaTodo = new System.Windows.Forms.CheckBox();
             this.groupBoxRANs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRANs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.remisionesDataTableBindingSource)).BeginInit();
@@ -220,9 +221,9 @@
             // 
             // labelDestino
             // 
-            this.labelDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.labelDestino.AutoSize = true;
-            this.labelDestino.Location = new System.Drawing.Point(12, 275);
+            this.labelDestino.Location = new System.Drawing.Point(251, 275);
             this.labelDestino.Name = "labelDestino";
             this.labelDestino.Size = new System.Drawing.Size(46, 13);
             this.labelDestino.TabIndex = 8;
@@ -230,8 +231,8 @@
             // 
             // textBoxRutaDestino
             // 
-            this.textBoxRutaDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxRutaDestino.Location = new System.Drawing.Point(64, 272);
+            this.textBoxRutaDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxRutaDestino.Location = new System.Drawing.Point(303, 272);
             this.textBoxRutaDestino.Name = "textBoxRutaDestino";
             this.textBoxRutaDestino.ReadOnly = true;
             this.textBoxRutaDestino.Size = new System.Drawing.Size(369, 20);
@@ -250,8 +251,8 @@
             // 
             // buttonCambiarRuta
             // 
-            this.buttonCambiarRuta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonCambiarRuta.Location = new System.Drawing.Point(439, 272);
+            this.buttonCambiarRuta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCambiarRuta.Location = new System.Drawing.Point(678, 272);
             this.buttonCambiarRuta.Name = "buttonCambiarRuta";
             this.buttonCambiarRuta.Size = new System.Drawing.Size(75, 23);
             this.buttonCambiarRuta.TabIndex = 11;
@@ -261,9 +262,9 @@
             // 
             // linkCarpetaRegistro
             // 
-            this.linkCarpetaRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.linkCarpetaRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.linkCarpetaRegistro.AutoSize = true;
-            this.linkCarpetaRegistro.Location = new System.Drawing.Point(15, 295);
+            this.linkCarpetaRegistro.Location = new System.Drawing.Point(254, 295);
             this.linkCarpetaRegistro.Name = "linkCarpetaRegistro";
             this.linkCarpetaRegistro.Size = new System.Drawing.Size(170, 13);
             this.linkCarpetaRegistro.TabIndex = 12;
@@ -302,11 +303,24 @@
             this.buttonRefrescar.UseVisualStyleBackColor = true;
             this.buttonRefrescar.Click += new System.EventHandler(this.buttonRefrescar_Click);
             // 
+            // checkBoxSeleccionaTodo
+            // 
+            this.checkBoxSeleccionaTodo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBoxSeleccionaTodo.AutoSize = true;
+            this.checkBoxSeleccionaTodo.Location = new System.Drawing.Point(15, 274);
+            this.checkBoxSeleccionaTodo.Name = "checkBoxSeleccionaTodo";
+            this.checkBoxSeleccionaTodo.Size = new System.Drawing.Size(110, 17);
+            this.checkBoxSeleccionaTodo.TabIndex = 16;
+            this.checkBoxSeleccionaTodo.Text = "Seleccionar Todo";
+            this.checkBoxSeleccionaTodo.UseVisualStyleBackColor = true;
+            this.checkBoxSeleccionaTodo.CheckedChanged += new System.EventHandler(this.checkBoxSeleccionaTodo_CheckedChanged);
+            // 
             // GeneradorASNMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(857, 326);
+            this.Controls.Add(this.checkBoxSeleccionaTodo);
             this.Controls.Add(this.buttonRefrescar);
             this.Controls.Add(this.textBoxFolios);
             this.Controls.Add(this.labelFolios);
@@ -363,6 +377,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaDocumentoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaEntregaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn listaRANsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.CheckBox checkBoxSeleccionaTodo;
     }
 }
 

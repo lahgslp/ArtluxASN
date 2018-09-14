@@ -182,6 +182,7 @@ namespace GeneradorASNWin
                     CargarDatos();
                 }
             }
+            this.buttonCargar.Enabled = true;
         }
 
         private bool FoliosValidos(string folios)
@@ -248,6 +249,7 @@ namespace GeneradorASNWin
 
         private void buttonCargar_Click(object sender, EventArgs e)
         {
+            this.buttonCargar.Enabled = false;
             List<string> foliosElegidos = new List<string>();
             if (dataGridViewRANs.Rows.Count > 0)
             {

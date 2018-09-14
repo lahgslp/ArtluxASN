@@ -94,15 +94,15 @@ namespace GeneradorASN.DAL
             {
                 Texto_sql += "     and trim(rem.CVE_DOC) in (" + Claves + ")";
             }
-            
+
             Texto_sql += "     and coalesce(dat_envio,0) <> 0";
             Texto_sql += "     and char_length(trim(coalesce(envio.CALLE,''))) <> 0";
             Texto_sql += " order by fecha_doc";
             try
             {
-            fbComando.CommandText = Texto_sql;                      
-            fbDataAdaptador.SelectCommand = fbComando;
-            fbDataAdaptador.Fill(dtRANS);
+                fbComando.CommandText = Texto_sql;
+                fbDataAdaptador.SelectCommand = fbComando;
+                fbDataAdaptador.Fill(dtRANS);
             }
             catch(Exception ex)
             {

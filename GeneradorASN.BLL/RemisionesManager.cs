@@ -30,14 +30,14 @@ namespace GeneradorASN.BLL
                 if (PorFechas)
                 {
                     ListaRemisiones = DBManager.ObtenerRemisiones(filtros.FechaInicio, filtros.FechaFinal);
-                    //ListaRemisiones = DBManager.ObtenerRemisiones(new DateTime(2017,06,01) , new DateTime(2018, 10, 30));
+                    //ListaRemisiones = DBManager.ObtenerRemisiones(new DateTime(2017,08,01) , new DateTime(2018, 10, 30));
                 }
                 else
                 {
                     ListaRemisiones = DBManager.ObtenerRemisiones(filtros.Folios);
                     //ListaRemisiones = DBManager.ObtenerRemisiones("2888,123abc,2942,2b#^--12,3003,ab123");
-                }
-                               
+                }                
+
                 foreach (List<RANDBData> ListaDeRANs in ListaRemisiones)
                 {
                     RemisionesDataSet.RemisionesDataTableRow rowRemision = ds.RemisionesDataTable.NewRemisionesDataTableRow();
@@ -53,7 +53,7 @@ namespace GeneradorASN.BLL
                     rowRemision.ClaveCliente = ListaDeRANs[0].ClaveCliente ;
                     rowRemision.NombreCliente = ListaDeRANs[0].NombreCliente;   
 
-                    ds.RemisionesDataTable.Rows.Add(rowRemision);
+                    ds.RemisionesDataTable.Rows.Add(rowRemision);                    
 
                     foreach (RANDBData ran in ListaDeRANs)
                     {

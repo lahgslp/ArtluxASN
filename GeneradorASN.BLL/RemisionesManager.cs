@@ -105,7 +105,7 @@ namespace GeneradorASN.BLL
                         }
                     }
                     rowRemision.ListaRANs = strListaRANs.Trim().Length > 1 ? strListaRANs.Substring(1) : "";
-                    rowRemision.PesoTotal = PesoTotal;
+                    rowRemision.PesoTotal = Convert.ToInt32(Math.Round(PesoTotal));
                 }
 
             }

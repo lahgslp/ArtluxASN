@@ -120,12 +120,12 @@ namespace GeneradorASNWin
                     FechaFinal = finSemana;
                     break;
                 case Periodos.DosSemanas:
-                    inicioSemana = FechaActual.Date.AddDays(-7);
+                    inicioSemana = FechaActual.Date.AddDays(-14);
                     while (inicioSemana.DayOfWeek != DayOfWeek.Sunday)
                     {
                         inicioSemana = inicioSemana.AddDays(-1);
                     }
-                    finSemana = FechaActual.Date;
+                    finSemana = FechaActual.Date.AddDays(-7);
                     while (finSemana.DayOfWeek != DayOfWeek.Saturday)
                     {
                         finSemana = finSemana.AddDays(1);

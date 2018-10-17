@@ -232,7 +232,7 @@ namespace GeneradorASNWin
                 filtros.FechaFinal = dateTimePickerFechaFinal.Value;
             }
 
-            Registrador.IRegistroEjecucion registrador = new Registrador.RegistroEjecucionArchivo("");
+            Registrador.IRegistroEjecucion registrador = new Registrador.RegistroEjecucionArchivo("GeneradorASNWinLogCarga" + DateTime.Now.ToString("yyyyMMddHHmmss"));            
 
             Cursor.Current = Cursors.WaitCursor;
             Remisiones = RemisionesManager.ObtenerRemisiones(filtros, registrador);
@@ -265,7 +265,7 @@ namespace GeneradorASNWin
                 }
                 if (foliosElegidos.Count > 0)
                 {
-                    Registrador.IRegistroEjecucion registrador = new Registrador.RegistroEjecucionArchivo("");
+                    Registrador.IRegistroEjecucion registrador = new Registrador.RegistroEjecucionArchivo("GeneradorASNWinLogGeneracion" + DateTime.Now.ToString("yyyyMMddHHmmss"));
                     
                     ExportadorASN.ExportarRemisiones(this.textBoxRutaDestino.Text, foliosElegidos, Remisiones, registrador);
                 }

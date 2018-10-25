@@ -29,12 +29,12 @@ namespace GeneradorASN.BLL
 
                 if (PorFechas)
                 {
-                    ListaRemisiones = DBManager.ObtenerRemisiones(filtros.FechaInicio, filtros.FechaFinal);
+                    ListaRemisiones = DBManager.ObtenerRemisiones(filtros.FechaInicio, filtros.FechaFinal, registrador);
                     //ListaRemisiones = DBManager.ObtenerRemisiones(new DateTime(2017,08,01) , new DateTime(2018, 10, 30));
                 }
                 else
                 {
-                    ListaRemisiones = DBManager.ObtenerRemisiones(filtros.Folios);
+                    ListaRemisiones = DBManager.ObtenerRemisiones(filtros.Folios, registrador);
                     //ListaRemisiones = DBManager.ObtenerRemisiones("2888,123abc,2942,2b#^--12,3003,ab123");
                 }                
 

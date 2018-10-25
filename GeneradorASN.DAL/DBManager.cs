@@ -13,16 +13,16 @@ namespace GeneradorASN.DAL
 {
     public class DBManager
     {
-        static public List<List<RANDBData>> ObtenerRemisiones(DateTime fechaInicio, DateTime fechaFinal) {
-            return DBManager.ObtenerRemisiones(true, fechaInicio, fechaFinal, ""); 
+        static public List<List<RANDBData>> ObtenerRemisiones(DateTime fechaInicio, DateTime fechaFinal, Registrador.IRegistroEjecucion registrador) {
+            return DBManager.ObtenerRemisiones(true, fechaInicio, fechaFinal, "", registrador); 
         }
 
-        static public List<List<RANDBData>> ObtenerRemisiones(string Claves)
+        static public List<List<RANDBData>> ObtenerRemisiones(string Claves, Registrador.IRegistroEjecucion registrador)
         {
             string ClavesNormalizadas = DBManager.ProcesaClavesAlfaNumericas(Claves); 
             if (ClavesNormalizadas.Length > 0)
             {
-                return DBManager.ObtenerRemisiones(false, DateTime.Now, DateTime.Now, ClavesNormalizadas);
+                return DBManager.ObtenerRemisiones(false, DateTime.Now, DateTime.Now, ClavesNormalizadas, registrador);
             }
             else {
                 throw new Exception("No existen folios de remision validos");
@@ -56,7 +56,7 @@ namespace GeneradorASN.DAL
             return ClavesNormalizadas;
         }
 
-        static private List< List<RANDBData> > ObtenerRemisiones(bool PorFechas, DateTime fechaInicio, DateTime fechaFinal,string Claves)
+        static private List< List<RANDBData> > ObtenerRemisiones(bool PorFechas, DateTime fechaInicio, DateTime fechaFinal,string Claves, Registrador.IRegistroEjecucion registrador)
         {
             string CadenaConexion = ConfigurationManager.ConnectionStrings["ArtluxSAE"].ToString();
             string Num_Empresa = ConfigurationManager.AppSettings["NumEmpresaSAE"];
@@ -112,40 +112,52 @@ namespace GeneradorASN.DAL
 
             if (dtRANS != null && dtRANS.Rows.Count > 0) {
                 //Se filtran los diferentes 'Claves de Documentos' <Pedidos>
+                //registrador.Registrar("TEMP: Antes de dtRANS.DefaultView.ToTable");
                 DataTable dtPedidos = dtRANS.DefaultView.ToTable(true,new string[] { "CVE_DOC" });
+                //registrador.Registrar("TEMP: Desp de dtRANS.DefaultView.ToTable: " + dtPedidos.Rows.Count);
                 foreach (DataRow drPedido in dtPedidos.Rows)
                 {
-                    int CantidadTotal = 0;
-                    List<RANDBData> ListaDeRANS = new List<RANDBData>();
-                    //Se filtran solo los RANs de un Pedido con 'Clave de Documento' <CVE_DOC>
-                    DataRow[] RANsDePedido = dtRANS.Select("CVE_DOC = " + drPedido["CVE_DOC"].ToString ()) ; 
-                    foreach (DataRow drRAN in RANsDePedido)
+                    if (drPedido["CVE_DOC"].ToString().Trim().All(char.IsDigit))   //Si todos son numeros 0-9
                     {
-                        RANDBData Datos = new RANDBData();
-                       
-                        Datos.RAN = drRAN["STR_RAN"].ToString();
-                        Datos.Remision = drRAN["CVE_DOC"].ToString();
-                        Datos.FechaCreacion = (DateTime)drRAN["FECHA_VEN"];
-                        Datos.FechaEnvio = (DateTime)drRAN["FECHA_ENT"];
-                        Datos.ClaveProducto = drRAN["CVE_ART"].ToString();
-                        Datos.Cantidad = Convert.ToInt32(drRAN["CANT"]);
-                        Datos.ClaveCliente = drRAN["CVE_CLPV"].ToString();
-                        Datos.NombreCliente = drRAN["NOMBRE"].ToString();
-                        Datos.ClaveProductoAlterna = drRAN["CVE_ALTER"].ToString();
+                        int CantidadTotal = 0;
+                        List<RANDBData> ListaDeRANS = new List<RANDBData>();
+                        //Se filtran solo los RANs de un Pedido con 'Clave de Documento' <CVE_DOC>
+                        //registrador.Registrar("TEMP: Empezando a procesar '" + drPedido["CVE_DOC"].ToString() + "'");
+                        DataRow[] RANsDePedido = dtRANS.Select("CVE_DOC = '" + drPedido["CVE_DOC"].ToString() + "'");
+                        foreach (DataRow drRAN in RANsDePedido)
+                        {
+                            RANDBData Datos = new RANDBData();
 
-                        CantidadTotal += Datos.Cantidad;
-                          
-                        ListaDeRANS.Add(Datos);
+                            Datos.RAN = drRAN["STR_RAN"].ToString();
+                            Datos.Remision = drRAN["CVE_DOC"].ToString().Trim();
+                            Datos.FechaCreacion = (DateTime)drRAN["FECHA_VEN"];
+                            Datos.FechaEnvio = (DateTime)drRAN["FECHA_ENT"];
+                            Datos.ClaveProducto = drRAN["CVE_ART"].ToString();
+                            Datos.Cantidad = Convert.ToInt32(drRAN["CANT"]);
+                            Datos.ClaveCliente = drRAN["CVE_CLPV"].ToString();
+                            Datos.NombreCliente = drRAN["NOMBRE"].ToString();
+                            Datos.ClaveProductoAlterna = drRAN["CVE_ALTER"].ToString();
+
+                            CantidadTotal += Datos.Cantidad;
+
+                            ListaDeRANS.Add(Datos);
+                        }
+
+                        foreach (RANDBData ran in ListaDeRANS)
+                        {
+                            ran.CantidadTotal = CantidadTotal;
+                        }
+                        //registrador.Registrar("TEMP: Encontrado con numeros" + drPedido["CVE_DOC"].ToString());
+                        data.Add(ListaDeRANS);
                     }
-
-                    foreach (RANDBData ran in ListaDeRANS) {
-                        ran.CantidadTotal = CantidadTotal;
+                    else
+                    {
+                        //registrador.Registrar("TEMP: Encontrado con letra " + drPedido["CVE_DOC"].ToString());
                     }
-
-                    data.Add(ListaDeRANS);
                 }
             }
-                        
+            //registrador.Registrar("TEMP: Para mostrar " + data.Count);
+
             return data;
         }
     }

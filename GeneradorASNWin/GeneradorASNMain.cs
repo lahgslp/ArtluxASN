@@ -34,6 +34,10 @@ namespace GeneradorASNWin
             this.comboPeriodo.DisplayMember = "PeriodoDesc";
             flagComboPeriodos = true;
             this.comboPeriodo.SelectedValue = (int) Periodos.Hoy;
+            DateTime inicio, final;
+            GeneradorPeriodosdeFechas.CalcularFechas(Periodos.Hoy, DateTime.Now, out inicio, out final);
+            dateTimePickerFechaInicio.Value = inicio;
+            dateTimePickerFechaFinal.Value = final;
         }
 
         private void ActivaControlesFolios()

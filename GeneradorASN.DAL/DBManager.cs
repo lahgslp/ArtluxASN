@@ -82,7 +82,7 @@ namespace GeneradorASN.DAL
             Texto_sql += "     left join CLIE" + Num_Empresa + " cliente on rem.CVE_CLPV = cliente.CLAVE";
             Texto_sql += "     left join CVES_ALTER" + Num_Empresa + " alternas on Par.CVE_ART = alternas.CVE_ART";
             //Texto_sql += " WHERE status = 'E' and rem.CVE_CLPV in ('" + Clientes + "')";
-            Texto_sql += " WHERE rem.CVE_CLPV in (" + Clientes + ")";
+            Texto_sql += " WHERE rem.STATUS NOT IN ('C') AND rem.CVE_CLPV in (" + Clientes + ")";
 
             if (PorFechas)
             {

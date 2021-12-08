@@ -24,6 +24,7 @@
               <xs:element name="ListaRANs" msprop:Generator_ColumnVarNameInTable="columnListaRANs" msprop:Generator_ColumnPropNameInRow="ListaRANs" msprop:Generator_ColumnPropNameInTable="ListaRANsColumn" msprop:Generator_UserColumnName="ListaRANs" type="xs:string" minOccurs="0" />
               <xs:element name="ClaveCliente" msprop:Generator_ColumnVarNameInTable="columnClaveCliente" msprop:Generator_ColumnPropNameInRow="ClaveCliente" msprop:Generator_ColumnPropNameInTable="ClaveClienteColumn" msprop:Generator_UserColumnName="ClaveCliente" type="xs:string" minOccurs="0" />
               <xs:element name="NombreCliente" msprop:Generator_ColumnVarNameInTable="columnNombreCliente" msprop:Generator_ColumnPropNameInRow="NombreCliente" msprop:Generator_ColumnPropNameInTable="NombreClienteColumn" msprop:Generator_UserColumnName="NombreCliente" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

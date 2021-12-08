@@ -347,6 +347,8 @@ namespace GeneradorASN.Entities {
             
             private global::System.Data.DataColumn columnNombreCliente;
             
+            private global::System.Data.DataColumn columnStatus;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public RemisionesDataTableDataTable() {
@@ -454,6 +456,14 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn StatusColumn {
+                get {
+                    return this.columnStatus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -489,7 +499,7 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public RemisionesDataTableRow AddRemisionesDataTableRow(string FolioRemision, double CantidadTotal, int PartidasTotales, float PesoTotal, System.DateTime FechaDocumento, System.DateTime FechaEntrega, string ListaRANs, string ClaveCliente, string NombreCliente) {
+            public RemisionesDataTableRow AddRemisionesDataTableRow(string FolioRemision, double CantidadTotal, int PartidasTotales, float PesoTotal, System.DateTime FechaDocumento, System.DateTime FechaEntrega, string ListaRANs, string ClaveCliente, string NombreCliente, string Status) {
                 RemisionesDataTableRow rowRemisionesDataTableRow = ((RemisionesDataTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         FolioRemision,
@@ -500,7 +510,8 @@ namespace GeneradorASN.Entities {
                         FechaEntrega,
                         ListaRANs,
                         ClaveCliente,
-                        NombreCliente};
+                        NombreCliente,
+                        Status};
                 rowRemisionesDataTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowRemisionesDataTableRow);
                 return rowRemisionesDataTableRow;
@@ -532,6 +543,7 @@ namespace GeneradorASN.Entities {
                 this.columnListaRANs = base.Columns["ListaRANs"];
                 this.columnClaveCliente = base.Columns["ClaveCliente"];
                 this.columnNombreCliente = base.Columns["NombreCliente"];
+                this.columnStatus = base.Columns["Status"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -555,6 +567,8 @@ namespace GeneradorASN.Entities {
                 base.Columns.Add(this.columnClaveCliente);
                 this.columnNombreCliente = new global::System.Data.DataColumn("NombreCliente", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNombreCliente);
+                this.columnStatus = new global::System.Data.DataColumn("Status", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStatus);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnFolioRemision}, false));
                 this.columnFolioRemision.Unique = true;
@@ -1164,6 +1178,22 @@ namespace GeneradorASN.Entities {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Status {
+                get {
+                    try {
+                        return ((string)(this[this.tableRemisionesDataTable.StatusColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Status\' in table \'RemisionesDataTable\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableRemisionesDataTable.StatusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFolioRemisionNull() {
                 return this.IsNull(this.tableRemisionesDataTable.FolioRemisionColumn);
             }
@@ -1268,6 +1298,18 @@ namespace GeneradorASN.Entities {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNombreClienteNull() {
                 this[this.tableRemisionesDataTable.NombreClienteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsStatusNull() {
+                return this.IsNull(this.tableRemisionesDataTable.StatusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetStatusNull() {
+                this[this.tableRemisionesDataTable.StatusColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

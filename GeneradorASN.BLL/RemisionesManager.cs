@@ -36,7 +36,7 @@ namespace GeneradorASN.BLL
                 {
                     ListaRemisiones = DBManager.ObtenerRemisiones(filtros.Folios, registrador);
                     //ListaRemisiones = DBManager.ObtenerRemisiones("2888,123abc,2942,2b#^--12,3003,ab123");
-                }                
+                }
 
                 foreach (List<RANDBData> ListaDeRANs in ListaRemisiones)
                 {
@@ -50,17 +50,17 @@ namespace GeneradorASN.BLL
                     rowRemision.PartidasTotales = ListaDeRANs.Count;
                     rowRemision.FechaDocumento = ListaDeRANs[0].FechaCreacion;
                     rowRemision.FechaEntrega = ListaDeRANs[0].FechaEnvio;
-                    rowRemision.ClaveCliente = ListaDeRANs[0].ClaveCliente ;
-                    rowRemision.NombreCliente = ListaDeRANs[0].NombreCliente;   
+                    rowRemision.ClaveCliente = ListaDeRANs[0].ClaveCliente;
+                    rowRemision.NombreCliente = ListaDeRANs[0].NombreCliente;
 
-                    ds.RemisionesDataTable.Rows.Add(rowRemision);                    
+                    ds.RemisionesDataTable.Rows.Add(rowRemision);
 
                     foreach (RANDBData ran in ListaDeRANs)
                     {
                         float PesoPartida = 0;
                         RemisionesDataSet.PartidasDataTableRow rowPartida = ds.PartidasDataTable.NewPartidasDataTableRow();
                         MedidasArticulo MedidaArticulo = new MedidasArticulo();
-                                                                        
+
                         //if (ran.ClaveProducto.Substring(0, 5) != "NIMEX" && ran.ClaveProductoAlterna.Substring(0, 5) != "NIMEX")
                         //{
                         //    claves = claves + ran.ClaveProducto + ",";
@@ -79,28 +79,31 @@ namespace GeneradorASN.BLL
                         RAN = ran.RAN;
                         if (MedidaArticulo == null)
                         {
-                            registrador.RegistrarAdvertencia("No se encontro el articulo '"+ ran.ClaveProducto + "' dentro del archivo de pesos.");
+                            registrador.RegistrarAdvertencia("No se encontro el articulo '" + ran.ClaveProducto + "' dentro del archivo de pesos.");
                         }
-                        else {
+                        else
+                        {
                             PesoPartida = (float)(ran.Cantidad / MedidaArticulo.PiezasXcaja * MedidaArticulo.Peso);
                         }
-                        
+
                         rowPartida.FolioRemision = ran.Remision;
                         rowPartida.ClaveProducto = ran.ClaveProducto;
                         rowPartida.CantidadPartida = ran.Cantidad;
                         rowPartida.PesoPartida = PesoPartida;
                         rowPartida.RAN = ran.RAN;
-                        rowPartida.ClaveProductoAlterna = ran.ClaveProductoAlterna; 
+                        rowPartida.ClaveProductoAlterna = ran.ClaveProductoAlterna;
 
                         PesoTotal += PesoPartida;
                         ds.PartidasDataTable.Rows.Add(rowPartida);
 
                         strListaRANs += "," + ran.RAN;
 
-                        if (string.IsNullOrEmpty(ran.RAN.Trim())) {
-                            registrador.RegistrarAdvertencia("No se encontro RAN para la clave de remisión '" + ran.Remision + "' con clave de articulo '"+ ran.ClaveProducto + "'.");
+                        if (string.IsNullOrEmpty(ran.RAN.Trim()))
+                        {
+                            registrador.RegistrarAdvertencia("No se encontro RAN para la clave de remisión '" + ran.Remision + "' con clave de articulo '" + ran.ClaveProducto + "'.");
                         }
-                        if (string.IsNullOrEmpty(ran.ClaveProductoAlterna .Trim())){
+                        if (string.IsNullOrEmpty(ran.ClaveProductoAlterna.Trim()))
+                        {
                             registrador.RegistrarAdvertencia("No se encontro 'Clave Alterna' para la clave de producto '" + ran.ClaveProducto + "'.");
                         }
                     }
@@ -109,8 +112,9 @@ namespace GeneradorASN.BLL
                 }
 
             }
-            catch (Exception ex) {
-                registrador.RegistrarError("Ocurrio un error desconocido al procesar la remisión '"+CveDoc+"' con RAN '"+RAN+"'. Detalles '"+ex.Message +"'");
+            catch (Exception ex)
+            {
+                registrador.RegistrarError("Ocurrio un error desconocido al procesar la remisión '" + CveDoc + "' con RAN '" + RAN + "'. Detalles '" + ex.Message + "'");
             }
 
             return ds;

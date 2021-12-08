@@ -57,6 +57,7 @@
             this.textBoxFolios = new System.Windows.Forms.TextBox();
             this.buttonRefrescar = new System.Windows.Forms.Button();
             this.checkBoxSeleccionaTodo = new System.Windows.Forms.CheckBox();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxRANs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRANs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.remisionesDataTableBindingSource)).BeginInit();
@@ -84,7 +85,7 @@
             // dateTimePickerFechaInicio
             // 
             this.dateTimePickerFechaInicio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePickerFechaInicio.Location = new System.Drawing.Point(362, 15);
+            this.dateTimePickerFechaInicio.Location = new System.Drawing.Point(418, 15);
             this.dateTimePickerFechaInicio.Name = "dateTimePickerFechaInicio";
             this.dateTimePickerFechaInicio.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerFechaInicio.TabIndex = 2;
@@ -93,7 +94,7 @@
             // dateTimePickerFechaFinal
             // 
             this.dateTimePickerFechaFinal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePickerFechaFinal.Location = new System.Drawing.Point(645, 15);
+            this.dateTimePickerFechaFinal.Location = new System.Drawing.Point(701, 15);
             this.dateTimePickerFechaFinal.Name = "dateTimePickerFechaFinal";
             this.dateTimePickerFechaFinal.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerFechaFinal.TabIndex = 3;
@@ -103,7 +104,7 @@
             // 
             this.labelFechaInicio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFechaInicio.AutoSize = true;
-            this.labelFechaInicio.Location = new System.Drawing.Point(288, 15);
+            this.labelFechaInicio.Location = new System.Drawing.Point(344, 15);
             this.labelFechaInicio.Name = "labelFechaInicio";
             this.labelFechaInicio.Size = new System.Drawing.Size(68, 13);
             this.labelFechaInicio.TabIndex = 4;
@@ -113,7 +114,7 @@
             // 
             this.labelFechaFinal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFechaFinal.AutoSize = true;
-            this.labelFechaFinal.Location = new System.Drawing.Point(574, 15);
+            this.labelFechaFinal.Location = new System.Drawing.Point(630, 15);
             this.labelFechaFinal.Name = "labelFechaFinal";
             this.labelFechaFinal.Size = new System.Drawing.Size(65, 13);
             this.labelFechaFinal.TabIndex = 6;
@@ -127,7 +128,7 @@
             this.groupBoxRANs.Controls.Add(this.dataGridViewRANs);
             this.groupBoxRANs.Location = new System.Drawing.Point(12, 41);
             this.groupBoxRANs.Name = "groupBoxRANs";
-            this.groupBoxRANs.Size = new System.Drawing.Size(833, 225);
+            this.groupBoxRANs.Size = new System.Drawing.Size(889, 225);
             this.groupBoxRANs.TabIndex = 7;
             this.groupBoxRANs.TabStop = false;
             this.groupBoxRANs.Text = "Listado de RANs";
@@ -146,12 +147,13 @@
             this.pesoTotalDataGridViewTextBoxColumn,
             this.fechaDocumentoDataGridViewTextBoxColumn,
             this.fechaEntregaDataGridViewTextBoxColumn,
-            this.listaRANsDataGridViewTextBoxColumn});
+            this.listaRANsDataGridViewTextBoxColumn,
+            this.Status});
             this.dataGridViewRANs.DataSource = this.remisionesDataTableBindingSource;
             this.dataGridViewRANs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewRANs.Location = new System.Drawing.Point(3, 16);
             this.dataGridViewRANs.Name = "dataGridViewRANs";
-            this.dataGridViewRANs.Size = new System.Drawing.Size(827, 206);
+            this.dataGridViewRANs.Size = new System.Drawing.Size(883, 206);
             this.dataGridViewRANs.TabIndex = 0;
             // 
             // Selected
@@ -223,7 +225,7 @@
             // 
             this.labelDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.labelDestino.AutoSize = true;
-            this.labelDestino.Location = new System.Drawing.Point(251, 275);
+            this.labelDestino.Location = new System.Drawing.Point(307, 275);
             this.labelDestino.Name = "labelDestino";
             this.labelDestino.Size = new System.Drawing.Size(46, 13);
             this.labelDestino.TabIndex = 8;
@@ -232,7 +234,7 @@
             // textBoxRutaDestino
             // 
             this.textBoxRutaDestino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxRutaDestino.Location = new System.Drawing.Point(303, 272);
+            this.textBoxRutaDestino.Location = new System.Drawing.Point(359, 272);
             this.textBoxRutaDestino.Name = "textBoxRutaDestino";
             this.textBoxRutaDestino.ReadOnly = true;
             this.textBoxRutaDestino.Size = new System.Drawing.Size(369, 20);
@@ -241,7 +243,7 @@
             // buttonCargar
             // 
             this.buttonCargar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCargar.Location = new System.Drawing.Point(767, 272);
+            this.buttonCargar.Location = new System.Drawing.Point(823, 272);
             this.buttonCargar.Name = "buttonCargar";
             this.buttonCargar.Size = new System.Drawing.Size(75, 23);
             this.buttonCargar.TabIndex = 10;
@@ -252,7 +254,7 @@
             // buttonCambiarRuta
             // 
             this.buttonCambiarRuta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCambiarRuta.Location = new System.Drawing.Point(678, 272);
+            this.buttonCambiarRuta.Location = new System.Drawing.Point(734, 272);
             this.buttonCambiarRuta.Name = "buttonCambiarRuta";
             this.buttonCambiarRuta.Size = new System.Drawing.Size(75, 23);
             this.buttonCambiarRuta.TabIndex = 11;
@@ -264,7 +266,7 @@
             // 
             this.linkCarpetaRegistro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.linkCarpetaRegistro.AutoSize = true;
-            this.linkCarpetaRegistro.Location = new System.Drawing.Point(254, 295);
+            this.linkCarpetaRegistro.Location = new System.Drawing.Point(310, 295);
             this.linkCarpetaRegistro.Name = "linkCarpetaRegistro";
             this.linkCarpetaRegistro.Size = new System.Drawing.Size(170, 13);
             this.linkCarpetaRegistro.TabIndex = 12;
@@ -276,7 +278,7 @@
             // 
             this.labelFolios.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFolios.AutoSize = true;
-            this.labelFolios.Location = new System.Drawing.Point(288, 15);
+            this.labelFolios.Location = new System.Drawing.Point(344, 15);
             this.labelFolios.Name = "labelFolios";
             this.labelFolios.Size = new System.Drawing.Size(37, 13);
             this.labelFolios.TabIndex = 13;
@@ -288,14 +290,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxFolios.Location = new System.Drawing.Point(234, 13);
             this.textBoxFolios.Name = "textBoxFolios";
-            this.textBoxFolios.Size = new System.Drawing.Size(530, 20);
+            this.textBoxFolios.Size = new System.Drawing.Size(586, 20);
             this.textBoxFolios.TabIndex = 14;
             this.textBoxFolios.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxFolios_KeyDown);
             // 
             // buttonRefrescar
             // 
             this.buttonRefrescar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRefrescar.Location = new System.Drawing.Point(770, 12);
+            this.buttonRefrescar.Location = new System.Drawing.Point(826, 12);
             this.buttonRefrescar.Name = "buttonRefrescar";
             this.buttonRefrescar.Size = new System.Drawing.Size(75, 23);
             this.buttonRefrescar.TabIndex = 15;
@@ -315,11 +317,17 @@
             this.checkBoxSeleccionaTodo.UseVisualStyleBackColor = true;
             this.checkBoxSeleccionaTodo.CheckedChanged += new System.EventHandler(this.checkBoxSeleccionaTodo_CheckedChanged);
             // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            // 
             // GeneradorASNMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(857, 326);
+            this.ClientSize = new System.Drawing.Size(913, 326);
             this.Controls.Add(this.checkBoxSeleccionaTodo);
             this.Controls.Add(this.buttonRefrescar);
             this.Controls.Add(this.textBoxFolios);
@@ -378,6 +386,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaEntregaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn listaRANsDataGridViewTextBoxColumn;
         private System.Windows.Forms.CheckBox checkBoxSeleccionaTodo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }
 

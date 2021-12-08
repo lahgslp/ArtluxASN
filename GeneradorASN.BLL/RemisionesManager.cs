@@ -52,6 +52,7 @@ namespace GeneradorASN.BLL
                     rowRemision.FechaEntrega = ListaDeRANs[0].FechaEnvio;
                     rowRemision.ClaveCliente = ListaDeRANs[0].ClaveCliente;
                     rowRemision.NombreCliente = ListaDeRANs[0].NombreCliente;
+                    rowRemision.Status = ListaDeRANs[0].Status;
 
                     ds.RemisionesDataTable.Rows.Add(rowRemision);
 

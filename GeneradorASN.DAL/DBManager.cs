@@ -13,24 +13,27 @@ namespace GeneradorASN.DAL
 {
     public class DBManager
     {
-        static public List<List<RANDBData>> ObtenerRemisiones(DateTime fechaInicio, DateTime fechaFinal, Registrador.IRegistroEjecucion registrador) {
-            return DBManager.ObtenerRemisiones(true, fechaInicio, fechaFinal, "", registrador); 
+        static public List<List<RANDBData>> ObtenerRemisiones(DateTime fechaInicio, DateTime fechaFinal, Registrador.IRegistroEjecucion registrador)
+        {
+            return DBManager.ObtenerRemisiones(true, fechaInicio, fechaFinal, "", registrador);
         }
 
         static public List<List<RANDBData>> ObtenerRemisiones(string Claves, Registrador.IRegistroEjecucion registrador)
         {
-            string ClavesNormalizadas = DBManager.ProcesaClavesAlfaNumericas(Claves); 
+            string ClavesNormalizadas = DBManager.ProcesaClavesAlfaNumericas(Claves);
             if (ClavesNormalizadas.Length > 0)
             {
                 return DBManager.ObtenerRemisiones(false, DateTime.Now, DateTime.Now, ClavesNormalizadas, registrador);
             }
-            else {
+            else
+            {
                 throw new Exception("No existen folios de remision validos");
             }
-           
+
         }
 
-       static private string ProcesaClavesAlfaNumericas(string Claves) {
+        static private string ProcesaClavesAlfaNumericas(string Claves)
+        {
             string[] arrayClaves = Claves.Split(',');
             string ClavesNormalizadas = "";
 
@@ -51,18 +54,16 @@ namespace GeneradorASN.DAL
             {
                 ClavesNormalizadas = ClavesNormalizadas.Substring(1);
             }
-         
 
             return ClavesNormalizadas;
         }
-
-        static private List< List<RANDBData> > ObtenerRemisiones(bool PorFechas, DateTime fechaInicio, DateTime fechaFinal,string Claves, Registrador.IRegistroEjecucion registrador)
+        static private List<List<RANDBData>> ObtenerRemisiones(bool PorFechas, DateTime fechaInicio, DateTime fechaFinal, string Claves, Registrador.IRegistroEjecucion registrador)
         {
             string CadenaConexion = ConfigurationManager.ConnectionStrings["ArtluxSAE"].ToString();
             string Num_Empresa = ConfigurationManager.AppSettings["NumEmpresaSAE"];
             string Clientes = DBManager.ProcesaClavesAlfaNumericas(ConfigurationManager.AppSettings["ClaveCliente"]);
             List<List<RANDBData>> data = new List<List<RANDBData>>();
-                      
+
             FbCommand fbComando = new FbCommand("", new FbConnection(CadenaConexion));
             FbDataAdapter fbDataAdaptador = new FbDataAdapter();
             DataTable dtRANS = new DataTable();
@@ -81,7 +82,6 @@ namespace GeneradorASN.DAL
             Texto_sql += "     inner join INFENVIO" + Num_Empresa + " envio on rem.DAT_ENVIO = envio.CVE_INFO";
             Texto_sql += "     left join CLIE" + Num_Empresa + " cliente on rem.CVE_CLPV = cliente.CLAVE";
             Texto_sql += "     left join CVES_ALTER" + Num_Empresa + " alternas on Par.CVE_ART = alternas.CVE_ART";
-            //Texto_sql += " WHERE status = 'E' and rem.CVE_CLPV in ('" + Clientes + "')";
             Texto_sql += " WHERE rem.STATUS NOT IN ('C') AND rem.CVE_CLPV in (" + Clientes + ")";
 
             if (PorFechas)
@@ -104,16 +104,17 @@ namespace GeneradorASN.DAL
                 fbDataAdaptador.SelectCommand = fbComando;
                 fbDataAdaptador.Fill(dtRANS);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
-            
 
-            if (dtRANS != null && dtRANS.Rows.Count > 0) {
+
+            if (dtRANS != null && dtRANS.Rows.Count > 0)
+            {
                 //Se filtran los diferentes 'Claves de Documentos' <Pedidos>
                 //registrador.Registrar("TEMP: Antes de dtRANS.DefaultView.ToTable");
-                DataTable dtPedidos = dtRANS.DefaultView.ToTable(true,new string[] { "CVE_DOC" });
+                DataTable dtPedidos = dtRANS.DefaultView.ToTable(true, new string[] { "CVE_DOC" });
                 //registrador.Registrar("TEMP: Desp de dtRANS.DefaultView.ToTable: " + dtPedidos.Rows.Count);
                 foreach (DataRow drPedido in dtPedidos.Rows)
                 {
@@ -137,6 +138,7 @@ namespace GeneradorASN.DAL
                             Datos.ClaveCliente = drRAN["CVE_CLPV"].ToString();
                             Datos.NombreCliente = drRAN["NOMBRE"].ToString();
                             Datos.ClaveProductoAlterna = drRAN["CVE_ALTER"].ToString();
+                            Datos.Status = MapearStatus(drRAN["STATUS"].ToString());
 
                             CantidadTotal += Datos.Cantidad;
 
@@ -157,8 +159,24 @@ namespace GeneradorASN.DAL
                 }
             }
             //registrador.Registrar("TEMP: Para mostrar " + data.Count);
-
             return data;
+        }
+        static private string MapearStatus(string CodigoStatus)
+        {
+            string resultado = CodigoStatus;
+            switch (CodigoStatus)
+            {
+                case "E":
+                    resultado = "Emitido";
+                    break;
+                case "C":
+                    resultado = "Cancelado";
+                    break;
+                case "O":
+                    resultado = "Original";
+                    break;
+            }
+            return resultado;
         }
     }
 }

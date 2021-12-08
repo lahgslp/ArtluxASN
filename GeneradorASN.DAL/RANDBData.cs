@@ -18,5 +18,6 @@ namespace GeneradorASN.DAL
         public string ClaveCliente { get; set; }
         public string NombreCliente { get; set; }
         public string ClaveProductoAlterna { get; set; }
-   }
+        public string Status { get; set; }
+    }
 }
